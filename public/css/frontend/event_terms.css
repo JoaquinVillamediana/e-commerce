@@ -1,0 +1,40 @@
+.event-terms-step {
+    color: #009CDE;
+    text-align: left;
+}
+
+.event-terms-title {
+    text-align: left;
+    font-size: 24px;
+}
+
+.event-terms-terms {
+    text-align: left;
+    font-size: 14px;
+}
+
+.event-terms-back-btn{
+    border: 2px solid;
+    border-color: #009CDE;
+    color: #009CDE;
+    text-align: center;
+    padding: 10px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 90%;
+    cursor: pointer;
+}
+
+.event-terms-ok-btn {
+    background-color: #009CDE;
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 12px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 90%;
+    cursor: pointer;
+}
