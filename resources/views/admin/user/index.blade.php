@@ -38,7 +38,7 @@
                             @foreach($aUsers as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name . " " . $user->last_name }}</td>
+                                <td>{{ $user->name . " ," . $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
                                                                 
                                 @if($user->type == 1)
@@ -47,9 +47,9 @@
                                     <td>Usr.</td>
                                 @endif
                                 <td>{{ $user->created_at }}</td>
-                                <td><a class="btn btn-primary btn-circle" href=""><i class="fa fa-list"></i></a></td>
+                                <td><a class="btn btn-primary btn-circle" href="{{action('admin\UserController@edit', $user->id)}}"><i class="fa fa-list"></i></a></td>
                                 <td>
-                                    <form id="deleteForm_{{$user->id}}" action="" method="post">
+                                    <form id="deleteForm_{{$user->id}}" action="{{action('admin\UserController@destroy', $user->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="button" id="submiBtn" class="btn btn-warning btn-circle my-custom-confirmation" data-toggle="modal" onclick="openDelModal({{$user->id}});"><i class="fa fa-times"></i></button>

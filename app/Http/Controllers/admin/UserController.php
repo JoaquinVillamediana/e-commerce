@@ -5,8 +5,6 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\Models\ProvincesModel;
-use App\Models\ObjectivesModel;
 
 class UserController extends Controller {
 
@@ -29,9 +27,6 @@ class UserController extends Controller {
             'last_name' => 'required|max:60',
             'email' => 'required|email|max:60',
             'password' => 'required|min:8|max:32',
-            'dir' => 'required|max:60',
-            'phone' => 'required|numeric',
-            'province_id' => 'required|numeric'
         );
 
         
@@ -52,8 +47,6 @@ class UserController extends Controller {
         $request['password'] = bcrypt($request['password']);
         $request['name'] = ucwords($request['name']);
         $request['last_name'] = ucwords($request['last_name']);
-        $request['dir'] = ucwords($request['dir']);
-        $request['business_name'] = ucwords($request['business_name']);
 
         User::create($request->all());
 
@@ -65,10 +58,8 @@ class UserController extends Controller {
     }
 
     public function edit($id) {
-        $aObj = ObjectivesModel::select('title','id')->get();
         $oUser = User::find($id);
-        $aProvinces = ProvincesModel::get();
-        return view('admin/user.edit', compact('oUser','aObj','aProvinces'));
+        return view('admin/user.edit', compact('oUser'));
     }
 
     public function update(Request $request, $id) {
@@ -78,17 +69,8 @@ class UserController extends Controller {
             'name' => 'required|max:60',
             'last_name' => 'required|max:60',
             'email' => 'required|email|max:60',
-
-            'dir' => 'required|max:60',
-            'phone' => 'required|numeric',
-            'province_id' => 'numeric'
         );
 
-        if(!empty($request['city_id']))
-        {
-            $aValidations['city_id'] = 'numeric'; 
-        }
-        
         $this->validate($request, $aValidations);
 
         $userEmail = User::where('email', $request['email'])->where('id', '!=', $id)->first();
@@ -122,23 +104,10 @@ class UserController extends Controller {
         $request['password'] = bcrypt($request['password']);
         $request['name'] = ucwords($request['name']);
         $request['last_name'] = ucwords($request['last_name']);
-        $request['dir'] = ucwords($request['dir']);
-        $request['business_name'] = ucwords($request['business_name']);
         $oUser->name = $request['name'];
         $oUser->last_name = $request['last_name'];
         $oUser->password = $request['password'];
         $oUser->email = $request['email'];
-        $oUser->province_id = $request['province_id'];
-        if(!empty($request['city_id']))
-        {
-        $oUser->city_id = $request['city_id'];
-        }else{
-            $oUser->city_id = null;
-        }
-        $oUser->dir = $request['dir'];
-        $oUser->phone = $request['phone'];
-        $oUser->business_name = $request['business_name'];
-        $oUser->objective_id = $request['objective_id'];
         $oUser->save();
 
         return redirect()->route('user.index')->with('success', 'Registro actualizado satisfactoriamente');

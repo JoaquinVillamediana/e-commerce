@@ -78,22 +78,7 @@
                                 @endif
                             </div>
 
-                      
-                            <div class="row">
-
-                                <div class="form-group col-md">
-                                    <label>Telefono</label>
-                                    <input id="phone" name="phone" type="number" maxlength="60"
-                                        class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                        placeholder="Telefono" value="{{ old('phone') }}">
-                                    @if ($errors->has('phone'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar un teléfono.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                            </div>
+                    
 
                           
 

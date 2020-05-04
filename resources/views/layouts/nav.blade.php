@@ -14,7 +14,7 @@
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Categories">
                 <a class="nav-link" href="{{ route('categories.index') }}">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-th-large"></i>
                     <span class="nav-link-text">Categorias</span>
                 </a>
             </li>
