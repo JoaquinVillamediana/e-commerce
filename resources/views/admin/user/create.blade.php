@@ -78,59 +78,8 @@
                                 @endif
                             </div>
 
+                      
                             <div class="row">
-
-                                <div class="form-group col-md">
-                                    <label>Provincia</label>
-                                    <select id="province_id" name="province_id"
-                                        class="form-control{{ $errors->has('province_id') ? ' is-invalid' : '' }}"
-                                        palceholder="Provincia" value="{{ old('province_id') }}">
-                                        <option value="">Provincia</option>
-                                        @if(!empty($aProvinces))
-                                        @foreach($aProvinces as $province)
-                                        <option value="{{$province->id}}"
-                                            {{ (old('province_id') == $province->id ? "selected":"") }}>
-                                            {{$province->name}}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    @if ($errors->has('province_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe seleccionar una provincia.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group col-md">
-                                    <label>Ciudad</label>
-                                    <select id="city_id" name="city_id" class="form-control{{ $errors->has('city_id') ? ' is-invalid' : '' }}">
-                                        <option value="">Ciudad</option>                    
-                                    </select>
-                                    @if ($errors->has('city_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe seleccionar una ciudad.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-
-                            </div>
-
-                            <div class="row">
-
-
-
-                                <div class="form-group col-md">
-                                    <label>Direccion</label>
-                                    <input id="dir" name="dir" type="text" maxlength="60"
-                                        class="form-control{{ $errors->has('dir') ? ' is-invalid' : '' }}"
-                                        placeholder="Direccion" value="{{ old('dir') }}">
-                                    @if ($errors->has('dir'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar una dirección.</strong>
-                                    </span>
-                                    @endif
-                                </div>
 
                                 <div class="form-group col-md">
                                     <label>Telefono</label>
@@ -146,39 +95,7 @@
 
                             </div>
 
-                            <div class="row">
-
-                                <div class="form-group col-md">
-                                    <label>Razon Social</label>
-                                    <input id="business_name" name="business_name" type="text" maxlength="60"
-                                        class="form-control{{ $errors->has('business_name') ? ' is-invalid' : '' }}"
-                                        placeholder="Razon Social" value="{{ old('business_name') }}">
-                                    @if ($errors->has('business_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar una razón social.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group col-md">
-                                    <label>Objetivo/s</label>
-                                    <select id="objective_id" name="objective_id"
-                                        class="form-control{{ $errors->has('objective_id') ? ' is-invalid' : '' }}"
-                                        palceholder="Objetivo/s" value="{{ old('objective_id') }}">
-                                        @foreach ($aObj as $oObj)
-                                        <option value="{{$oObj->id}}">{{$oObj->title}}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('objective_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe seleccionar un objetivo.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-
-                            </div>
-
+                          
 
                             <div class="form-group" id="box_password">
                                 <label>Password</label>

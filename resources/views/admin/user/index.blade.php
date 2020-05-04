@@ -15,7 +15,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i> Usuarios
-                <a class="createButton ml-5" href="" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Crear'))</a>
+                <a class="createButton ml-5" href="{{ route('user.create') }}" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Crear'))</a>
             </div>         
             <div class="card-body">
                 <div class="table-responsive">

@@ -18,9 +18,7 @@ class UserController extends Controller {
     }
 
     public function create() {
-        $aProvinces = ProvincesModel::get();
-        $aObj = ObjectivesModel::select('title','id')->get();
-        return view('admin/user.create',compact('aObj','aProvinces'));
+        return view('admin/user.create');
     }
 
     public function store(Request $request) {
