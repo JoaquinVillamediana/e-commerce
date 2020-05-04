@@ -26,10 +26,13 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
-        Route::middleware(['checkAdmin'])->group(function () {
+         Route::middleware(['checkAdmin'])->group(function () {
             
             Route::resource('user', 'admin\UserController');
+            Route::resource('categories', 'admin\CategoriesController');
         });
+    // });
+      
     });
 });
 

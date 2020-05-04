@@ -12,7 +12,12 @@
                     <span class="nav-link-text">Usuarios</span>
                 </a>
             </li>
-            
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Categories">
+                <a class="nav-link" href="{{ route('categories.index') }}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-link-text">Categorias</span>
+                </a>
+            </li>
 
         </ul>
         <ul class="navbar-nav sidenav-toggler">
