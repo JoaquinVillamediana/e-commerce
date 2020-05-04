@@ -26,19 +26,19 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
-        // Route::middleware(['checkAdmin'])->group(function () {
+        Route::middleware(['checkAdmin'])->group(function () {
             
             Route::resource('user', 'admin\UserController');
         });
-    // });
+    });
 });
 
 
 Route::middleware(['auth'])->group(function () {
-    // Route::middleware(['checkUser'])->group(function () {
+    Route::middleware(['checkUser'])->group(function () {
         Route::get('home', 'HomeController@index')->name('home');
         
-    // });
+    });
 });
 
 Route::get('getCitiesByProvince', 'api\CityController@getCitiesByProvince')->name('getCitiesByProvince');
