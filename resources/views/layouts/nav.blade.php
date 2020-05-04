@@ -26,6 +26,15 @@
                     <span class="nav-link-text">Productos</span>
                 </a>
             </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="sub">
+                <a class="nav-link" href="{{ route('sub.index') }}">
+                    <i class="fas fa-boxes"></i>
+                    <span class="nav-link-text">Sub-Categorias</span>
+                </a>
+            </li>
+
+
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
