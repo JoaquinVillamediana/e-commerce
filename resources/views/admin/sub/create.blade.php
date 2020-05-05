@@ -37,7 +37,7 @@
                                 </span>
                                 @endif
                             </div>         
-                            <div class="form-group col-12 col-md-6">
+                            <div class="form-group ">
                                     <label>Categoria</label>
                                     <select class="form-control" name="category_id" id="category_id">
                                         @foreach ($aCategories as $category)
