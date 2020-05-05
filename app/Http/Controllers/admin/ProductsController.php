@@ -12,7 +12,7 @@ use App\Models\CategoriesModel;
 class ProductsController extends Controller {
 
     public function index() {
-        $aProducts = ProductsModel::select('products.*','categories.name as category_name')->leftjoin('categories','products.category_id','=','categories.id')->get();
+        $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->get();
         return view('admin/products.index',compact('aProducts'));
     }
 
@@ -26,7 +26,10 @@ class ProductsController extends Controller {
         $aValidations = array(
             
             'name' => 'required|max:60',
-            'description' => 'required|max:150'
+            'description' => 'required|max:150',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'category_id' => 'required|numeric',
            
         );
 
@@ -34,25 +37,13 @@ class ProductsController extends Controller {
 
         $this->validate($request, $aValidations);
 
-        $userEmail = CategoriesModel::where('name', $request['name'])->first();
-
-        if (!empty($userEmail->id)) {
-
-            $error = \Illuminate\Validation\ValidationException::withMessages([
-                        'duplicated_name_error' => ['DUPLICATED CATEGORIE']
-            ]);
-
-            throw $error;
-        }   
-
-    
         $request['name'] = ucwords($request['name']);
         
         $request['description'] = ucwords($request['description']);
      
-        CategoriesModel::create($request->all());
+        ProductsModel::create($request->all());
 
-        return redirect()->route('categories.index')->with('success', 'Catgorias actualizado satisfactoriamente');
+        return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
     }
 
     public function show($id) {
@@ -60,90 +51,57 @@ class ProductsController extends Controller {
     }
 
     public function edit($id) {
-        $aObj = ObjectivesModel::select('title','id')->get();
-        $oUser = User::find($id);
-        $aProvinces = ProvincesModel::get();
-        return view('admin/user.edit', compact('oUser','aObj','aProvinces'));
+        $oProduct = ProductsModel::where('id',$id)->first();
+        $aCategories = CategoriesModel::get();
+        return view('admin/products.edit', compact('oProduct','aCategories'));
     }
 
     public function update(Request $request, $id) {
         
         $aValidations = array(
-            'type' => 'required',
+            
             'name' => 'required|max:60',
-            'last_name' => 'required|max:60',
-            'email' => 'required|email|max:60',
-
-            'dir' => 'required|max:60',
-            'phone' => 'required|numeric',
-            'province_id' => 'numeric'
+            'description' => 'required|max:150',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'category_id' => 'required|numeric',
+           
         );
 
-        if(!empty($request['city_id']))
-        {
-            $aValidations['city_id'] = 'numeric'; 
-        }
         
+        if(!empty($request['subcategory_id']))
+        {
+            $aValidations['subcategory_id'] = 'numeric'; 
+        }
+
         $this->validate($request, $aValidations);
 
-        $userEmail = User::where('email', $request['email'])->where('id', '!=', $id)->first();
-
-        if (!empty($userEmail->id)) {
-
-            $error = \Illuminate\Validation\ValidationException::withMessages([
-                        'duplicated_email_error' => ['DUPLICATED USER']
-            ]);
-
-            throw $error;
-        }
-
-        $request['name'] = ucwords($request['name']);
-
-        $oUser = User::find($id);
-
-        if (!empty($request['password'])) {
-
-            $this->validate(
-                    $request, [
-                        'password' => 'required|min:8|max:32'
-                    ]
-            );
-
-            $request['password'] = bcrypt($request['password']);
-        } else {
-            $request['password'] = $oUser->password;
-        }
+        $oProduct = ProductsModel::find($id);
           
-        $request['password'] = bcrypt($request['password']);
         $request['name'] = ucwords($request['name']);
-        $request['last_name'] = ucwords($request['last_name']);
-        $request['dir'] = ucwords($request['dir']);
-        $request['business_name'] = ucwords($request['business_name']);
-        $oUser->name = $request['name'];
-        $oUser->last_name = $request['last_name'];
-        $oUser->password = $request['password'];
-        $oUser->email = $request['email'];
-        $oUser->province_id = $request['province_id'];
-        if(!empty($request['city_id']))
-        {
-        $oUser->city_id = $request['city_id'];
-        }else{
-            $oUser->city_id = null;
-        }
-        $oUser->dir = $request['dir'];
-        $oUser->phone = $request['phone'];
-        $oUser->business_name = $request['business_name'];
-        $oUser->objective_id = $request['objective_id'];
-        $oUser->save();
+        $request['description'] = ucwords($request['description']);
 
-        return redirect()->route('user.index')->with('success', 'Registro actualizado satisfactoriamente');
+        $oProduct->name = $request['name'];
+        $oProduct->description = $request['description'];
+        if(!empty($request['subcategory_id']))
+        {
+        $oProduct->subcategory_id = $request['subcategory_id'];
+        }else{
+            $oProduct->subcategory_id = null;
+        }
+        $oProduct->price = $request['price'];
+        $oProduct->stock = $request['stock'];
+        $oProduct->category_id = $request['category_id'];
+        $oProduct->save();
+
+        return redirect()->route('products.index')->with('success', 'Registro actualizado satisfactoriamente');
     }
 
     public function destroy($id) {
 
-        User::find($id)->delete();
+        ProductsModel::find($id)->delete();
 
-        return redirect()->route('user.index')->with('success', 'Registro eliminado satisfactoriamente');
+        return redirect()->route('products.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
 
 }

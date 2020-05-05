@@ -155,7 +155,7 @@ class SubController extends Controller{
     }
     
     public function getSub_CategoriesByCategory(Request $request){
-        $categoryId = $request['category'];
+        $categoryId = $request['option'];
         $aSub_categories = SubModel::where('category_id', $categoryId)->orderBy('name', 'asc')->get();
 
         return $aSub_categories->pluck('name', 'id');
