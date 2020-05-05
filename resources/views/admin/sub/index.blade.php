@@ -38,8 +38,8 @@
                     
                             <tr>
                       
-                                <td>{{ $oSub->id_s }}</td>
-                                <td>{{ $oSub->categorie }}</td>
+                                <td>{{ $oSub->id }}</td>
+                                <td>{{ $oSub->category_id }}</td>
                                 <td>{{ $oSub->name }}</td>
                                 
                                 <td>{{ $oSub->description }}</td>

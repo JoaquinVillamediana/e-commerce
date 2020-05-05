@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -8,67 +7,198 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-            <a href="/admin/abooks">Libros</a>
+                <a href="{{ route('user.index') }}">Usuarios</a>
             </li>
-            <li class="breadcrumb-item active">Portadas</li>       
+            <li class="breadcrumb-item active">Edici&oacute;n de Usuario</li>
         </ol>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fa fa-table"></i> Portada
-            </div>         
-            <div class="card-body">
-                @if (empty($image) || $image==NULL)
-                    <h3>Agregar una Imagen de Portada</h3>    
-                    <div class="form-group mt-3">
-                        <form method="POST" action="{{ route('abooks.update' , $bookid ) }}" role="form" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <input name="_method" type="hidden" value="PATCH">
-                        <input type="file" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" id="image">
-                        @if ($errors->has('image'))
-                                <span id="image_error_lrv" class="invalid-feedback" role="alert" style="display:block;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-6 margin-bottom-20" style="margin: 0 auto;">
+                        <form method="POST" action="{{ route('user.update', $oUser->id) }}" role="form"
+                            enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input name="_method" type="hidden" value="PATCH">
+
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select id="type_disabled" name="type_disabled"
+                                    class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" disabled>
+                                    <option value="2" {{ ($oUser->type == 2 ? "selected":"") }}>Usuario</option>
+                                    <option value="1" {{ ($oUser->type == 1 ? "selected":"") }}>Administrador</option>
+                                </select>
+                                <input type="hidden" name="type" id="type" value="{{ $oUser->type }}" />
+                                @if ($errors->has('type'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe seleccionar un tipo de usuario.</strong>
                                 </span>
                                 @endif
-                                <span id="image_error" class="invalid-feedback" role="alert" style="display:none;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
-                                </span>
-                             
-                                <div id="preview_image" class="mt-2" style=" display:none;"></div> 
-                                <td><button type="submit" class="btn btn-primary" style="margin-top:20px; cursor:pointer; " >Cambiar Portada</button></td>       
-                    </form>
-                    </div>
-                    @else
-                    <h3>Cambiar Imagen de Portada</h3>    
-                    <div class="form-group mt-3">
-                        <div style="" class="form-group">
-                        <img src="/uploads/books/{{$image}}"  style="margin-bottom:20px ;width:40%;float:left;" alt="">
-                        <div style="margin:20px;float:left;width:20%"><h5 class="text-secondary">Portada Actual</h5></div>
-                        </div>
-                        <div style="width:100%;float:left;"><h4 class="text-secondary">Selecciona una nueva portada</h4></div>
-                        <form method="POST" action="{{ route('abooks.update' , $id ) }}" role="form" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <input name="_method" type="hidden" value="PATCH">
-                        <input type="file" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" id="image">
-                        @if ($errors->has('image'))
-                                <span id="image_error_lrv" class="invalid-feedback" role="alert" style="display:block;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md">
+                                    <label>Nombre</label>
+                                    <input id="name" name="name" maxlength="60"
+                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                        placeholder="Nombre" value="{{ $oUser->name }}">
+                                    @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar un nombre.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group col-md">
+                                    <label>Apellido</label>
+                                    <input id="last_name" name="last_name" maxlength="60"
+                                        class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
+                                        placeholder="Apellido" value="{{ $oUser->last_name }}">
+                                    @if ($errors->has('last_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar un apellido.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input id="email" name="email" maxlength="60"
+                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    placeholder="Email" value="{{ $oUser->email }}">
+                                @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe ingresar un email.</strong>
                                 </span>
                                 @endif
-                                <span id="image_error" class="invalid-feedback" role="alert" style="display:none;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
+                                @if ($errors->has('duplicated_email_error'))
+                                <span class="invalid-feedback" role="alert" style="display:block;">
+                                    <strong>El email ingresado ya se encuentra registrado.</strong>
                                 </span>
-                             
-                                <div id="preview_image" class="mt-2" style=" display:none;"></div> 
-                        <td><button type="submit" class="btn btn-primary" style="margin-top:20px; cursor:pointer; " >Cambiar Portada</button></td>      
-                    </form>
+                                @endif
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md">
+                                    <label>Provincia</label>
+                                    <select id="province_id" name="province_id"
+                                        class="form-control{{ $errors->has('province_id') ? ' is-invalid' : '' }}"
+                                        palceholder="Provincia" value="{{ old('province_id') }}">
+                                        <option value="">Provincia</option>
+                                        @if(!empty($aProvinces))
+                                        @foreach($aProvinces as $province)
+                                        <option value="{{$province->id}}"
+                                            {{ ($oUser->province_id == $province->id ? "selected":"") }}>
+                                            {{$province->name}}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                    @if ($errors->has('province_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe seleccionar una provincia.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group col-md">
+                                    <label>Ciudad</label>
+                                    <select id="city_id" name="city_id" class="form-control{{ $errors->has('city_id') ? ' is-invalid' : '' }}">
+                                        <option value="">Ciudad</option>                    
+                                    </select>
+                                    @if ($errors->has('city_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe seleccionar una ciudad.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+
+
+                                <div class="form-group col-md">
+                                    <label>Direccion</label>
+                                    <input id="dir" name="dir" maxlength="60"
+                                        class="form-control{{ $errors->has('dir') ? ' is-invalid' : '' }}"
+                                        placeholder="Direccion" value="{{ $oUser->dir }}">
+                                    @if ($errors->has('dir'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar una Direccion.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group col-md">
+                                    <label>Telefono</label>
+                                    <input id="phone" name="phone" type="number" maxlength="60"
+                                        class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                        placeholder="Telefono" value="{{ $oUser->phone }}">
+                                    @if ($errors->has('phone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar un Telefono.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md">
+                                    <label>Razon Social</label>
+                                    <input id="business_name" name="business_name" type="text" maxlength="60"
+                                        class="form-control{{ $errors->has('business_name') ? ' is-invalid' : '' }}"
+                                        placeholder="Razon Social" value="{{$oUser->business_name }}">
+                                    @if ($errors->has('business_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar una raozn social.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group col-md">
+                                    <label>Objetivo/s</label>
+                                    <select id="objective_id" name="objective_id"
+                                        class="form-control{{ $errors->has('objective_id') ? ' is-invalid' : '' }}"
+                                        palceholder="Objetivo/s" value="{{ old('objective_id') }}">
+                                        @foreach ($aObj as $oObj)
+                                        <option value="{{$oObj->id}}"  @if($oObj->id==$oUser->objective_id) selected @endif>{{$oObj->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('objective_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe seleccionar un objetivo.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="form-group" id="box_password">
+                                <label>Password</label>
+                                <input type="password" id="password" name="password"
+                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                    placeholder="Password" value="{{ old('password') }}">
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe ingresar un password (min. 8 caracteres).</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <button type="submit" class="btn btn-primary">Editar Usuario</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </form>
                     </div>
-
-
-                    
-                @endif
-
-
+                </div>
+                <br /><br />
             </div>
         </div>
     </div>
@@ -77,7 +207,7 @@
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © BMC 2019</small>
+                <small>Copyright ©  2019</small>
             </div>
         </div>
     </footer>
@@ -85,16 +215,92 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
+
+    @include('layouts.modals')
 </div>
 
-
-<script src="/js/admin/image_preview.js"></script>
 <script>
-    
-    $('#image').change(function() {
+    var usercity = "<?php echo $oUser->city_id; ?>";
+    $(document).ready(function () {
+        var provinceId = $('#province_id').val(); 
         
-        setImagePreview(this, $(this).attr('id'));
+        if(provinceId > 0){
+            setCityVal(provinceId, '#city_id', "{{ url('getCitiesByProvince')}}", "Ciudad", "{{ old('city_id') }}");       
+        }
+
+    });
+   
+    
+    $('#province_id').change(function(){                      
+        setCity($(this).val(), '#city_id', "{{ url('getCitiesByProvince')}}", "Ciudad");
+    });
+
+    
+    function setCity(value, formSelect, url, defVal) { 
+
+if(value < 1 || value == ""){
+    $(formSelect).empty();
+    $(formSelect).append("<option value=''>" + defVal + "</option>");
+    $(formSelect).prop('disabled', true);
+    return true;
+}
+
+$.get(url,
+{ option: value },
+function(data) {                     
+        $(formSelect).empty();
+        $(formSelect).prop('disabled', false);
+        $(formSelect).append("<option value=''>" + defVal + "</option>");
+        $.each(data, function(key, element) {
+            $(formSelect).append("<option value='" + key + "'>" + element + "</option>");
+        });
+});
+}
+
+function setCityVal(value, formSelect, url, defVal, selectedItem){
+        
+if(value < 1){
+    $(formSelect).empty();
+    $(formSelect).append("<option value=''>" + defVal + "</option>");
+    $(formSelect).prop('disabled', true);
+    return true;
+}
+
+$.get(url,
+{ option: value },
+function(data) {                              
+        $(formSelect).empty();
+        $(formSelect).prop('disabled', false);
+        $(formSelect).append("<option value=''>" + defVal + "</option>");
+        $.each(data, function(key, element) {
+            if(key == selectedItem){
+                $(formSelect).append("<option selected value='" + key + "'>" + element + "</option>");
+            }else{
+                if(usercity==key)
+                {
+                $(formSelect).append("<option selected value='" + key + "'>" + element + "</option>");
+                }
+                else
+                {
+                $(formSelect).append("<option  value='" + key + "'>" + element + "</option>");
+                }
+            }                             
+        });
+});
+}
+    
+    $( "#name" ).keyup(function() {             
+       setInitials();  
     });
     
+    $( "#last_name" ).keyup(function() {             
+       setInitials();  
+    });
+    
+    function setInitials() {
+        $( "#initials" ).val($('#name').val().charAt(0).toUpperCase() + $('#last_name').val().charAt(0).toUpperCase());
+    }
+    
 </script>
+
 @endsection

@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SubModel extends Model
 {
     use SoftDeletes;
-    protected $table = 'sub_categorie';
+    protected $table = 'sub_categories';
     
     protected $fillable = [
         'name',
-        'categorie',
+        'category_id',
         'description'
     ];
 

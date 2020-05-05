@@ -7,15 +7,15 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('categories.index') }}">Libros</a>
+                <a href="{{ route('sub.index') }}">Sub-Categoria</a>
             </li>
-            <li class="breadcrumb-item active">Nuevo libro</li>
+            <li class="breadcrumb-item active">Nuevo Categoria</li>
         </ol>
         <div class="row">
             <div class="col-12">
                 <div class="row">
                     <div class="col-lg-6 margin-bottom-20" style="margin: 0 auto;">
-                        <form method="POST" action="{{ route('sub.store' , $id) }}" role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('sub.store') }}" role="form" enctype="multipart/form-data">
                             {{ csrf_field() }}
                            
 
@@ -27,21 +27,30 @@
                                     <strong>Debe ingresar un nombre valido.</strong>
                                 </span>
                                 @endif
-                            </div>                          
-
+                            </div>       
                             <div class="form-group">
                                 <label>Descripcion</label>
-                                <input id="description" name="description" placeholder="DescripCion:" maxlength="250" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}">
+                                <input id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}">
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Debes ingresar un autor menor a 120 carac.</strong>
+                                    <strong>Debe ingresar una descripcion valido.</strong>
                                 </span>
                                 @endif
-                            </div>    
+                            </div>         
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <input id="category_id" name="category_id" maxlength="250" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" placeholder="Categoria:" value="{{ old('category_id') }}">
+                                @if ($errors->has('category_id'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe ingresar una categroias valido.</strong>
+                                </span>
+                                @endif
+                            </div>                          
 
+                          
+                  
 
-
-                            <button type="submit" class="btn btn-primary">Añadir Libro</button>
+                            <button type="submit" class="btn btn-primary">Agregar subcategoria</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </form>
                     </div>
