@@ -156,6 +156,16 @@ class SubController extends Controller{
         return redirect()->route('user.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
     
+<<<<<<< HEAD
+=======
+    public function getSub_CategoriesByCategory(Request $request){
+        $categoryId = $request['option'];
+        $aSub_categories = SubModel::where('category_id', $categoryId)->orderBy('name', 'asc')->get();
+
+        return $aSub_categories->pluck('name', 'id');
+    }
+
+>>>>>>> af604b44a69c1ce79a46f902899c25e5af7b9d9d
 
 }
 

@@ -33,7 +33,7 @@
 
                                 <div class="form-group col-12 col-md-6">
                                     <label>Categoria</label>
-                                    <select class="form-control" name="category" id="category">
+                                    <select class="form-control" name="category_id" id="category_id">
                                         @foreach ($aCategories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
@@ -49,7 +49,7 @@
 
                                 <div class="form-group col-12 col-md-6">
                                     <label>Subcategoria</label>
-                                    <select class="form-control" name="sub_category" id="sub_category">
+                                    <select class="form-control" name="subcategory_id" id="subcategory_id">
 
                                     </select>
                                     @if ($errors->has('category'))
@@ -91,7 +91,7 @@
 
                             <div class="form-group">
                                 <label>Descripcion</label>
-                                <input id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}">
+                                 <textarea  id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}"></textarea>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>Debe ingresar una descripcion valida.</strong>
@@ -131,16 +131,16 @@
 <script>
     $(document).ready(function () {
         
-        var category_id = $('#category').val(); 
+        var category_id = $('#category_id').val(); 
 
         if(category_id > 0){
-            setSub_categoryVal(category_id, '#sub_category', "{{ url('getSub_CategoriesByCategory')}}", "Sub-Categoria", "{{ old('sub_category') }}");       
+            setSub_categoryVal(category_id, '#subcategory_id', "{{ url('getSub_CategoriesByCategory')}}", "Sub-Categoria", "{{ old('subcategory_id') }}");       
         }
     });
 
 
-$('#category').change(function(){                      
-    setSub_categories($(this).val(), '#sub_category', "{{ url('getSub_CategoriesByCategory')}}", "Sub-Categoria");
+$('#category_id').change(function(){                      
+    setSub_categories($(this).val(), '#subcategory_id', "{{ url('getSub_CategoriesByCategory')}}", "Sub-Categoria");
 });
 
 

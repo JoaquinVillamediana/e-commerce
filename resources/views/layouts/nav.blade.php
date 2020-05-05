@@ -19,6 +19,12 @@
                 </a>
             </li>
 
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="sub">
+                <a class="nav-link" href="{{ route('sub.index') }}">
+                    <i class="fas fa-th"></i>
+                    <span class="nav-link-text">Sub-Categorias</span>
+                </a>
+            </li>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Products">
                 <a class="nav-link" href="{{ route('products.index') }}">
@@ -27,12 +33,7 @@
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="sub">
-                <a class="nav-link" href="{{ route('sub.index') }}">
-                    <i class="fas fa-boxes"></i>
-                    <span class="nav-link-text">Sub-Categorias</span>
-                </a>
-            </li>
+            
 
 
         </ul>

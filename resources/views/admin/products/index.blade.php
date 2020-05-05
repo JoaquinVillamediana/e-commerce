@@ -43,13 +43,13 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->description }}</td>
                                 <td>{{ $product->category_name }}</td>
-                                <td></td>
+                                <td>{{ $product->subcategory_name}}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->stock }}</td>
 
-                                <td><a class="btn btn-primary btn-circle" href=""><i class="fa fa-list"></i></a></td>
+                            <td><a class="btn btn-primary btn-circle" href="{{action('admin\ProductsController@edit',$product->id)}}"><i class="fa fa-list"></i></a></td>
                                 <td>
-                                    <form id="deleteForm_{{$product->id}}" action="" method="post">
+                                    <form id="deleteForm_{{$product->id}}" action="{{action('admin\ProductsController@destroy', $product->id)}}" method="POST">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="button" id="submiBtn" class="btn btn-warning btn-circle my-custom-confirmation" data-toggle="modal" onclick="openDelModal({{$product->id}});"><i class="fa fa-times"></i></button>
