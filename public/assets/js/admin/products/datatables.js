@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var tableTaskFile = $('#dataTable_task_file').DataTable({
+    var tableUser = $('#dataTable_prodcuts').DataTable({
         order: [],
         "language": {
             "sProcessing": "Procesando...",
