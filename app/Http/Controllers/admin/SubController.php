@@ -13,9 +13,9 @@ use DB;
 class SubController extends Controller{
 
     public function index(){
-
+        $aCategories = CategoriesModel::get();
         $aSub = SubModel::get();
-        return view('admin/sub.index',compact('aSub'));
+        return view('admin/sub.index',compact('aSub','aCategories'));
     }
 
   
@@ -70,90 +70,46 @@ class SubController extends Controller{
     }
 
     public function edit($id) {
-        $aObj = ObjectivesModel::select('title','id')->get();
-        $oUser = User::find($id);
-        $aProvinces = ProvincesModel::get();
-        return view('admin/user.edit', compact('oUser','aObj','aProvinces'));
+        $aCategories = CategoriesModel::get();
+        $oSub = SubModel::find($id);
+       // $aProvinces = ProvincesModel::get();
+        return view('admin/sub.edit', compact('oSub','aCategories'));
     }
 
     public function update(Request $request, $id) {
         
         $aValidations = array(
-            'type' => 'required',
+            
             'name' => 'required|max:60',
-            'last_name' => 'required|max:60',
-            'email' => 'required|email|max:60',
-
-            'dir' => 'required|max:60',
-            'phone' => 'required|numeric',
-            'province_id' => 'numeric'
+            'description' => 'required|max:150'
         );
 
-        if(!empty($request['city_id']))
-        {
-            $aValidations['city_id'] = 'numeric'; 
-        }
         
+       
+
         $this->validate($request, $aValidations);
 
-        $userEmail = User::where('email', $request['email'])->where('id', '!=', $id)->first();
-
-        if (!empty($userEmail->id)) {
-
-            $error = \Illuminate\Validation\ValidationException::withMessages([
-                        'duplicated_email_error' => ['DUPLICATED USER']
-            ]);
-
-            throw $error;
-        }
-
-        $request['name'] = ucwords($request['name']);
-
-        $oUser = User::find($id);
-
-        if (!empty($request['password'])) {
-
-            $this->validate(
-                    $request, [
-                        'password' => 'required|min:8|max:32'
-                    ]
-            );
-
-            $request['password'] = bcrypt($request['password']);
-        } else {
-            $request['password'] = $oUser->password;
-        }
+        $oSub = SubModel::find($id);
           
-        $request['password'] = bcrypt($request['password']);
         $request['name'] = ucwords($request['name']);
-        $request['last_name'] = ucwords($request['last_name']);
-        $request['dir'] = ucwords($request['dir']);
-        $request['business_name'] = ucwords($request['business_name']);
-        $oUser->name = $request['name'];
-        $oUser->last_name = $request['last_name'];
-        $oUser->password = $request['password'];
-        $oUser->email = $request['email'];
-        $oUser->province_id = $request['province_id'];
-        if(!empty($request['city_id']))
-        {
-        $oUser->city_id = $request['city_id'];
-        }else{
-            $oUser->city_id = null;
-        }
-        $oUser->dir = $request['dir'];
-        $oUser->phone = $request['phone'];
-        $oUser->business_name = $request['business_name'];
-        $oUser->objective_id = $request['objective_id'];
-        $oUser->save();
+        $request['description'] = ucwords($request['description']);
+        $request['category_id'] = ucwords($request['category_id']);
 
-        return redirect()->route('user.index')->with('success', 'Registro actualizado satisfactoriamente');
+        $oSub->name = $request['name'];
+        $oSub->description = $request['description'];
+         $oSub->category_id = $request['category_id'];
+      
+        
+        $oSub->save();
+
+        return redirect()->route('sub.index')->with('success', 'Sub-Categoria actualizado satisfactoriamente');
     }
 
     public function destroy($id) {
 
-        User::find($id)->delete();
+        SubModel::find($id)->delete();
 
-        return redirect()->route('user.index')->with('success', 'Registro eliminado satisfactoriamente');
+        return redirect()->route('sub.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
     
     public function getSub_CategoriesByCategory(Request $request){

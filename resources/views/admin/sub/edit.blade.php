@@ -7,33 +7,18 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('user.index') }}">Usuarios</a>
+                <a href="{{ route('sub.index') }}">Sub-Categorias</a>
             </li>
-            <li class="breadcrumb-item active">Edici&oacute;n de Usuario</li>
+            <li class="breadcrumb-item active">Edici&oacute;n de Sub-Categorias</li>
         </ol>
         <div class="row">
             <div class="col-12">
                 <div class="row">
                     <div class="col-lg-6 margin-bottom-20" style="margin: 0 auto;">
-                        <form method="POST" action="{{ route('user.update', $oUser->id) }}" role="form"
+                        <form method="POST" action="{{ route('sub.update', $oSub->id) }}" role="form"
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input name="_method" type="hidden" value="PATCH">
-
-                            <div class="form-group">
-                                <label>Tipo</label>
-                                <select id="type_disabled" name="type_disabled"
-                                    class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" disabled>
-                                    <option value="2" {{ ($oUser->type == 2 ? "selected":"") }}>Usuario</option>
-                                    <option value="1" {{ ($oUser->type == 1 ? "selected":"") }}>Administrador</option>
-                                </select>
-                                <input type="hidden" name="type" id="type" value="{{ $oUser->type }}" />
-                                @if ($errors->has('type'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Debe seleccionar un tipo de usuario.</strong>
-                                </span>
-                                @endif
-                            </div>
 
                             <div class="row">
 
@@ -41,7 +26,7 @@
                                     <label>Nombre</label>
                                     <input id="name" name="name" maxlength="60"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                        placeholder="Nombre" value="{{ $oUser->name }}">
+                                        placeholder="Nombre" value="{{ $oSub->name }}">
                                     @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>Debe ingresar un nombre.</strong>
@@ -50,149 +35,39 @@
                                 </div>
 
                                 <div class="form-group col-md">
-                                    <label>Apellido</label>
-                                    <input id="last_name" name="last_name" maxlength="60"
-                                        class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                        placeholder="Apellido" value="{{ $oUser->last_name }}">
-                                    @if ($errors->has('last_name'))
+                                    <label>Descripcion</label>
+                                    <input id="description" name="description" maxlength="60"
+                                        class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                                        placeholder="description" value="{{ $oSub->description }}">
+                                    @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar un apellido.</strong>
+                                        <strong>Debe ingresar una descripcion correcta.</strong>
                                     </span>
                                     @endif
                                 </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input id="email" name="email" maxlength="60"
-                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                    placeholder="Email" value="{{ $oUser->email }}">
-                                @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Debe ingresar un email.</strong>
-                                </span>
-                                @endif
-                                @if ($errors->has('duplicated_email_error'))
-                                <span class="invalid-feedback" role="alert" style="display:block;">
-                                    <strong>El email ingresado ya se encuentra registrado.</strong>
-                                </span>
-                                @endif
-                            </div>
-
-                            <div class="row">
-
-                                <div class="form-group col-md">
-                                    <label>Provincia</label>
-                                    <select id="province_id" name="province_id"
-                                        class="form-control{{ $errors->has('province_id') ? ' is-invalid' : '' }}"
-                                        palceholder="Provincia" value="{{ old('province_id') }}">
-                                        <option value="">Provincia</option>
-                                        @if(!empty($aProvinces))
-                                        @foreach($aProvinces as $province)
-                                        <option value="{{$province->id}}"
-                                            {{ ($oUser->province_id == $province->id ? "selected":"") }}>
-                                            {{$province->name}}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    @if ($errors->has('province_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe seleccionar una provincia.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group col-md">
-                                    <label>Ciudad</label>
-                                    <select id="city_id" name="city_id" class="form-control{{ $errors->has('city_id') ? ' is-invalid' : '' }}">
-                                        <option value="">Ciudad</option>                    
-                                    </select>
-                                    @if ($errors->has('city_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe seleccionar una ciudad.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-
-                            </div>
-
-                            <div class="row">
-
-
-
-                                <div class="form-group col-md">
-                                    <label>Direccion</label>
-                                    <input id="dir" name="dir" maxlength="60"
-                                        class="form-control{{ $errors->has('dir') ? ' is-invalid' : '' }}"
-                                        placeholder="Direccion" value="{{ $oUser->dir }}">
-                                    @if ($errors->has('dir'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar una Direccion.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group col-md">
-                                    <label>Telefono</label>
-                                    <input id="phone" name="phone" type="number" maxlength="60"
-                                        class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                        placeholder="Telefono" value="{{ $oUser->phone }}">
-                                    @if ($errors->has('phone'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar un Telefono.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-
-                                <div class="form-group col-md">
-                                    <label>Razon Social</label>
-                                    <input id="business_name" name="business_name" type="text" maxlength="60"
-                                        class="form-control{{ $errors->has('business_name') ? ' is-invalid' : '' }}"
-                                        placeholder="Razon Social" value="{{$oUser->business_name }}">
-                                    @if ($errors->has('business_name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>Debe ingresar una raozn social.</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group col-md">
-                                    <label>Objetivo/s</label>
-                                    <select id="objective_id" name="objective_id"
-                                        class="form-control{{ $errors->has('objective_id') ? ' is-invalid' : '' }}"
-                                        palceholder="Objetivo/s" value="{{ old('objective_id') }}">
-                                        @foreach ($aObj as $oObj)
-                                        <option value="{{$oObj->id}}"  @if($oObj->id==$oUser->objective_id) selected @endif>{{$oObj->title}}</option>
+                                <div class="form-group ">
+                                    <label>Categoria</label>
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        @foreach ($aCategories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
-                                    @if ($errors->has('objective_id'))
+                                    @if ($errors->has('category_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Debe seleccionar un objetivo.</strong>
+                                        <strong>Debe seleccionar una categoria valida.</strong>
                                     </span>
                                     @endif
-                                </div>
-
+                                </div>               
 
                             </div>
 
+                    
 
-                            <div class="form-group" id="box_password">
-                                <label>Password</label>
-                                <input type="password" id="password" name="password"
-                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                    placeholder="Password" value="{{ old('password') }}">
-                                @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Debe ingresar un password (min. 8 caracteres).</strong>
-                                </span>
-                                @endif
-                            </div>
+
+                          
+
+                    
+
                             <button type="submit" class="btn btn-primary">Editar Usuario</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </form>
@@ -220,7 +95,7 @@
 </div>
 
 <script>
-    var usercity = "<?php echo $oUser->city_id; ?>";
+    var usercity = "<?php echo $oSub->city_id; ?>";
     $(document).ready(function () {
         var provinceId = $('#province_id').val(); 
         

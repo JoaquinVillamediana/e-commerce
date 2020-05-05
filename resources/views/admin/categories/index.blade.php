@@ -38,8 +38,8 @@
                                 <td>{{ $cate->id }}</td>
                                 <td>{{ $cate->name }}</td>
                                 <td>{{ $cate->description }}</td>
-                                <td>
-                                <button onclick="location.href='{{ route('sub.create', $cate->id)}}'" class="btn btn-light" style="cursor:pointer;" ><i class="fas fa-camera text-secondary"></i></button>      
+                                
+                                <td><a class="btn btn-primary btn-circle" href="{{action('admin\CategoriesController@edit', $cate->id)}}"><i class="fa fa-list"></i></a></td>
                               
                                 <td>
                                     <form id="deleteForm_{{$cate->id}}" action="" method="post">

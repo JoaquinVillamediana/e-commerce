@@ -44,8 +44,8 @@
                                 <td>{{ $oSub->name }}</td>
                                 
                                 <td>{{ $oSub->description }}</td>
-                                <td>
-                                <button onclick="location.href='{{ route('sub.create', $oSub->id)}}'" class="btn btn-light" style="cursor:pointer;" ><i class="fas fa-camera text-secondary"></i></button>      
+                                
+                                <td><a class="btn btn-primary btn-circle" href="{{action('admin\SubController@edit', $oSub->id)}}"><i class="fa fa-list"></i></a></td>
                               
                                 <td>
                                     <form id="deleteForm_{{$oSub->id}}" action="" method="post">
