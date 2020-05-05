@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a href="{{ route('sub.index') }}">Sub-Categoria</a>
             </li>
-            <li class="breadcrumb-item active">Nuevo Categoria</li>
+            <li class="breadcrumb-item active">Nuevo Sub-Categoria</li>
         </ol>
         <div class="row">
             <div class="col-12">
@@ -37,15 +37,19 @@
                                 </span>
                                 @endif
                             </div>         
-                            <div class="form-group">
-                                <label>Categoria</label>
-                                <input id="category_id" name="category_id" maxlength="250" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" placeholder="Categoria:" value="{{ old('category_id') }}">
-                                @if ($errors->has('category_id'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Debe ingresar una categroias valido.</strong>
-                                </span>
-                                @endif
-                            </div>                          
+                            <div class="form-group col-12 col-md-6">
+                                    <label>Categoria</label>
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        @foreach ($aCategories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('category_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe seleccionar una categoria valida.</strong>
+                                    </span>
+                                    @endif
+                                </div>                       
 
                           
                   

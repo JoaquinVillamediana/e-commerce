@@ -20,11 +20,13 @@ class SubController extends Controller{
 
   
     public function create() {
-        
+
+        $aCategories = CategoriesModel::get();
         // $aProvinces = ProvincesModel::get();
         // $aObj = ObjectivesModel::select('title','id')->get();
         // $aCategories = CategoriesModel::get();
-        return view('admin/sub.create');
+        //return view('admin/sub.create');
+        return view('admin/sub.create',compact('aCategories'));
     }
 
     public function store(Request $request) {
@@ -154,13 +156,6 @@ class SubController extends Controller{
         return redirect()->route('user.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
     
-    public function getSub_CategoriesByCategory(Request $request){
-        $categoryId = $request['category'];
-        $aSub_categories = SubModel::where('category_id', $categoryId)->orderBy('name', 'asc')->get();
-
-        return $aSub_categories->pluck('name', 'id');
-    }
-
 
 }
 

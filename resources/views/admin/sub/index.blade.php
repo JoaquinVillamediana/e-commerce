@@ -28,7 +28,8 @@
                                
                                 <th>Nombre</th>                                
                                 <th>Descripcion</th>
-                       
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +44,16 @@
                                 <td>{{ $oSub->name }}</td>
                                 
                                 <td>{{ $oSub->description }}</td>
+                                <td>
+                                <button onclick="location.href='{{ route('sub.create', $oSub->id)}}'" class="btn btn-light" style="cursor:pointer;" ><i class="fas fa-camera text-secondary"></i></button>      
                               
+                                <td>
+                                    <form id="deleteForm_{{$oSub->id}}" action="" method="post">
+                                        {{csrf_field()}}
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="button" id="submiBtn" class="btn btn-warning btn-circle my-custom-confirmation" data-toggle="modal" onclick="openDelModal({{$oSub->id}});"><i class="fa fa-times"></i></button>
+                                    </form>                
+                                </td>
                                
                               
                             </tr>
