@@ -46,4 +46,4 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('getCitiesByProvince', 'api\CityController@getCitiesByProvince')->name('getCitiesByProvince');
+Route::get('getSub_CategoriesByCategory', 'admin\SubController@getSub_CategoriesByCategory')->name('getSub_CategoriesByCategory');

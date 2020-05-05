@@ -17,11 +17,8 @@ class ProductsController extends Controller {
     }
 
     public function create() {
-        // $aProvinces = ProvincesModel::get();
-        // $aObj = ObjectivesModel::select('title','id')->get();
-
-        // $aCategories = CategoriesModel::get();
-        return view('admin/categories.create');
+        $aCategories = CategoriesModel::get();
+        return view('admin/products.create',compact('aCategories'));
     }
 
     public function store(Request $request) {
