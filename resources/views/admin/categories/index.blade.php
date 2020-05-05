@@ -42,11 +42,11 @@
                                 <td><a class="btn btn-primary btn-circle" href="{{action('admin\CategoriesController@edit', $cate->id)}}"><i class="fa fa-list"></i></a></td>
                               
                                 <td>
-                                    <form id="deleteForm_{{$cate->id}}" action="" method="post">
+                                <form id="deleteForm_{{$cate->id}}" action="{{action('admin\CategoriesController@destroy', $cate->id)}}" method="POST">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="button" id="submiBtn" class="btn btn-warning btn-circle my-custom-confirmation" data-toggle="modal" onclick="openDelModal({{$cate->id}});"><i class="fa fa-times"></i></button>
-                                    </form>                
+                                    </form>               
                                 </td>
                             </tr>   
                             @endforeach

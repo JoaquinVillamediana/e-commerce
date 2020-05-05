@@ -48,11 +48,11 @@
                                 <td><a class="btn btn-primary btn-circle" href="{{action('admin\SubController@edit', $oSub->id)}}"><i class="fa fa-list"></i></a></td>
                               
                                 <td>
-                                    <form id="deleteForm_{{$oSub->id}}" action="" method="post">
+                                <form id="deleteForm_{{$oSub->id}}" action="{{action('admin\SubController@destroy', $oSub->id)}}" method="POST">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="button" id="submiBtn" class="btn btn-warning btn-circle my-custom-confirmation" data-toggle="modal" onclick="openDelModal({{$oSub->id}});"><i class="fa fa-times"></i></button>
-                                    </form>                
+                                    </form>           
                                 </td>
                                
                               
