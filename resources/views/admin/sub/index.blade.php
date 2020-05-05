@@ -40,7 +40,7 @@
                             <tr>
                       
                                 <td>{{ $oSub->id }}</td>
-                                <td>{{ $oSub->category_id }}</td>
+                                <td>{{ $oSub->category_name }}</td>
                                 <td>{{ $oSub->name }}</td>
                                 
                                 <td>{{ $oSub->description }}</td>

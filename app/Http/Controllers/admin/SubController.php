@@ -14,8 +14,13 @@ class SubController extends Controller{
 
     public function index(){
         $aCategories = CategoriesModel::get();
-        $aSub = SubModel::get();
-        return view('admin/sub.index',compact('aSub','aCategories'));
+        //$xd = DB::table('sub_categories')->where('id', $id)->value('category_id');
+
+      
+        $aSub = SubModel::select('sub_categories.*','categories.name as category_name')->leftjoin('categories','sub_categories.category_id','=','categories.id')->get();
+
+      //  $aSub = SubModel::get();
+        return view('admin/sub.index',compact('aSub','xd'));
     }
 
   
