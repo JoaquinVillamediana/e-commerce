@@ -24,30 +24,25 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Imagen</th>         
+                                <th>Categoria</th>         
                                
                                 <th>Nombre</th>                                
-                                <th>Autor</th>
-                               
-                               
-                                <th>Genero</th>
-                                
-                               
-                                <th>Portada</th>
+                                <th>Descripcion</th>
+                       
                             </tr>
                         </thead>
                         <tbody>
-                            @if(!empty($aBooks))
+                            @if(!empty($aSub))
                             <?php $i=0; ?>
-                            @foreach($aBooks as $oBook)
+                            @foreach($aSub as $oSub)
                     
                             <tr>
                       
-                                <td>{{ $oBook->id }}</td>
-                                <td><img src="/uploads/books/{{$oBook->image}}" style="width:50px;margin:0 auto;" alt=""></td>
-                                <td>{{ $oBook->name }}</td>
-                                <td>{{ $oBook->author }}</td>
-                                <td>{{ $oBook->genre }}</td>
+                                <td>{{ $oSub->id_s }}</td>
+                                <td>{{ $oSub->categorie }}</td>
+                                <td>{{ $oSub->name }}</td>
+                                
+                                <td>{{ $oSub->description }}</td>
                               
                                
                               

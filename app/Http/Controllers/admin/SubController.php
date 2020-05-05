@@ -27,12 +27,13 @@ class SubController extends Controller{
         return view('admin/sub.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request,$id) {
 
         $aValidations = array(
             
             'name' => 'required|max:60',
-            'description' => 'required|max:150'
+            'description' => 'required|max:150',
+            
            
         );
 
@@ -40,25 +41,33 @@ class SubController extends Controller{
 
         $this->validate($request, $aValidations);
 
-        $userEmail = CategoriesModel::where('name', $request['name'])->first();
+        $userEmail = Sub::where('name', $request['name'])->first();
 
         if (!empty($userEmail->id)) {
 
             $error = \Illuminate\Validation\ValidationException::withMessages([
-                        'duplicated_name_error' => ['DUPLICATED CATEGORIE']
+                        'duplicated_name_error' => ['DUPLICATED SUB-CATEGORIE']
             ]);
 
             throw $error;
         }   
+        
+        $xd = DB::table('sub_categorie')->where('id_s', $id)->value('categorie');
+        $xd1 = DB::table('categorie')->where('id', $xd)->value('name');
 
     
         $request['name'] = ucwords($request['name']);
         
         $request['description'] = ucwords($request['description']);
-     
-        CategoriesModel::create($request->all());
 
-        return redirect()->route('categories.index')->with('success', 'Catgorias actualizado satisfactoriamente');
+        $aData = array('name' =>  $request['name'] , 'description' => $request['description'],'categorie' => $xd );
+        
+        DB::table('sub_categorie')->insert($aData);
+
+
+       // SubModel::create( 'name' => $request['name'], 'description' => $request['description'] , 'categorie' => $xd);
+
+        return redirect()->route('sub.index')->with('success', 'Catgorias actualizado satisfactoriamente');
     }
 
     public function show($id) {
