@@ -151,4 +151,6 @@ class CategoriesController extends Controller {
         return redirect()->route('user.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
 
+   
+
 }

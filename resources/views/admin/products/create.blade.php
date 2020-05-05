@@ -7,15 +7,15 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('categories.index') }}">Libros</a>
+                <a href="{{ route('products.index') }}">Productos</a>
             </li>
-            <li class="breadcrumb-item active">Nuevo libro</li>
+            <li class="breadcrumb-item active">Nuevo Producto</li>
         </ol>
         <div class="row">
             <div class="col-12">
                 <div class="row">
                     <div class="col-lg-6 margin-bottom-20" style="margin: 0 auto;">
-                        <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('products.store') }}" role="form" enctype="multipart/form-data">
                             {{ csrf_field() }}
                            
 
@@ -28,12 +28,73 @@
                                 </span>
                                 @endif
                             </div>       
+
+                            <div class="row">
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Categoria</label>
+                                    <select class="form-control" name="category" id="category">
+                                        @foreach ($aCategories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('category'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe seleccionar una categoria valida.</strong>
+                                    </span>
+                                    @endif
+                                </div>       
+
+                                {{-- ajax --}}
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Subcategoria</label>
+                                    <select class="form-control" name="sub_category" id="sub_category">
+
+                                    </select>
+                                    @if ($errors->has('category'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe seleccionar una categoria valida.</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Precio</label>
+                                    <div class="input-group"> 
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                        
+                                      </div>
+                                    <input type="number" id="price" name="price" maxlength="250" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="Precio:" value="{{ old('price') }}">
+                                </div>
+                                    @if ($errors->has('price'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar un precio valido.</strong>
+                                    </span>
+                                    @endif
+                                </div>       
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Stock Actual</label>
+                                    <input type="number" id="stock" name="stock" maxlength="250" class="form-control{{ $errors->has('stock') ? ' is-invalid' : '' }}" placeholder="Unidades en Stock:" value="{{ old('stock') }}">
+                                    @if ($errors->has('stock'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar un stock valido.</strong>
+                                    </span>
+                                    @endif
+                                </div>       
+
+                            </div>
+
                             <div class="form-group">
-                                <label>Nombre</label>
+                                <label>Descripcion</label>
                                 <input id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}">
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Debe ingresar una descripcion valido.</strong>
+                                    <strong>Debe ingresar una descripcion valida.</strong>
                                 </span>
                                 @endif
                             </div>                                
@@ -41,7 +102,7 @@
                           
                   
 
-                            <button type="submit" class="btn btn-primary">Agregar categoria</button>
+                            <button type="submit" class="btn btn-primary">Agregar Producto</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </form>
                     </div>
@@ -67,9 +128,70 @@
     @include('layouts.modals')
 
 </div>
+<script>
+    $(document).ready(function () {
+        
+        var category_id = $('#category').val(); 
+
+        if(category_id > 0){
+            setSub_categoryVal(category_id, '#sub_category', "{{ url('getSub_CategoriesByCategory')}}", "Sub-Categoria", "{{ old('sub_category') }}");       
+        }
+    });
+
+
+$('#category').change(function(){                      
+    setSub_categories($(this).val(), '#sub_category', "{{ url('getSub_CategoriesByCategory')}}", "Sub-Categoria");
+});
+
+
+function setSub_categories(value, formSelect, url, defVal) { 
+
+if(value < 1 || value == ""){
+$(formSelect).empty();
+$(formSelect).append("<option value=''>" + defVal + "</option>");
+$(formSelect).prop('disabled', true);
+return true;
+}
+
+$.get(url,
+{ option: value },
+function(data) {                     
+    $(formSelect).empty();
+    $(formSelect).prop('disabled', false);
+    $(formSelect).append("<option value=''>" + defVal + "</option>");
+    $.each(data, function(key, element) {
+        $(formSelect).append("<option value='" + key + "'>" + element + "</option>");
+    });
+});
+}
+
+function setSub_categoryVal(value, formSelect, url, defVal, selectedItem){
+    
+if(value < 1){
+$(formSelect).empty();
+$(formSelect).append("<option value=''>" + defVal + "</option>");
+$(formSelect).prop('disabled', true);
+return true;
+}
+
+$.get(url,
+{ option: value },
+function(data) {                              
+    $(formSelect).empty();
+    $(formSelect).prop('disabled', false);
+    $(formSelect).append("<option value=''>" + defVal + "</option>");
+    $.each(data, function(key, element) {
+        if(key == selectedItem){
+            $(formSelect).append("<option selected value='" + key + "'>" + element + "</option>");
+        }else{
+            $(formSelect).append("<option value='" + key + "'>" + element + "</option>");
+        }                             
+    });
+});
+}
 
 
 
-
+</script>
 
 @endsection
