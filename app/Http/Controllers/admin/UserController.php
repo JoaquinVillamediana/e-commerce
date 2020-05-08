@@ -23,6 +23,7 @@ class UserController extends Controller {
 
         $aValidations = array(
             'type' => 'required',
+            'phone' => 'required|max:25',
             'name' => 'required|max:60',
             'last_name' => 'required|max:60',
             'email' => 'required|email|max:60',
@@ -46,6 +47,7 @@ class UserController extends Controller {
 
         $request['password'] = bcrypt($request['password']);
         $request['name'] = ucwords($request['name']);
+        $request['phone'] = ucwords($request['phone']);
         $request['last_name'] = ucwords($request['last_name']);
 
         User::create($request->all());
@@ -66,6 +68,7 @@ class UserController extends Controller {
         
         $aValidations = array(
             'type' => 'required',
+            'phone' => 'required|max:25',
             'name' => 'required|max:60',
             'last_name' => 'required|max:60',
             'email' => 'required|email|max:60',
@@ -104,9 +107,11 @@ class UserController extends Controller {
         $request['password'] = bcrypt($request['password']);
         $request['name'] = ucwords($request['name']);
         $request['last_name'] = ucwords($request['last_name']);
+        $request['phone'] = ucwords($request['phone']);
         $oUser->name = $request['name'];
         $oUser->last_name = $request['last_name'];
         $oUser->password = $request['password'];
+        $oUser->phone = $request['phone'];
         $oUser->email = $request['email'];
         $oUser->save();
 

@@ -26,6 +26,7 @@
                                 <th>Id</th>
                                 <th>Nombre</th>                                
                                 <th>Email</th>
+                                <th>Teléfono</th>
                                 <th>Tipo</th>
                                 <th>Creado</th>
                                 <th>Editar</th>
@@ -40,6 +41,7 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name . " ," . $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
                                                                 
                                 @if($user->type == 1)
                                     <td>Adm.</td>
