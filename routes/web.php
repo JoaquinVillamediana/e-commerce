@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
             
             Route::resource('user', 'admin\UserController');
             Route::resource('categories', 'admin\CategoriesController');
+            Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
         });
