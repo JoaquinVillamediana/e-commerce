@@ -105,6 +105,24 @@ class CategoriesController extends Controller {
         return redirect()->route('categories.index')->with('success', 'Categoria eliminada satisfactoriamente');
     }
 
+    public function setCategoryVisible(Request $request){
+        $aReturn = array();
+        $oCategory = CategoriesModel::find($request['categoryId']);
+
+        if (empty($oCategory->visible)) {
+            $oCategory->visible = 1;
+            $oCategory->visible_at = date('Y-m-d H:i:s');
+        } else {
+            $oCategory->visible = 0;
+        }
+
+        $oCategory->save();
+
+        $aReturn['categoryId'] = $request['categoryId'];
+        $aReturn['visible'] = $oCategory->visible;
+
+        echo json_encode($aReturn);
+    }
    
 
 }

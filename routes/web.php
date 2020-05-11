@@ -12,7 +12,7 @@
  */
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect('/home');
 });
 
 Route::get('/admin', function () {
@@ -22,7 +22,7 @@ Route::get('/admin', function () {
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-
+Route::get('home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
@@ -30,6 +30,8 @@ Route::prefix('admin')->group(function () {
             
             Route::resource('user', 'admin\UserController');
             Route::resource('categories', 'admin\CategoriesController');
+            Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
+            Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
         });
@@ -41,7 +43,7 @@ Route::prefix('admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['checkUser'])->group(function () {
-        Route::get('home', 'HomeController@index')->name('home');
+        
         
     });
 });

@@ -124,6 +124,25 @@ class SubController extends Controller{
         return $aSub_categories->pluck('name', 'id');
     }
 
+    public function setSubcategoryVisible(Request $request){
+        $aReturn = array();
+        $oSubcategory = SubModel::find($request['subcategoryId']);
+
+        if (empty($oSubcategory->visible)) {
+            $oSubcategory->visible = 1;
+            $oSubcategory->visible_at = date('Y-m-d H:i:s');
+        } else {
+            $oSubcategory->visible = 0;
+        }
+
+        $oSubcategory->save();
+
+        $aReturn['subcategoryId'] = $request['subcategoryId'];
+        $aReturn['visible'] = $oSubcategory->visible;
+
+        echo json_encode($aReturn);
+    }
+
 
 }
 
