@@ -32,6 +32,7 @@ class CategoriesController extends Controller {
             
             'name' => 'required|max:60',
             'description' => 'required|max:150'
+            
            
         );
 
@@ -54,7 +55,7 @@ class CategoriesController extends Controller {
         $request['name'] = ucwords($request['name']);
         
         $request['description'] = ucwords($request['description']);
-     
+           
         CategoriesModel::create($request->all());
 
         return redirect()->route('categories.index')->with('success', 'Catgorias actualizado satisfactoriamente');
@@ -77,7 +78,7 @@ class CategoriesController extends Controller {
             
             'name' => 'required|max:60',
             'description' => 'required|max:150'
-        );
+                   );
 
         
        
@@ -88,11 +89,10 @@ class CategoriesController extends Controller {
           
         $request['name'] = ucwords($request['name']);
         $request['description'] = ucwords($request['description']);
-
+        $request['news'] = ucwords($request['news']);
         $oCate->name = $request['name'];
         $oCate->description = $request['description'];
-      
-        
+               
         $oCate->save();
 
         return redirect()->route('categories.index')->with('success', 'Categoria actualizada satisfactoriamente');

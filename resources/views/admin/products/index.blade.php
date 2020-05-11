@@ -29,6 +29,8 @@
                                 <th>Categoria</th>
                                 <th>Subcategoria</th>
                                 <th>Precio</th>
+                                <th>Promociones</th>     
+                                <th>Imagen</th>  
                                 <th>Stock</th>  
                                 <th>Editar</th>
                                 <th>Eliminar</th>
@@ -45,6 +47,13 @@
                                 <td>{{ $product->category_name }}</td>
                                 <td>{{ $product->subcategory_name}}</td>
                                 <td>{{ $product->price }}</td>
+                                @if (!empty($product->news))     
+                                <td>{{ $product->news }}</td>
+                                @else                     
+                                <td>{{ "Sin promociones" }}</td>
+                                @endif  
+
+                                <td><img src="/uploads/products/{{$product->image}}" style="width:50px;margin:0 auto;" alt=""></td>
                                 <td>{{ $product->stock }}</td>
 
                             <td><a class="btn btn-primary btn-circle" href="{{action('admin\ProductsController@edit',$product->id)}}"><i class="fa fa-list"></i></a></td>

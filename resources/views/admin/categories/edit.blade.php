@@ -7,7 +7,7 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('categories.index') }}">Productos</a>
+                <a href="{{ route('categories.index') }}">Categorías</a>
             </li>
             <li class="breadcrumb-item active">Edici&oacute;n de Categoria</li>
         </ol>
@@ -42,7 +42,9 @@
                                     <strong>Debe ingresar una descripcion valida.</strong>
                                 </span>
                                 @endif
-                            </div>                                
+                            </div>   
+                            
+                            
 
                           
                             

@@ -7,9 +7,9 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('categories.index') }}">Libros</a>
+                <a href="{{ route('categories.index') }}">Categorías</a>
             </li>
-            <li class="breadcrumb-item active">Nuevo libro</li>
+            <li class="breadcrumb-item active">Nuevo categoría</li>
         </ol>
         <div class="row">
             <div class="col-12">
@@ -29,15 +29,15 @@
                                 @endif
                             </div>       
                             <div class="form-group">
-                                <label>Nombre</label>
+                                <label>Descripcion</label>
                                 <input id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}">
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>Debe ingresar una descripcion valido.</strong>
                                 </span>
                                 @endif
-                            </div>                                
-
+                            </div>         
+                        
                           
                   
 

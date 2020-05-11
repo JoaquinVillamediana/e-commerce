@@ -25,7 +25,8 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>                                
-                                <th>Descripcion</th>    
+                                <th>Descripcion</th> 
+                              
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -38,7 +39,7 @@
                                 <td>{{ $cate->id }}</td>
                                 <td>{{ $cate->name }}</td>
                                 <td>{{ $cate->description }}</td>
-                                
+                                   
                                 <td><a class="btn btn-primary btn-circle" href="{{action('admin\CategoriesController@edit', $cate->id)}}"><i class="fa fa-list"></i></a></td>
                               
                                 <td>

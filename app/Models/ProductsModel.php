@@ -18,6 +18,7 @@ class ProductsModel extends Model
         'price',
         'stock',
         'publication_date',
+        'news'
 
 
         

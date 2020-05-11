@@ -5,6 +5,8 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Illuminate\Support\MessageBag;
+use Auth;
 use App\Models\ProductsModel;
 use App\Models\CategoriesModel;
 
@@ -30,20 +32,62 @@ class ProductsController extends Controller {
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'category_id' => 'required|numeric',
+            'image' => 'required|max:10240|mimes:jpeg,png,jpg,gif',
+            'news' => 'required|max:150'
            
         );
 
-        
+        //$aProducts = ProductsModel::where('name',Auth::user()->name)->get()
 
         $this->validate($request, $aValidations);
 
-        $request['name'] = ucwords($request['name']);
-        
-        $request['description'] = ucwords($request['description']);
-     
-        ProductsModel::create($request->all());
+         $request['name'] = ucwords($request['name']);
+         $name = $request['name'];
 
-        return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
+        $request['description'] = ucwords($request['description']);
+        $description=$request['description'];
+
+        $request['price'] = ucwords($request['price']);
+        $price=$request['price'];
+
+        $request['stock'] = ucwords($request['stock']);
+        $stock=$request['stock'];
+        $request['news'] = ucwords($request['news']);
+        $news=$request['news'];
+
+
+        // $request['category_id'] = ucwords($request['category_id']);
+        // $category_id=$request['category_id'];
+
+        // $request['subcategory_id'] = ucwords($request['subcategory_id']);
+        // $subcategory_id=$request['subcategory_id'];
+
+
+        if (!empty($request['image'])) {
+
+            $image = $request['image'];
+            $fileName = $image->getClientOriginalName();
+            $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
+            $fileExtension = $image->getClientOriginalExtension();
+            $realPath = $image->getRealPath();
+            $fileSize = $image->getSize();
+            $fileMimeType = $image->getMimeType();
+            
+            $destinationPath = 'uploads/products';
+            $image->move($destinationPath, $storeImageName);
+          
+           
+            
+        }
+       
+
+        $aData = array('name' => $name , 'subcategory_id' =>  $request['subcategory_id'] ,'news' =>  $request['news'] , 'category_id' =>$request['category_id'] ,'image' => $storeImageName,'description' => $description, 'stock' => $stock, 'price' => $price);
+        
+         DB::table('products')->insert($aData);
+     
+        //ProductsModel::create($request->all());
+
+        return redirect()->route('products.index')->with('success', 'Productos actualizado satisfactoriamente');
     }
 
     public function show($id) {
@@ -65,6 +109,8 @@ class ProductsController extends Controller {
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'category_id' => 'required|numeric',
+            'image' => 'required|max:10240|mimes:jpeg,png,jpg,gif',
+            'news' => 'required|max:150'
            
         );
 
@@ -80,6 +126,7 @@ class ProductsController extends Controller {
           
         $request['name'] = ucwords($request['name']);
         $request['description'] = ucwords($request['description']);
+        $request['news'] = ucwords($request['news']);
 
         $oProduct->name = $request['name'];
         $oProduct->description = $request['description'];
@@ -91,6 +138,7 @@ class ProductsController extends Controller {
         }
         $oProduct->price = $request['price'];
         $oProduct->stock = $request['stock'];
+        $oProduct->news = $request['news'];
         $oProduct->category_id = $request['category_id'];
         $oProduct->save();
 

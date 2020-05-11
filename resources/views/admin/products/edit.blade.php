@@ -92,7 +92,15 @@
                                 </div>       
 
                             </div>
-
+                            <div class="form-group">
+                                <label>Promocion</label>
+                            <textarea  id="news" name="news" maxlength="250" class="form-control{{ $errors->has('news') ? ' is-invalid' : '' }}" placeholder="Promocion:(Opcional)" >{{$oProduct->news}}</textarea>
+                                @if ($errors->has('news'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe ingresar una promocion valida.</strong>
+                                </span>
+                                @endif
+                            </div>    
                             <div class="form-group">
                                 <label>Descripcion</label>
                             <textarea  id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" >{{$oProduct->description}}</textarea>
