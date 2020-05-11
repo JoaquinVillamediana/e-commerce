@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('home', 'HomeController@index')->name('home');
+Route::resource('loguser', 'frontend\LoguserController');
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {

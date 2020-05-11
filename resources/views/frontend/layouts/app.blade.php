@@ -19,8 +19,12 @@
         <link href="/css/sb-admin.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <script src="/vendor/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/vendor/bootvar/css/bootnavbar.css">
+        <link rel="stylesheet" href="/vendor/bootvar/css/animate.min.css">
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
     </head>
-   
+   @include('frontend/layouts.modals')
     @isset($bodyclass)
     <body class="{{$bodyclass}}" id="page-top">
         
@@ -67,6 +71,8 @@
         <script src="/js/sb-admin-datatables.js"></script>
         <!-- <script src="/js/sb-admin-charts.js"></script>-->
         
+        {{-- Bootvar --}}
+        <script src="/vendor/bootvar/js/bootnavbar.js" ></script>
         <script>
 $('#toggleNavPosition').click(function () {
     $('body').toggleClass('fixed-nav');

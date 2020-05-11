@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\CategoriesModel;
 use Illuminate\Http\Request;
-
+use App\Models\SubModel;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend/home.index');
+        $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
+        ->where('categories.visible', '=', '1')
+        ->groupBy('categories.id')
+        ->get();
+        $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
+        ->get();
+
+        return view('frontend/home.index',compact('aCategories','aSubCategories'));
     }
 }
