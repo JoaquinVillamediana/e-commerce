@@ -12,7 +12,7 @@
  */
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect('/home');
 });
 
 Route::get('/admin', function () {
@@ -22,7 +22,7 @@ Route::get('/admin', function () {
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-
+Route::get('home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['checkUser'])->group(function () {
-        Route::get('home', 'HomeController@index')->name('home');
+        
         
     });
 });
