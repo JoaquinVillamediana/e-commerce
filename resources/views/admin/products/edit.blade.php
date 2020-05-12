@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-lg-6 margin-bottom-20" style="margin: 0 auto;">
-                        <form method="POST" action="{{ route('products.update', $oProduct->id) }}" role="form"
+                    <form method="POST" action="{{ route('products.update', $oProduct->id) }}" role="form"
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input name="_method" type="hidden" value="PATCH">
@@ -92,15 +92,7 @@
                                 </div>       
 
                             </div>
-                            <div class="form-group">
-                                <label>Promocion</label>
-                            <textarea  id="news" name="news" maxlength="250" class="form-control{{ $errors->has('news') ? ' is-invalid' : '' }}" placeholder="Promocion:(Opcional)" >{{$oProduct->news}}</textarea>
-                                @if ($errors->has('news'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Debe ingresar una promocion valida.</strong>
-                                </span>
-                                @endif
-                            </div>    
+
                             <div class="form-group">
                                 <label>Descripcion</label>
                             <textarea  id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" >{{$oProduct->description}}</textarea>
@@ -109,7 +101,25 @@
                                     <strong>Debe ingresar una descripcion valida.</strong>
                                 </span>
                                 @endif
-                            </div>                                
+                            </div>   
+                            
+                                   
+                            <div class="form-group">
+                                <label>Destacado</label>
+<!--                                 
+                                <input id="news" name="news" maxlength="250" class="form-control{{ $errors->has('news') ? ' is-invalid' : '' }}" placeholder="Promociones: (Opcional)" value="{{ old('news') }}">
+                                 -->
+                                 <input type="hidden" name="news" value="0">
+<input type="checkbox" name="news" value="1">
+
+           
+                                <!-- @if ($errors->has('news'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe ingresar una promoción valido.</strong>
+                                </span>
+                                @endif -->
+                            </div>                              
+  
 
                           
                             
@@ -138,6 +148,14 @@
 
     @include('layouts.modals')
 </div>
+
+<script type="text/javascript">
+    function ShowHideDiv(btnPassport) {
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = btnPassport.value == "Yes" ? "block" : "none";
+    }
+</script>
+
 
 <script>
     var productsubcat = "<?php echo $oProduct->subcategory_id; ?>";
