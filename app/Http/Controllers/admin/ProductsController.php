@@ -16,7 +16,7 @@ use App\Models\CategoriesModel;
 class ProductsController extends Controller {
 
     public function index() {
-        $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name','images.name as images_name')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->leftjoin('images','products.name','=','images.product')->get();
+        $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->get();
  
     
 
@@ -61,12 +61,12 @@ else{
       
         
         $request['description'] = ucwords($request['description']);
-     
-        ProductsModel::create($request->all());
 
-        $id = ProductsModel::select('id')->where('name',$request['name'])->first();
-       
-        return view('admin/products.image',compact('id'));
+        ProductsModel::create($request->all());
+         
+        $product_id = ProductsModel::max('id');
+
+        return view('admin/products.image')->with('product_id',$product_id);
 
        // return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
     }
@@ -78,9 +78,9 @@ else{
 
     public function edit($id) {
         $oProduct = ProductsModel::where('id',$id)->first();
-        $xd=$oProduct->name;
+        
         $aCategories = CategoriesModel::get();
-        $aImage  = ImageModel::where('product',$xd)->first();
+        $aImage  = ImageModel::where('product_id',$id)->first();
      
         return view('admin/products.edit', compact('oProduct','aCategories', 'aImage'));
     }
@@ -149,27 +149,29 @@ else{
 
 
     
-    // public function agregarfoto($id) {
+     public function addImage(Request $request) {
 
-    //     if (!empty($request['image'])) {
+         if (!empty($request['image'])) {
 
-    //         $image = $request['image'];
-    //         $fileName = $image->getClientOriginalName();
-    //         $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
-    //         $fileExtension = $image->getClientOriginalExtension();
-    //         $realPath = $image->getRealPath();
-    //         $fileSize = $image->getSize();
-    //         $fileMimeType = $image->getMimeType();
+             $image = $request['image'];
+             $fileName = $image->getClientOriginalName();
+             $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
+             $fileExtension = $image->getClientOriginalExtension();
+             $realPath = $image->getRealPath();
+             $fileSize = $image->getSize();
+             $fileMimeType = $image->getMimeType();
             
-    //         $destinationPath = 'upload s/products';
-    //         $image->move($destinationPath, $storeImageName);
-    //         $data=array('name' => $storeImageName,'product' => $id);
+             $destinationPath = 'upload s/products';
+             $image->move($destinationPath, $storeImageName);
+             $data=array('image' => $storeImageName,'product_id' => $request['product_id']);
          
-    //             ImageModel::table('images')->insert($data);
-    //     }
+               ImageModel::table('images')->insert($data);
+       }
 
-    //     return redirect()->route('products.index')->with('success', 'Foto agregada satisfactoriamente');
-    // }
+       $Return = true;
+       echo json_encode($Return);
+
+    }
 
 
 

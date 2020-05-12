@@ -53,7 +53,7 @@
       
       @if (empty(Auth::user()->id))
   <li class="nav-item ml-3 border-right border-dark"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Registarme</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{ route('register.index') }}">Registarme</a></li>
       @else
       <li class="nav-item dropdown ml-3">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

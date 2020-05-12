@@ -17,24 +17,9 @@
                 <i class="fa fa-table"></i> Agregar nueva imagen(Máx. 10)
               
                 <!-- <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data"> -->
-                <div class="form-group mt-3">
-                        
-                        <!-- {{ csrf_field() }} -->
-                        <input name="_method" type="hidden" >
-                        <input type="file" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" id="image">
-                        @if ($errors->has('image'))
-                                <span id="image_error_lrv" class="invalid-feedback" role="alert" style="display:block;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
-                                </span>
-                                @endif
-                                <span id="image_error" class="invalid-feedback" role="alert" style="display:none;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
-                                </span>
-                             
-                                <div id="preview_image" class="mt-2" style=" display:none;"></div> 
-                                   
-                  
-                    </div>
+                <div class="mt-3">
+                    <input type="button" class="btn btn-primary" value="Cargar media" data-toggle="modal" data-target="#imageModal">
+                </div>
           
                     <!-- <button type="submit" class="btn btn-primary">Agregar Producto</button>
                             <button type="reset" class="btn btn-default">Reset</button>
@@ -121,6 +106,14 @@
         $('#deleteModal').modal('show');
     }
 
+</script>
+<script src="/js/admin/image_preview.js"></script>
+<script>
+
+    $('#image').change(function() {
+        setImagePreview(this, $(this).attr('id'));
+    });
+    
 </script>
 
 <script src="/assets/js/admin/user/datatables.js" crossorigin="anonymous"></script>

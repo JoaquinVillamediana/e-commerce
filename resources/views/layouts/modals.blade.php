@@ -136,3 +136,45 @@
         </div>
     </div>
 </div>
+
+
+<!-- Image Modal-->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir Foto o Video</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-3">
+                    <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input name="_method" type="hidden" >
+                    <input type="hidden" name="product_id" id="product_id" value="{{empty($product_id) ? '' : $product_id}}">
+                    <input type="file" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" id="image">
+                    @if ($errors->has('image'))
+                            <span id="image_error_lrv" class="invalid-feedback" role="alert" style="display:block;">
+                                <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
+                            </span>
+                            @endif
+                            <span id="image_error" class="invalid-feedback" role="alert" style="display:none;">
+                                <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
+                            </span>
+                         
+                            <div id="preview_image" class="mt-2" style=" display:none;"></div> 
+                               
+              
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit">Cargar</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+

@@ -25,6 +25,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::resource('loguser', 'frontend\LoguserController');
+Route::resource('register', 'frontend\RegisterController');
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
@@ -34,8 +35,7 @@ Route::prefix('admin')->group(function () {
             Route::resource('categories', 'admin\CategoriesController');
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
-        //     Route::resource('agregarfoto', 'admin\ProductsController@agregarfoto')
-        //  ->name('agregarfoto','admin\ProductsController@agregarfoto');
+            
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
         });
@@ -51,5 +51,5 @@ Route::middleware(['auth'])->group(function () {
         
     });
 });
-
+Route::post('addImage', 'admin\ProductsController@addImage')->name('addImage');
 Route::get('getSub_CategoriesByCategory', 'admin\SubController@getSub_CategoriesByCategory')->name('getSub_CategoriesByCategory');
