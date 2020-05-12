@@ -70,7 +70,9 @@ else{
      
         ProductsModel::create($request->all());
 
-        return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
+        return view('admin/products.image');
+
+       // return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
     }
     
 
@@ -122,7 +124,7 @@ else{
 
         }
 else{
-    $oProduct->news=null;
+    $oProduct->news= $request['news'];
 
 
 }
@@ -149,24 +151,6 @@ else{
         return redirect()->route('products.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
 
-    public function setProductNew(Request $request){
-        $aReturn = array();
-        $oProduct = ProductModel::find($request['productId']);
-
-        if (empty($oProduct->news)) {
-            $oProduct->news = 1;
-            
-        } else {
-            $oProduct->news = 0;
-        }
-
-        $oProduct->save();
-
-        $aReturn['productId'] = $request['productId'];
-        $aReturn['news'] = $oProduct->news;
-
-        echo json_encode($aReturn);
-    }
 
 
 }
