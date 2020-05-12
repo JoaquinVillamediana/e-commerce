@@ -19,6 +19,8 @@
         <link href="/css/sb-admin.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <script src="/vendor/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+        
     </head>
    
     @isset($bodyclass)

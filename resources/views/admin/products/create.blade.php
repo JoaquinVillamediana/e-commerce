@@ -92,42 +92,22 @@
                             <div class="form-group">
                                 <label>Descripcion</label>
                                  <textarea  id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}"></textarea>
-                                @if ($errors->has('description'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>Debe ingresar una descripcion valida.</strong>
-                                </span>
-                                @endif
+                      
                             </div>  
                             <div class="form-group">
-                                <label>Promociones</label>
-                                <input id="news" name="news" maxlength="250" class="form-control{{ $errors->has('news') ? ' is-invalid' : '' }}" placeholder="Promociones: (Opcional)" value="{{ old('news') }}">
-                                @if ($errors->has('news'))
+                                <label>Destacado</label>
+                                <input type="hidden" name="news" value="0">
+<input type="checkbox" name="news" value="1">
+                                <!-- <input id="news" name="news" maxlength="250" class="form-control{{ $errors->has('news') ? ' is-invalid' : '' }}" placeholder="Promociones: (Opcional)" value="{{ old('news') }}">
+                                 @if ($errors->has('news')) -->
                                 <span class="invalid-feedback" role="alert">
                                     <strong>Debe ingresar una promoción valido.</strong>
                                 </span>
-                                @endif
+                                @endif -->
                             </div>                              
   
 
-                            <div class="form-group mt-3">
-                        
-                        <!-- {{ csrf_field() }} -->
-                        <input name="_method" type="hidden" >
-                        <input type="file" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" name="image[]" id="image[]">
-                        @if ($errors->has('image'))
-                                <span id="image_error_lrv" class="invalid-feedback" role="alert" style="display:block;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
-                                </span>
-                                @endif
-                                <span id="image_error" class="invalid-feedback" role="alert" style="display:none;">
-                                    <strong>Debe cargar una imagen ( .jpeg, .jpg, .png, .gif ).</strong>
-                                </span>
-                             
-                                <div id="preview_image" class="mt-2" style=" display:none;"></div> 
-                                   
-                  
-                    </div>
-                          
+                           
                   
 
                             <button type="submit" class="btn btn-primary">Agregar Producto</button>
@@ -156,6 +136,13 @@
     @include('layouts.modals')
 
 </div>
+
+<script type="text/javascript">
+    function ShowHideDiv(btnPassport) {
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = btnPassport.value == "Yes" ? "block" : "none";
+    }
+</script>
 
 <script>
     $(document).ready(function () {
