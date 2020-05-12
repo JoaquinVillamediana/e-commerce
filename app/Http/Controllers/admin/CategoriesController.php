@@ -51,6 +51,10 @@ class CategoriesController extends Controller {
             throw $error;
         }   
 
+        if(!empty($request['prom'])){
+            $request['prom'] = ucwords($request['prom']);
+           
+        }
     
         $request['name'] = ucwords($request['name']);
         
@@ -89,7 +93,13 @@ class CategoriesController extends Controller {
           
         $request['name'] = ucwords($request['name']);
         $request['description'] = ucwords($request['description']);
-        $request['news'] = ucwords($request['news']);
+
+if(!empty($request['prom'])){
+    $request['prom'] = ucwords($request['prom']);
+    $oCate->prom = $request['prom'];
+}
+
+        
         $oCate->name = $request['name'];
         $oCate->description = $request['description'];
                

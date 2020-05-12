@@ -38,7 +38,23 @@
                                 @endif
                             </div>         
                         
-                          
+                            <div style="width:100%;float:left;"><h4 class="text-secondary"> Agregar promoción</h4></div>
+<input type="button" value="Yes" onclick="ShowHideDiv(this)" />
+<input type="button" value="No" onclick="ShowHideDiv(this)" />
+<hr />
+<div id="dvPassport" style="display: none">
+<div class="form-group col-12 col-md-6">
+                                    <label>PROMOCION</label>
+                                    <input type="number" id="prom" name="prom" maxlength="250" class="form-control{{ $errors->has('prom') ? ' is-invalid' : '' }}" placeholder="Promoción:" value="{{ old('prom') }}">
+                                    @if ($errors->has('prom'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Debe ingresar un promoción valido.</strong>
+                                    </span>
+                                    @endif
+                                </div>       
+</div>    
+
+
                   
 
                             <button type="submit" class="btn btn-primary">Agregar categoria</button>
@@ -70,6 +86,12 @@
 
 
 
+<script type="text/javascript">
+    function ShowHideDiv(btnPassport) {
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = btnPassport.value == "Yes" ? "block" : "none";
+    }
+</script>
 
 
 @endsection

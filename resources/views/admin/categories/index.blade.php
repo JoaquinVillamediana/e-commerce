@@ -25,7 +25,9 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>                                
-                                <th>Descripcion</th>    
+                                <th>Descripcion</th>
+                                <th>Promoción</th>    
+
                                 <th>Publicado</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
@@ -39,6 +41,13 @@
                                 <td>{{ $cate->id }}</td>
                                 <td>{{ $cate->name }}</td>
                                 <td>{{ $cate->description }}</td>
+
+
+                                @if(!empty($cate->prom))
+                                <td>{{ $cate->prom }}</td>
+@else
+<td>{{ "Sin promociones" }}</td>
+@endif
                                 <td><a class="article_index_btn {{ $cate->visible == 1 ? ' article_index_btn_active' : '' }}" href="" onClick="setCategoryVisible('{{ $cate->id }}');"><i id="visible_icon_{{$cate->id}}" class="fas fa-eye"></i></a></td>
                                 
                                 <td><a class="btn btn-primary btn-circle" href="{{action('admin\CategoriesController@edit', $cate->id)}}"><i class="fa fa-list"></i></a></td>

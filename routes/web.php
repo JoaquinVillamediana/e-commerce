@@ -21,6 +21,7 @@ Route::get('/admin', function () {
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+//Route::get('agregarfoto', 'admin\ProductsController@agregarfoto');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::resource('loguser', 'frontend\LoguserController');
@@ -33,6 +34,8 @@ Route::prefix('admin')->group(function () {
             Route::resource('categories', 'admin\CategoriesController');
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
+        //     Route::resource('agregarfoto', 'admin\ProductsController@agregarfoto')
+        //  ->name('agregarfoto','admin\ProductsController@agregarfoto');
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
         });

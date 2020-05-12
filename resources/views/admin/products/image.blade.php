@@ -15,7 +15,8 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i> Agregar nueva imagen(Máx. 10)
-          
+              
+                <!-- <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data"> -->
                 <div class="form-group mt-3">
                         
                         <!-- {{ csrf_field() }} -->
@@ -35,6 +36,9 @@
                   
                     </div>
           
+                    <!-- <button type="submit" class="btn btn-primary">Agregar Producto</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </form> -->
           
                 <!-- <a class="createButton ml-5" href="{{ route('products.create') }}" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Crear'))</a>
            -->
@@ -99,6 +103,16 @@
     @include('layouts.modals')
 
 </div>
+
+<!-- 
+<script src="/js/admin/image_preview.js"></script>
+<script>
+    $('#image').change(function() {
+        
+        setImagePreview(this, $(this).attr('id'));
+    });
+    
+</script> -->
 
 <script type="text/javascript">
 

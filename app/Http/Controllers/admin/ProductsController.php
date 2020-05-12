@@ -17,13 +17,7 @@ class ProductsController extends Controller {
 
     public function index() {
         $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name','images.name as images_name')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->leftjoin('images','products.name','=','images.product')->get();
-      //  $aima = ImageModel::select('images.*')->leftjoin('products','products.name','=','images.product')->get();
-    //   $aima = ImageModel::select('images.name', 'products.name')
-    //   ->from('images')
-    //   ->join('products', function($query){
-    //   $query->on('products.name', '=', 'images.product')
-    // })->where('images.product', '=', $aProducts->name)->get();
-
+ 
     
 
         return view('admin/products.index',compact('aProducts'));
@@ -70,7 +64,9 @@ else{
      
         ProductsModel::create($request->all());
 
-        return view('admin/products.image');
+        $id = ProductsModel::select('id')->where('name',$request['name'])->first();
+       
+        return view('admin/products.image',compact('id'));
 
        // return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
     }
@@ -150,6 +146,31 @@ else{
 
         return redirect()->route('products.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
+
+
+    
+    // public function agregarfoto($id) {
+
+    //     if (!empty($request['image'])) {
+
+    //         $image = $request['image'];
+    //         $fileName = $image->getClientOriginalName();
+    //         $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
+    //         $fileExtension = $image->getClientOriginalExtension();
+    //         $realPath = $image->getRealPath();
+    //         $fileSize = $image->getSize();
+    //         $fileMimeType = $image->getMimeType();
+            
+    //         $destinationPath = 'upload s/products';
+    //         $image->move($destinationPath, $storeImageName);
+    //         $data=array('name' => $storeImageName,'product' => $id);
+         
+    //             ImageModel::table('images')->insert($data);
+    //     }
+
+    //     return redirect()->route('products.index')->with('success', 'Foto agregada satisfactoriamente');
+    // }
+
 
 
 
