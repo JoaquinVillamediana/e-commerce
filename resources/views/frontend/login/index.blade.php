@@ -4,8 +4,13 @@
 <div class="container">
     <h2 class="text-center text-light mb-3">Ingresar a E-Commerce</h2>
     <div class="lottie  m-auto">
+        @if ($errors->has('email') || $errors->has('password'))
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player class="m-auto" src="https://assets1.lottiefiles.com/temp/lf20_yYJhpG.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
+        @else
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player class="m-auto" src="https://assets9.lottiefiles.com/packages/lf20_an6wWA.json"  background="transparent"  speed="2"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
+        @endif
 </div>
 
     <form method="POST" action="{{ route('login') }}" style="display:none" id="form-login" class="row mt-4">
