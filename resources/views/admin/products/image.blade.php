@@ -20,11 +20,14 @@
                 <div class="form-group">
                         <div class="file-loading">
                             <input id="image-file" type="file" name="file" accept="image/*" data-min-file-count="1" multiple>
-                        <input type="hidden" name="product_id" id="product_id" value="{{ $product_id }}">
-
+                     
                         
                         </div>
+
+                      
+
                     </div>      
+                    <input type="hidden" name="product_id" id="product_id" value="{{ $product_id }}">
                     <!-- <button type="submit" class="btn btn-primary">Agregar Producto</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </form> -->

@@ -158,7 +158,12 @@ else{
         $fileMimeType = $image->getMimeType();
         $destinationPath = 'uploads/products';
         $image->move($destinationPath, $storeImageName);
-        $data=array('image' => $storeImageName,'product_id'  => $request['product_id']);
+       
+         
+        $product_id = ProductsModel::max('id');
+
+
+        $data=array('image' => $storeImageName,'product_id' => $product_id);
         DB::table('images')->insert($data);
        // request()->image->move(public_path('uploads/products'), $fileName);
     	return response()->json(['uploaded' => 'image/'.$fileName]);
