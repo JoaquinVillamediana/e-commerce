@@ -1,6 +1,17 @@
 /*
     DEMO STYLE
 */
+.bg-sea{
+    background:#6ef3d6 !important;
+    
+}
+
+.bg-blue-dark{
+    background: rgb(171,207,209) !important;
+background: linear-gradient(270deg, rgba(171,207,209,1) 0%, rgba(13,206,218,1) 100%) !important;
+}
+
+
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
@@ -28,6 +39,7 @@ a:focus {
 .navbar {
     padding: 15px 10px;
     background: #fff;
+    
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
@@ -51,6 +63,10 @@ a:focus {
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+.navbar-sidenav a{
+    color : #000 !important;
+    font-size: 1.1rem;
+}
 
 .wrapper {
     display: flex;

@@ -31,7 +31,7 @@
         @endisset
         @empty($bodyclass)
         @include('frontend/layouts.nav')
-    <body class="bg-dark" id="page-top"> 
+    <body class="bg-blue-dark" id="page-top"> 
         @endempty
 
 
