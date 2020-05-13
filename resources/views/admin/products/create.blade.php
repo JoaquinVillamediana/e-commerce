@@ -2,6 +2,9 @@
 
 @section('content')
 
+<link href="/assets/js/lib/quill-136/quill_snow.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/js/lib/quill-136/highlight.css">
+<link rel="stylesheet" href="/css/admin_custom.css">
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -90,10 +93,50 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Descripcion</label>
-                                 <textarea  id="description" name="description" maxlength="250" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Descripcion:" value="{{ old('description') }}"></textarea>
-                      
+                                <label>Descripción</label>
+                                <div id="toolbar-container" style="border-radius:.25rem;">
+                                    <span class="ql-formats">
+                                        <select class="ql-size"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-color"></select>
+                                        <select class="ql-background"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-header" value="1"></button>
+                                        <button class="ql-header" value="2"></button>
+                                        <button class="ql-blockquote"></button>
+                                        <button class="ql-code-block"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-list" value="ordered"></button>
+                                        <button class="ql-list" value="bullet"></button>
+                                        <button class="ql-indent" value="-1"></button>
+                                        <button class="ql-indent" value="+1"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-direction" value="rtl"></button>
+                                        <select class="ql-align"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-link"></button>
+                                    </span>
+                                </div>
+                                <input type="hidden" id="description" name="description"/>
+                                <div id="editor-container" style="border:1px solid #ced4da; border-radius:.25rem; margin-top:5px;">{!! old('description') !!}</div>
+                                <span id="description_error" class="invalid-feedback" role="alert" style="display:none;">
+                                    <strong>Debe ingresar una descripción (max. 12000 car.)</strong>
+                                </span>                                
                             </div>  
+
+
+
                             <div class="form-group">
                                 <label>Destacado</label>
                                 <input type="hidden" name="news" value="0">
@@ -210,4 +253,8 @@ function(data) {
 
 </script>
 
+<script src="/assets/js/lib/quill-136/highlight.min.js"></script>
+<script src="/assets/js/lib/quill-136/quill.js"></script>
+<script src="/assets/js/admin/task/task.js" crossorigin="anonymous"></script>
+<script src="/assets/js/admin/task/task_form.js" crossorigin="anonymous"></script>
 @endsection
