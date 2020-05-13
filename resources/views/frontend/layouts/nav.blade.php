@@ -5,14 +5,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav bg-sea "  id="exampleAccordion">
-          <li class="nav-item border-top border-dark" data-toggle="tooltip" data-placement="right" title="Home">
+          <li class="nav-item border-top border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
               <a class="nav-link" href="{{route('home')}}">
-                  <span class="nav-link-text"  >Home</span>
+                <i class="fas fa-home"></i><span class="ml-1 nav-link-text"  >Home</span>
               </a>
           </li>
           
-          <li class="nav-item border-top border-bottom border-dark">
-              <a href="#CatSubmenu" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle">Categorias</a>
+          <li class="nav-item border-top border-bottom border-secondary">
+            <a href="#CatSubmenu" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-th-large mr-1"></i>Categorias</a>
               <ul class="collapse list-unstyled"  id="CatSubmenu">
                   @foreach ($aCategories as $category)
                       @if ($category->quantity_sub < 1)
@@ -51,7 +51,7 @@
         <li class="nav-item ml-md-3  border-dark"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('register.index') }}">Registarme</a></li>
             @else
-            <li class="nav-item dropdown  ml-3 text-dark">
+            <li class="nav-item dropdown  ml-3 ">
               
               <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  {{Auth::user()->name}}

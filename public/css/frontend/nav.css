@@ -2,7 +2,7 @@
     DEMO STYLE
 */
 .bg-sea{
-    background:#4790de !important;
+    background:#37474f !important;
     
 }
 
@@ -18,7 +18,7 @@ background: linear-gradient(270deg, rgba(159,159,159,1) 0%, rgba(217,217,217,1) 
 }
 
 .navbar-sidenav  li:hover{
-    background-color: #2281e6;
+    background-color: #435a66;
 
     transition: all 0.5s ease;
 }
@@ -75,10 +75,13 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 .navbar-sidenav a{
-    color : #000 !important;
+    color : #FFF !important;
     font-size: 1.1rem;
 }
 
+.navbar-nav a,.navbar-brand{
+    color: #FFF !important;
+}
 .wrapper {
     display: flex;
     width: 100%;
