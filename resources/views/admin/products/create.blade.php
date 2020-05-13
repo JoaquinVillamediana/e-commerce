@@ -66,13 +66,9 @@
                             <div class="row">
                                 <div class="form-group col-12 col-md-6">
                                     <label>Precio</label>
-                                    <div class="input-group"> 
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                        
-                                      </div>
+                                 
                                     <input type="number" id="price" name="price" maxlength="250" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="Precio:" value="{{ old('price') }}">
-                                </div>
+                              
                                     @if ($errors->has('price'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>Debe ingresar un precio valido.</strong>
