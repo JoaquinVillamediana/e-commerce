@@ -2,15 +2,18 @@
     DEMO STYLE
 */
 .bg-sea{
-    background:#6ef3d6 !important;
+    background:#4790de !important;
     
 }
 
 .bg-blue-dark{
-    background: rgb(171,207,209) !important;
-background: linear-gradient(270deg, rgba(171,207,209,1) 0%, rgba(13,206,218,1) 100%) !important;
+    background: rgb(159,159,159);
+background: linear-gradient(270deg, rgba(159,159,159,1) 0%, rgba(217,217,217,1) 100%);
 }
 
+.navbar-sidenav  li:hover{
+    background-color: #2281e6;
+}
 
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";

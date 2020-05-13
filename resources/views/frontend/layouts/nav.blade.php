@@ -5,13 +5,13 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav bg-sea "  id="exampleAccordion">
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
+          <li class="nav-item border-top border-dark" data-toggle="tooltip" data-placement="right" title="Home">
               <a class="nav-link" href="{{route('home')}}">
                   <span class="nav-link-text"  >Home</span>
               </a>
           </li>
           
-          <li class="nav-item">
+          <li class="nav-item border-top border-bottom border-dark">
               <a href="#CatSubmenu" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle">Categorias</a>
               <ul class="collapse list-unstyled"  id="CatSubmenu">
                   @foreach ($aCategories as $category)
