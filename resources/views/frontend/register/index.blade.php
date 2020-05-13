@@ -13,7 +13,7 @@
         @endif
 </div>
 
-<form method="POST" style="display: none;" id="form_register" action="{{ route('user.store') }}" role="form"
+<form method="POST" style="display: none;" id="form_register" action="{{ route('register.store') }}" role="form"
 enctype="multipart/form-data">
 {{ csrf_field() }}
 
@@ -95,23 +95,24 @@ enctype="multipart/form-data">
 <div class="row">
     <div class="form-group col-md-6 offset-md-3" id="box_password">
         <label class="text-light">Confirmar Contraseña</label>
-        <input type="password" id="password" name="password"
-            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-            placeholder="Password" value="{{ old('password') }}">
-        @if ($errors->has('password'))
+        <input type="password" id="verif_password" name="verif_password"
+            class="form-control{{ $errors->has('verif_password') ? ' is-invalid' : '' }}"
+            placeholder="Repite tu Password" value="{{ old('verif_password') }}">
+        @if ($errors->has('verif_password'))
         <span class="invalid-feedback" role="alert">
-            <strong>Debe ingresar un password (min. 8 caracteres).</strong>
+            <strong>Las contraseñas deben ser iguales.</strong>
         </span>
         @endif
     </div>
     </div>
-        <div class="col-2 offset-md-5">
+    <div class="row">
+        <div class="col-12 col-md-2 offset-md-5">
             
             <button type="submit" class="btn-block btn btn-dark " style="background-color: #303F9F; border:#303F9F;" >
                 Registrarme
             </button>
         </div>
-
+    </div>
     </form>
 
 </div>

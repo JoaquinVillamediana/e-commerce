@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top" id="mainNav">
   <a class="navbar-brand" href="">E-COMMERCE</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <ul class="navbar-nav navbar-sidenav bg-secondary"  id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
-              <a class="nav-link" href="">
-                  <span class="nav-link-text">Home</span>
+              <a class="nav-link" href="{{route('home')}}">
+                  <span class="nav-link-text" >Home</span>
               </a>
           </li>
           
@@ -38,21 +38,23 @@
 
 
       </ul>
-      <ul class="navbar-nav ">
-          <li class="nav-item">
-              
-          </li>
-      </ul>
+      {{-- <ul class="navbar-nav bg-secondary sidenav-toggler">
+        <li class="nav-item">
+            <a class="nav-link text-center" id="sidenavToggler">
+                <i class="fa fa-fw fa-angle-left"></i>
+            </a>
+        </li>
+    </ul> --}}
       
       <ul class="navbar-nav mr-5 ml-auto">
         @if (empty(Auth::user()->id))
-        <li class="nav-item ml-3 border-right border-dark"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
+        <li class="nav-item ml-md-3  border-dark"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('register.index') }}">Registarme</a></li>
             @else
             <li class="nav-item dropdown ml-3">
               
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 {{Auth::user()->name}} <i class="fas fa-angle-down  pt-1"></i>
+              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 {{Auth::user()->name}}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item"  href="#">Mi Perfil</a>

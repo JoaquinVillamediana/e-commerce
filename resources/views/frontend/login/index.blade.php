@@ -15,7 +15,8 @@
 
     <form method="POST" action="{{ route('login') }}" style="display:none" id="form-login" class="row mt-4">
         {{csrf_field()}}
-        <div class="col-7 m-auto">
+        
+        <div class="col-md-7 col-12 m-auto">
             <div class="form-group">
                 <label class="text-light " for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" placeholder="example@example.com" aria-describedby="emailHelp">
@@ -26,7 +27,9 @@
                     @endif  
               </div>
         </div>
-        <div class="col-7 m-auto">
+  
+        
+        <div class="col-md-7 col-12 m-auto">
             <div class="form-group">
                 <label class="text-light" for="exampleInputPass1">Contraseña</label>
                 <input id="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  aria-describedby="emailHelp">
@@ -39,13 +42,14 @@
             </div>
 
         </div>
-        <div class="col-2 offset-md-5">
+   
+        <div class=" col-12 col-md-2 offset-md-5">
             
             <button type="submit" class="btn-block btn btn-dark " style="background-color: #303F9F; border:#303F9F;" >
                 {{ __('Login') }}
             </button>
         </div>
-
+    
     </form>
 
 </div>

@@ -22,8 +22,59 @@ class RegisterController extends Controller {
         return view('frontend/register.index',compact('aCategories','aSubCategories'));
     }
 
-    public function create() {
-        return view('admin/user.create');
+    public function store(Request $request) {
+        $aValidations = array(
+            'phone' => 'required|max:25',
+            'name' => 'required|max:60',
+            'last_name' => 'required|max:60',
+            'email' => 'required|email|max:60',
+            'password' => 'required|min:8|max:32',
+            'verif_password' => 'required|min:8|max:32',
+        );
+
+        
+
+        $this->validate($request, $aValidations);
+
+        $userEmail = User::where('email', $request['email'])->first();
+
+        if (!empty($userEmail->id)) {
+
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                        'duplicated_email_error' => ['DUPLICATED USER']
+            ]);
+
+            throw $error;
+        }   
+
+        if($request['verif_password'] != $request['password'])
+        {
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                'passowrd_not_equals' => ['INCORRECT PASSWORD']
+            ]       );
+
+            throw $error;
+        }
+        $request['password'] = bcrypt($request['password']);
+        $request['name'] = ucwords($request['name']);
+        $request['phone'] = ucwords($request['phone']);
+        $request['last_name'] = ucwords($request['last_name']);
+
+        User::create($request->all());
+
+        $oUser = new User();
+        
+
+        $oUser->type = 2;
+        $oUser->phone = $request['phone'];
+        $oUser->email = $request['email'];
+        $oUser->name = $request['name'];
+        $oUser->last_name = $request['last_name'];
+        $oUser->password = $request['password'];
+        $oUser->save();
+
+        return redirect()->route('home.index')->with('success', 'Usuario creado correctamente');
+        
     }
 
     
