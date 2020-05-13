@@ -9,7 +9,7 @@
 <lottie-player class="m-auto" src="https://assets1.lottiefiles.com/temp/lf20_yYJhpG.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
         @else
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <lottie-player class="m-auto" src="https://assets2.lottiefiles.com/packages/lf20_sOjs8q/add_contact_05.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
+        <lottie-player class="m-auto" src="/vendor/lotties/lf30_editor_UC7XZV.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
         @endif
 </div>
 
