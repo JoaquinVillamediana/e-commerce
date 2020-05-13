@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\CategoriesModel;
+use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use App\Models\SubModel;
 use DB;
@@ -31,6 +32,12 @@ class HomeController extends Controller
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        return view('frontend/home.index',compact('aCategories','aSubCategories'));
+
+        $aImage = ProductsModel::select('products.*', 'images.image as image_dir')->leftjoin('images','products.id','=','images.product_id')
+        ->where('products.news', '=', '1')
+        ->get();
+       
+
+        return view('frontend/home.index',compact('aCategories','aSubCategories','aImage'));
     }
 }

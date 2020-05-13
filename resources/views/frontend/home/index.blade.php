@@ -3,21 +3,47 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+        <div class="col-md-12">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+       
+        
+        </br>
+        </br>
+        
+        </br>
+        <h1>PROMOCIONES</h1>
         </div>
+        </br>
+        </br>
+        
+        </br>
+        @if(!empty($aImage))
+                            @foreach($aImage as $xd)
+        <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/uploads/products/{{ $xd->image_dir}}" style="width:250px;margin:0 auto;" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ $xd->name}}</h5>
+    <p class="card-text"> Precio: ${{ $xd->price}}
+    </br>
+    
+    {{ $xd->description}}
+    </p>
+    <a href="#" class="btn btn-primary">Más información</a>
+    
+  </div>
+</div>
+
+
+@endforeach
+</br>
+        
+        </br>
+@else
+<h1> sin PROMOCIONES</h1>
+@endif
+</br>
+        
+        </br>
     </div>
 
     
