@@ -19,6 +19,8 @@ class ProductsController extends Controller {
         $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->get();
  
     
+// $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name','images.image as imagexd')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->leftjoin('images','products.id','=','images.product_id')->get();
+ 
 
         return view('admin/products.index',compact('aProducts'));
     }

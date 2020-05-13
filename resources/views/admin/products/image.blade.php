@@ -15,9 +15,13 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i> Agregar nueva imagen(Máx. 10)
-              
+              </br>
+              </br>
+             
+
                 <!-- <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data"> -->
                 <div class="form-group">
+                <div class="table-responsive">
                         <div class="file-loading">
                             <input id="image-file" type="file" name="file" accept="image/*" data-min-file-count="1" multiple>
                      
@@ -34,7 +38,7 @@
           
                 <!-- <a class="createButton ml-5" href="{{ route('products.create') }}" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Crear'))</a>
            -->
-          
+           </div>   
             </div>         
             <!-- <div class="card-body">
                 <div class="table-responsive">
@@ -121,9 +125,9 @@
                     _token: "{{ csrf_token() }}",
                 };
             },
-            allowedFileExtensions: ['jpg', 'png', 'gif','jpeg'],
+            allowedFileExtensions: ['jpg', 'png', 'gif','jpeg', 'mp4'],
             overwriteInitial: false,
-            maxFileSize:2048,
+            maxFileSize:1000,
             maxFilesNum: 10
         });
     </script>
