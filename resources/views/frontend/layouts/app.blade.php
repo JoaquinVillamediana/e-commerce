@@ -11,7 +11,7 @@
         <title>DIAGEO</title>
         <link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
         <!-- Bootstrap core CSS-->
-
+        <link rel="stylesheet" href="/css/frontend/nav.css">
         <link rel="stylesheet" href="/vendor/bootstrap.min.css" crossorigin="anonymous">
         <!-- Custom fonts for this template-->
         <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">   
@@ -19,9 +19,9 @@
         <link href="/css/sb-admin.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <script src="/vendor/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/vendor/bootvar/css/bootnavbar.css">
-        <link rel="stylesheet" href="/vendor/bootvar/css/animate.min.css">
-        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        {{-- <link rel="stylesheet" href="/vendor/bootvar/css/bootnavbar.css">
+        <link rel="stylesheet" href="/vendor/bootvar/css/animate.min.css"> --}}
+        {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
 
     </head>
    @include('frontend/layouts.modals')
@@ -30,7 +30,7 @@
         
         @endisset
         @empty($bodyclass)
-        @include('frontend/layouts.header')
+        @include('frontend/layouts.nav')
     <body class="bg-dark" id="page-top"> 
         @endempty
 
@@ -72,7 +72,7 @@
         <!-- <script src="/js/sb-admin-charts.js"></script>-->
         
         {{-- Bootvar --}}
-        <script src="/vendor/bootvar/js/bootnavbar.js" ></script>
+        {{-- <script src="/vendor/bootvar/js/bootnavbar.js" ></script> --}}
         <script>
 $('#toggleNavPosition').click(function () {
     $('body').toggleClass('fixed-nav');
@@ -85,7 +85,19 @@ $('#toggleNavColor').click(function () {
     $('body').toggleClass('bg-dark bg-light');
 });
         </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
 
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
     </body>
     
 </html>
