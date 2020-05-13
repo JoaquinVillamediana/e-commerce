@@ -33,11 +33,10 @@ class HomeController extends Controller
         ->get();
 
 
-        $aImage = ProductsModel::select('products.*', 'images.image as image_dir')->leftjoin('images','products.id','=','images.product_id')
-        ->where('products.news', '=', '1')
+        $aProducts = ProductsModel::where('products.news', '=', '1')
         ->get();
        
 
-        return view('frontend/home.index',compact('aCategories','aSubCategories','aImage'));
+        return view('frontend/home.index',compact('aCategories','aSubCategories','aProducts'));
     }
 }

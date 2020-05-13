@@ -22,7 +22,7 @@
         {{-- <link rel="stylesheet" href="/vendor/bootvar/css/bootnavbar.css">
         <link rel="stylesheet" href="/vendor/bootvar/css/animate.min.css"> --}}
         {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
-
+        <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,800;1,300&display=swap" rel="stylesheet">
     </head>
    @include('frontend/layouts.modals')
     @isset($bodyclass)

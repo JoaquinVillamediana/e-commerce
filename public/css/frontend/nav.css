@@ -11,14 +11,22 @@
 background: linear-gradient(270deg, rgba(159,159,159,1) 0%, rgba(217,217,217,1) 100%);
 }
 
+.navbar{
+    -webkit-box-shadow: -8px 6px 39px -2px rgba(0,0,0,0.41) !important;
+    -moz-box-shadow: -8px 6px 39px -2px rgba(0,0,0,0.41) !important;
+    box-shadow: -8px 6px 39px -2px rgba(0,0,0,0.41) !important;
+}
+
 .navbar-sidenav  li:hover{
     background-color: #2281e6;
+
+    transition: all 0.5s ease;
 }
 
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Muli', sans-serif;
     background: #fafafa;
     
 }
