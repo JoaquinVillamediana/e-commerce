@@ -18,7 +18,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-lg-6 margin-bottom-20" style="margin: 0 auto;">
-                        <form method="POST" action="{{ route('products.store') }}" role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('products.store') }}" id="task_form" role="form" enctype="multipart/form-data">
                             {{ csrf_field() }}
                            
 
