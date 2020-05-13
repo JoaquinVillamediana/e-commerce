@@ -1,8 +1,8 @@
 @extends('frontend/layouts.app')
 
 @section('content')
-<div class="container">
-    <h2 class="text-center text-light mb-3">Registro de Usuario</h2>
+<div class="container mt-5">
+    <h2 class="text-center text-light mb-3" style="color:#4790de !important;">Registro de Usuario</h2>
     <div class="lottie  m-auto">
         @if ($errors->has('email') || $errors->has('password'))
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
