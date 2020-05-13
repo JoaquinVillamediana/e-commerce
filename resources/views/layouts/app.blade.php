@@ -12,6 +12,7 @@
         <link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
         <!-- Bootstrap core CSS-->
 
+
         <link rel="stylesheet" href="/vendor/bootstrap.min.css" crossorigin="anonymous">
         <!-- Custom fonts for this template-->
         <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">   
@@ -19,6 +20,7 @@
         <link href="/css/sb-admin.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
         <script src="/vendor/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
 
         
     </head>

@@ -17,10 +17,14 @@
                 <i class="fa fa-table"></i> Agregar nueva imagen(Máx. 10)
               
                 <!-- <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data"> -->
-                <div class="mt-3">
-                    <input type="button" class="btn btn-primary" value="Cargar media" data-toggle="modal" data-target="#imageModal">
-                </div>
-          
+                <div class="form-group">
+                        <div class="file-loading">
+                            <input id="image-file" type="file" name="file" accept="image/*" data-min-file-count="1" multiple>
+                        <input type="hidden" name="product_id" id="product_id" value="{{ $product_id }}">
+
+                        
+                        </div>
+                    </div>      
                     <!-- <button type="submit" class="btn btn-primary">Agregar Producto</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </form> -->
@@ -29,7 +33,7 @@
            -->
           
             </div>         
-            <div class="card-body">
+            <!-- <div class="card-body">
                 <div class="table-responsive">
                     
                     <table class="table table-bordered" id="dataTable_user" width="100%" cellspacing="0">                        
@@ -43,7 +47,7 @@
                             </tr>
                         </thead>
                         
-                        <tbody>
+                        <!-- <tbody>
                             @if(!empty($aProducts))
                             @foreach($aProducts as $product)
                             <tr>
@@ -64,10 +68,10 @@
                             </tr>   
                             @endforeach
                             @endif
-                        </tbody>
+                        </tbody> 
                     </table>
                 </div>
-            </div>
+            </div> -->
             <div class="card-footer small text-muted"></div>
         </div>
     </div>
@@ -98,6 +102,29 @@
     });
     
 </script> -->
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $("#image-file").fileinput({
+            theme: 'fa',
+            uploadUrl: "{{route('image.upload')}}",
+            uploadExtraData: function() {
+                return {
+                    _token: "{{ csrf_token() }}",
+                };
+            },
+            allowedFileExtensions: ['jpg', 'png', 'gif','jpeg'],
+            overwriteInitial: false,
+            maxFileSize:2048,
+            maxFilesNum: 10
+        });
+    </script>
+
 
 <script type="text/javascript">
 

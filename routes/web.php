@@ -30,8 +30,12 @@ Route::resource('register', 'frontend\RegisterController');
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
          Route::middleware(['checkAdmin'])->group(function () {
-            
+
+            Route::get('upload-image','ProductsController@image');
+            Route::post('upload-image',['as'=>'image.upload','uses'=>'admin\ProductsController@uploadImages']);
+
             Route::resource('user', 'admin\UserController');
+            Route::resource('Image', 'admin\ ImageController');
             Route::resource('categories', 'admin\CategoriesController');
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');

@@ -147,7 +147,22 @@ else{
         return redirect()->route('products.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
 
-
+    public function uploadImages(Request $request)
+    {
+        $image = $request['file'];
+        $fileName = $image->getClientOriginalName();
+        $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
+        $fileExtension = $image->getClientOriginalExtension();
+        $realPath = $image->getRealPath();
+        $fileSize = $image->getSize();
+        $fileMimeType = $image->getMimeType();
+        $destinationPath = 'uploads/products';
+        $image->move($destinationPath, $storeImageName);
+        $data=array('image' => $storeImageName,'product_id'  => $request['product_id']);
+        DB::table('images')->insert($data);
+       // request()->image->move(public_path('uploads/products'), $fileName);
+    	return response()->json(['uploaded' => 'image/'.$fileName]);
+    }
     
      public function addImage(Request $request) {
 
@@ -161,7 +176,7 @@ else{
              $fileSize = $image->getSize();
              $fileMimeType = $image->getMimeType();
             
-             $destinationPath = 'upload s/products';
+             $destinationPath = 'uploads/products';
              $image->move($destinationPath, $storeImageName);
              $data=array('image' => $storeImageName,'product_id' => $request['product_id']);
          
