@@ -17,15 +17,17 @@
                 <i class="fa fa-table"></i> Agregar nueva imagen(Máx. 10)
               </br>
               </br>
-             
+              <div class="table-responsive">
 
                 <!-- <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data"> -->
                 <div class="form-group">
-                <div class="table-responsive">
+                
                         <div class="file-loading">
-                            <input id="image-file" type="file" name="file" accept="image/*" data-min-file-count="1" multiple>
+                        <div class="table-responsive">
+                            <input id="image-file" type="file" name="file" accept="image/*" style="max-width:100%;height:auto;" data-min-file-count="1" multiple>
                      
-                        
+                            </div>
+
                         </div>
 
                       
