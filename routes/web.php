@@ -39,7 +39,11 @@ Route::prefix('admin')->group(function () {
             Route::post('upload-image',['as'=>'image.upload','uses'=>'admin\ProductsController@uploadImages']);
 
             Route::resource('user', 'admin\UserController');
-            Route::resource('Image', 'admin\ ImageController');
+
+            Route::get('indexImages/{product_id}', 'admin\ProductsController@indexImages')->name('indexImages');
+            Route::post('addImage', 'admin\ProductsController@addImage')->name('addImage');
+            Route::delete('deleteImage/{id}', 'admin\ProductsController@deleteImage')->name('deleteImage');
+
             Route::resource('categories', 'admin\CategoriesController');
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
@@ -59,5 +63,5 @@ Route::middleware(['auth'])->group(function () {
         
     });
 });
-Route::post('addImage', 'admin\ProductsController@addImage')->name('addImage');
+
 Route::get('getSub_CategoriesByCategory', 'admin\SubController@getSub_CategoriesByCategory')->name('getSub_CategoriesByCategory');

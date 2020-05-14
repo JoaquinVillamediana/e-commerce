@@ -150,7 +150,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group mt-3">
-                    <form method="POST" action="{{ route('categories.store') }}" role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('addImage') }}" role="form" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input name="_method" type="hidden" >
                     <input type="hidden" name="product_id" id="product_id" value="{{empty($product_id) ? '' : $product_id}}">

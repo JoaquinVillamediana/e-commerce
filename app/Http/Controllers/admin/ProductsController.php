@@ -17,11 +17,6 @@ class ProductsController extends Controller {
 
     public function index() {
         $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->get();
- 
-    
-// $aProducts = ProductsModel::select('products.*','categories.name as category_name','sub_categories.name as subcategory_name','images.image as imagexd')->leftjoin('categories','products.category_id','=','categories.id')->leftjoin('sub_categories','products.subcategory_id','=','sub_categories.id')->leftjoin('images','products.id','=','images.product_id')->get();
- 
-
         return view('admin/products.index',compact('aProducts'));
     }
 
@@ -60,17 +55,10 @@ else{
 
 }
 
-      
-        
         $request['description'] = ucwords($request['description']);
-
-        ProductsModel::create($request->all());
-         
+        ProductsModel::create($request->all());         
         $product_id = ProductsModel::max('id');
-
-        return view('admin/products.image')->with('product_id',$product_id);
-
-       // return redirect()->route('products.index')->with('success', 'Catgorias actualizado satisfactoriamente');
+        return redirect()->route('indexImages' , $product_id);
     }
     
 
@@ -149,50 +137,54 @@ else{
         return redirect()->route('products.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
 
-    public function uploadImages(Request $request)
+    public function addImage(Request $request)
     {
-        $image = $request['file'];
-        $fileName = $image->getClientOriginalName();
-        $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
-        $fileExtension = $image->getClientOriginalExtension();
-        $realPath = $image->getRealPath();
-        $fileSize = $image->getSize();
-        $fileMimeType = $image->getMimeType();
-        $destinationPath = 'uploads/products';
-        $image->move($destinationPath, $storeImageName);
-       
-         
-        $product_id = ProductsModel::max('id');
 
 
-        $data=array('image' => $storeImageName,'product_id' => $product_id);
-        DB::table('images')->insert($data);
-       // request()->image->move(public_path('uploads/products'), $fileName);
-    	return response()->json(['uploaded' => 'image/'.$fileName]);
+
+        $aValidations = array(
+            'image' => 'required|max:10240|mimes:jpeg,png,jpg,gif,mp4'
+        );
+
+        $this->validate($request , $aValidations);
+
+        if (!empty($request['image'])) {
+
+            $image = $request['image'];
+            $fileName = $image->getClientOriginalName();
+            $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
+            $fileExtension = $image->getClientOriginalExtension();
+            $realPath = $image->getRealPath();
+            $fileSize = $image->getSize();
+            $fileMimeType = $image->getMimeType();
+            $product_id = $request['product_id'];
+
+            $destinationPath = 'uploads/products';
+            $image->move($destinationPath, $storeImageName);
+
+            $data=array('image' => $storeImageName,'product_id' => $product_id);
+            ImageModel::insert($data);
+            
+            
+        }
+
+        return redirect()->route('indexImages' , $product_id);
+    	
     }
     
-     public function addImage(Request $request) {
-
-         if (!empty($request['image'])) {
-
-             $image = $request['image'];
-             $fileName = $image->getClientOriginalName();
-             $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
-             $fileExtension = $image->getClientOriginalExtension();
-             $realPath = $image->getRealPath();
-             $fileSize = $image->getSize();
-             $fileMimeType = $image->getMimeType();
-            
-             $destinationPath = 'uploads/products';
-             $image->move($destinationPath, $storeImageName);
-             $data=array('image' => $storeImageName,'product_id' => $request['product_id']);
-         
-               ImageModel::table('images')->insert($data);
-       }
-
-       $Return = true;
-       echo json_encode($Return);
-
+    public function indexImages($product_id)
+    {
+        $aImages = ImageModel::select('images.*','products.name as product_name')
+        ->leftjoin('products','products.id','=','images.product_id')
+        ->where('product_id','=',$product_id)
+        ->get();
+        return view('admin/products.image',compact('aImages'))->with('product_id',$product_id);
+    }
+    
+    public function deleteImage($id)
+    {
+        ImageModel::find($id)->delete();
+        return redirect()->back();
     }
 
 
