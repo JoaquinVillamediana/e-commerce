@@ -32,10 +32,7 @@
                 </br>
                 {{$product->description}}</p>
              
-                <form method="POST" action="" id="task_form" role="form">
-                <button type="submit" class="btn btn-primary">Más información</button>
-               
-                </form>
+                <a href="{{route('product',$product->id)}}" class="btn btn-primary">Ver producto</a>
               </div>
             </div>
             </br>
