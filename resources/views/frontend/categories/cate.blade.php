@@ -83,7 +83,7 @@
 </div>
   <div class="row mt-4">
 
-      @if (!empty($aProducts))
+      @if (!empty($aSub))
      
       <div class="col col-md-7 mb-2 pt-3 pr-1" >
      
@@ -106,7 +106,7 @@
     </br>
  </br>
  </br>
-      @foreach ($aProducts as $product)
+      @foreach ($aSub as $product)
           
 
 
@@ -121,7 +121,10 @@
         {{$product->description}}</p>
      
 
-        <a href="{{ route('product.index') }}" class="btn btn-primary">Más información</a> 
+        <form method="POST" action="{{ route('product'), $product->id }}" id="task_form" role="form">
+        <button type="submit" class="btn btn-primary">Más información</button>
+       
+        </form>
       </div>
     </div>
     </br>

@@ -29,7 +29,7 @@ class CateController extends Controller {
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        $aSub = SubModel::where('sub_categories.id', '=', '1')
+        $aSub = ProductsModel::where('products.subcategory_id', '=', '2')
         ->get();
 
         return view('frontend/categories.cate',compact('aCategories','aSubCategories','aSub'));

@@ -120,8 +120,10 @@
         </br>
         {{$product->description}}</p>
      
-
-        <a href="{{ route('product.index') }}" class="btn btn-primary">Más información</a> 
+        <form method="POST" action="{{ route('product'), $product->id }}" id="task_form" role="form">
+        <button type="submit" class="btn btn-primary">Más información</button>
+       
+        </form>
       </div>
     </div>
     </br>

@@ -27,8 +27,12 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::resource('loguser', 'frontend\LoguserController');
 Route::resource('register', 'frontend\RegisterController');
 
-Route::resource('product', 'frontend\ProductController');
+
 Route::resource('cate', 'frontend\CateController');
+
+
+Route::get('product/{id}', 'HomeController@product')->name('product');
+Route::post('product', 'HomeController@product')->name('product');
 
 
 Route::prefix('admin')->group(function () {

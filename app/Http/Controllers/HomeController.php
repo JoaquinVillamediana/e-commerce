@@ -46,13 +46,23 @@ class HomeController extends Controller
         return view('frontend/home.index',compact('aCategories','aSubCategories','aProducts','aImage'));
     }
 
-    public function product()
+    public function product($id)
     {
 
-
-        $aProducts = ProductsModel::where('products.news', '=', '1')
+        $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
+        ->where('categories.visible', '=', '1')
+        ->groupBy('categories.id')
+        ->get();
+        $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        return view('product/product',compact('aProducts'));
+        $aProducts = ProductsModel::where('products.id', '=', $id)
+        ->get();
+
+        return view('frontend/home.product',compact('aCategories','aSubCategories','aProducts'))->with('id',$id);
+   
+      
+
+        
     }
 }
