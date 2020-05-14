@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="text-center text-light mb-3" style="color:#4790de !important;">Registro de Usuario</h2>
+    <h2 class="text-center text-light mb-3" style="color:#37474F !important;">Registro de Usuario</h2>
     <div class="lottie  m-auto">
         @if ($errors->has('email') || $errors->has('password'))
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player class="m-auto" src="https://assets1.lottiefiles.com/temp/lf20_yYJhpG.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
         @else
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <lottie-player class="m-auto" src="/vendor/lotties/lf30_editor_UC7XZV.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
+        <lottie-player class="m-auto" src="/vendor/lotties/new_user.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
         @endif
 </div>
 
@@ -108,9 +108,14 @@ enctype="multipart/form-data">
     <div class="row">
         <div class="col-12 col-md-2 offset-md-5">
             
-            <button type="submit" class="btn-block btn btn-dark " style="background-color: #303F9F; border:#303F9F;" >
+            <button type="submit" id="submitBtn" class="btn-block btn btn-dark " style="background-color: #37474F; border:#37474F;" >
                 Registrarme
             </button>
+            <style>
+                #submitBtn:hover{
+                    background-color: #435a66 !important;
+                }
+            </style>
         </div>
     </div>
     </form>

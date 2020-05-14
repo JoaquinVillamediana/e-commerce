@@ -19,11 +19,11 @@ class checkUser {
         
         if (Auth::user()->type == 1) { 
             
-            return redirect('/admin/abooks');
+            return redirect('/home');
         }
         if((Auth::user()->type != 1) && (Auth::user()->type != 2))
         {
-            return redirect('/login');
+            return redirect()->route('loguser.index');
         }
 
         return $next($request);
