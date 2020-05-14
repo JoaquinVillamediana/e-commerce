@@ -27,12 +27,19 @@ use App\Models\ImageModel;
 
 class ProductController extends Controller {
 
-    public function index($id) {
+    public function index() {
 
-        $aProducts = ProductsModel::where('products.id', '=', $id)
+        $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
+        ->where('categories.visible', '=', '1')
+        ->groupBy('categories.id')
+        ->get();
+        $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        return view('frontend/product.product',compact('aProducts'));
+        $aProducts = ProductsModel::where('products.id', '=', '1')
+        ->get();
+
+        return view('frontend/product.product',compact('aCategories','aSubCategories','aProducts'));
     }
 
     public function show() {

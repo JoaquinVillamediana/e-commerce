@@ -119,14 +119,9 @@
        Precio: ${{$product->price}}
         </br>
         {{$product->description}}</p>
-        <form id="viewForm{{$product->id}}" action="{{action('frontyend\productController@index', $product->id)}}" method="post">
-                                        {{csrf_field()}}
-                                        <input name="_method" class="btn btn-primary">Más información>
-                                      
-                                    </form>     
+     
 
-<!-- 
-        <a href="{{ route('product.index') }}" class="btn btn-primary">Más información</a> -->
+        <a href="{{ route('product.index') }}" class="btn btn-primary">Más información</a> 
       </div>
     </div>
     </br>
