@@ -24,7 +24,7 @@
                         <ul class="collapse list-unstyled" id="SubCatSubmenu_{{$category->id}}">
                           @foreach ($aSubCategories as $subcategory)
                             @if ($subcategory->category_id == $category->id)
-                              <li> <a class="nav-link ml-4" style="font-size:15px" href="#"><i class="fas fa-th mr-1"></i>{{$subcategory->name}}</a></li>
+                              <li> <a class="nav-link ml-4" style="font-size:15px" href="{{ route('cate.index') }}"><i class="fas fa-th mr-1"></i>{{$subcategory->name}}</a></li>
                             @endif
                           @endforeach
                       </ul>

@@ -28,6 +28,7 @@ Route::resource('loguser', 'frontend\LoguserController');
 Route::resource('register', 'frontend\RegisterController');
 
 Route::resource('product', 'frontend\ProductController');
+Route::resource('cate', 'frontend\CateController');
 
 
 Route::prefix('admin')->group(function () {
