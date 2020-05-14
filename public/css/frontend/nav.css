@@ -82,3 +82,10 @@ a:focus {
 .navbar-nav .nav-link,.navbar-brand{
     color: #FFF !important;
 }
+
+.back-to-backend {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+}

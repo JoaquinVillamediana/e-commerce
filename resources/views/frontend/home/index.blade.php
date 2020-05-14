@@ -1,7 +1,7 @@
 @extends('frontend/layouts.app')
 
 @section('content')
-<div class="mt-5 pb-5 container-fluid">
+<div class="mt-2 container-fluid">
 
 
 
@@ -9,10 +9,16 @@
 
     <div class="row pt-5 justify-content-center text-right">
 
-
+<div class="col col-md-7 mb-2 pt-3 pr-1">
+  <h2 class="text-right">PROMOCIONES</h2>
+</div>
+<div class="col pl-0 mb-2">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_HirsSZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player>
+</div>
 
 <!--Carousel Wrapper-->
-<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+<div id="carousel-example-2" class="mt-4 carousel slide carousel-fade" data-ride="carousel">
   <!--Indicators-->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
@@ -70,28 +76,29 @@
   </a>
   <!--/.Controls-->
 
-  </br>
-    </br> 
+  
   
 </div>
 <!--/.Carousel Wrapper-->
+</div>
+  <div class="row mt-4">
 
-    
       @if (!empty($aProducts))
      
-      <div class="col-3 offset-md-2" style="color: #4790de">
+      <div class="col col-md-7 mb-2 pt-3 pr-1" >
      
-        <h1>Novedades</h1>
+        <h2 class="text-right">NOVEDADES</h2>
         </div>
     
         
-        <div class="col-1 pl-0">
+        <div class="col pl-0 pt-1 mb-2">
           
           <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-          <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_qznxcZ.json"  background="transparent"  speed="1"  style="width: 50px; height: 50px;"    autoplay></lottie-player>
+          <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_qznxcZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player>
         </div>
         
-    </div>
+    
+  </div>
     </br>
     </br> 
     <div class="row">
