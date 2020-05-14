@@ -28,11 +28,11 @@ Route::resource('loguser', 'frontend\LoguserController');
 Route::resource('register', 'frontend\RegisterController');
 
 
-Route::resource('cate', 'frontend\CateController');
+Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 
 
-Route::get('product/{id}', 'HomeController@product')->name('product');
-Route::post('product', 'HomeController@product')->name('product');
+// Route::get('product/{id}', 'HomeController@product')->name('product');
+// Route::post('product', 'HomeController@product')->name('product');
 
 
 Route::prefix('admin')->group(function () {

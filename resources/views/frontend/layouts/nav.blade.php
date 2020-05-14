@@ -16,7 +16,7 @@
               <ul class="collapse list-unstyled"  id="CatSubmenu">
                   @foreach ($aCategories as $category)
                       @if ($category->quantity_sub < 1)
-                      <li><a class="nav-link ml-3" href="#" style="font-size:16px"><i class="fas fa-th-large mr-1"></i>{{$category->name}}</a></li>
+                      <li><a class="nav-link ml-3" href="{{route('cate',$category->id)}}" style="font-size:16px"><i class="fas fa-th-large mr-1"></i>{{$category->name}}</a></li>
                       @else
                       <li class="nav-item">
                         <a href="#SubCatSubmenu_{{$category->id}}" style="font-size:16px" data-toggle="collapse" class="nav-link ml-3" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-th-large mr-1"></i>{{$category->name}}</a>   
@@ -24,7 +24,7 @@
                         <ul class="collapse list-unstyled" id="SubCatSubmenu_{{$category->id}}">
                           @foreach ($aSubCategories as $subcategory)
                             @if ($subcategory->category_id == $category->id)
-                              <li> <a class="nav-link ml-4" style="font-size:15px" href="{{ route('cate.index') }}"><i class="fas fa-th mr-1"></i>{{$subcategory->name}}</a></li>
+                              <li> <a class="nav-link ml-4" style="font-size:15px" href=""><i class="fas fa-th mr-1"></i>{{$subcategory->name}}</a></li>
                             @endif
                           @endforeach
                       </ul>

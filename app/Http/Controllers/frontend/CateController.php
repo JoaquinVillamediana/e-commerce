@@ -20,7 +20,10 @@ use App\Models\ImageModel;
 
 class CateController extends Controller {
 
-    public function index() {
+    public function index($id) {
+
+        $aProducts = ProductsModel::where('category_id','=',$id)->get();
+        
 
         $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
         ->where('categories.visible', '=', '1')
@@ -28,11 +31,8 @@ class CateController extends Controller {
         ->get();
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
-
-        $aSub = ProductsModel::where('products.subcategory_id', '=', '2')
-        ->get();
-
-        return view('frontend/categories.cate',compact('aCategories','aSubCategories','aSub'));
+        
+        return view('frontend/cate.index',compact('aCategories','aSubCategories','aProducts'));
     }
 
     public function show() {
