@@ -19,11 +19,11 @@ class checkAdmin {
         
         if (Auth::user()->type == 2) { 
             
-            return redirect('/usr/home');
+            return redirect('/home');
         }
         if((Auth::user()->type != 2) && (Auth::user()->type != 1))
         {
-            return redirect('/login');
+            return redirect()->route('loguser.index');
         }
 
         return $next($request);

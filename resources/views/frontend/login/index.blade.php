@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="text-center justify-content-center mt-5 mb-3" style="color: #4790de">Ingresar a E-Commerce</h2>
+    <h2 class="text-center justify-content-center mt-5 mb-3" style="color: #37474F">Ingresar a E-Commerce</h2>
     <div class=" row ">
     <div class="lottie  col m-auto">
         @if ($errors->has('email') || $errors->has('password'))
@@ -10,7 +10,7 @@
 <lottie-player class="m-auto" src="https://assets1.lottiefiles.com/temp/lf20_yYJhpG.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
         @else
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player class="m-auto" src="https://assets9.lottiefiles.com/packages/lf20_an6wWA.json"  background="transparent"  speed="2"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
+<lottie-player class="m-auto" src="/vendor/lotties/user.json"  background="transparent"  speed="2"  style="width: 200px; height: 200px;"    autoplay></lottie-player>
         @endif
 </div>
 </div>
@@ -46,9 +46,14 @@
    
         <div class=" col-12 col-md-2 offset-md-5">
             
-            <button type="submit" class="btn-block btn btn-dark " style="background-color: #4790de; border:#4790de;" >
+            <button type="submit" id="submitBtn" class="btn-block btn btn-dark " style="background-color: #37474F; border:#37474F;" >
                 {{ __('Login') }}
             </button>
+            <style>
+                #submitBtn:hover{
+                    background-color: #435a66 !important;
+                }
+            </style>
         </div>
     
     </form>
