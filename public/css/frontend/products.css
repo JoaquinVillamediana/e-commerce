@@ -1,0 +1,8 @@
+#productBox{
+  text-decoration: none;
+  width: 100%;
+}
+
+#productBox .card:hover(){
+  transform: scale(1.1);
+}
