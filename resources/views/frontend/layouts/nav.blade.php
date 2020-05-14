@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-sea fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light bg-sea fixed-top border-bottom border-secondary" id="mainNav">
   <a class="navbar-brand" href="">E-COMMERCE</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -7,24 +7,24 @@
       <ul class="navbar-nav navbar-sidenav bg-sea "  id="exampleAccordion">
           <li class="nav-item border-top border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
               <a class="nav-link" href="{{route('home')}}">
-                <i class="fas fa-home"></i><span class="ml-1 nav-link-text"  >Home</span>
+                <i class="fas fa-home"></i><span class="ml-2 nav-link-text"  >Home</span>
               </a>
           </li>
           
           <li class="nav-item border-top border-bottom border-secondary">
-            <a href="#CatSubmenu" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-th-large mr-1"></i>Categorias</a>
+            <a href="#CatSubmenu" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-bars mr-2"></i>Categorias</a>
               <ul class="collapse list-unstyled"  id="CatSubmenu">
                   @foreach ($aCategories as $category)
                       @if ($category->quantity_sub < 1)
-                      <li><a class="nav-link" href="#">{{$category->name}}</a></li>
+                      <li><a class="nav-link ml-3" href="#" style="font-size:16px"><i class="fas fa-th-large mr-1"></i>{{$category->name}}</a></li>
                       @else
                       <li class="nav-item">
-                        <a href="#SubCatSubmenu_{{$category->id}}" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle">{{$category->name}}</a>   
+                        <a href="#SubCatSubmenu_{{$category->id}}" style="font-size:16px" data-toggle="collapse" class="nav-link ml-3" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-th-large mr-1"></i>{{$category->name}}</a>   
                         </a>
                         <ul class="collapse list-unstyled" id="SubCatSubmenu_{{$category->id}}">
                           @foreach ($aSubCategories as $subcategory)
                             @if ($subcategory->category_id == $category->id)
-                              <li><a class="nav-link" href="#">{{$subcategory->name}}</a></li>
+                              <li> <a class="nav-link ml-4" style="font-size:15px" href="#"><i class="fas fa-th mr-1"></i>{{$subcategory->name}}</a></li>
                             @endif
                           @endforeach
                       </ul>
@@ -34,6 +34,12 @@
                   
               </ul>
           </li>
+          <li class="nav-item border-bottom border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
+            <a class="nav-link" href="#">
+              <i class="fas fa-tags"></i></i><span class="ml-2 nav-link-text"  >Ofertas</span>
+            </a>
+        </li>
+        
           
 
 
@@ -56,11 +62,11 @@
               <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  {{Auth::user()->name}}
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item"  href="#">Perfil</a>
-                <a class="dropdown-item"  href="#">Compras</a>
-                <a class="dropdown-item"  href="#">Favoritos</a>
-                <a class="dropdown-item"  href="#">Carrito</i></a>
+              <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item text-dark"  href="#">Perfil</a>
+                <a class="dropdown-item text-dark"  href="#">Compras</a>
+                <a class="dropdown-item text-dark"  href="#">Favoritos</a>
+                <a class="dropdown-item text-dark"  href="#">Carrito</i></a>
                 
                 <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Salir</a>
               </div>

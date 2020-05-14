@@ -35,7 +35,7 @@
         @endempty
 
 
-        <div class="container pt-3">
+        <div class="container" style="padding-top:55px !important">
         @yield('content')
         </div>
 
