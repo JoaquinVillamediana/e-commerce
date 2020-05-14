@@ -120,7 +120,7 @@
         </br>
         {{$product->description}}</p>
      
-        <form method="POST" action="{{ route('product'), $product->id }}" id="task_form" role="form">
+        <form method="POST" action="" id="task_form" role="form">
         <button type="submit" class="btn btn-primary">Más información</button>
        
         </form>
