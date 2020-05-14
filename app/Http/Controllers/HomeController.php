@@ -45,4 +45,14 @@ class HomeController extends Controller
 
         return view('frontend/home.index',compact('aCategories','aSubCategories','aProducts','aImage'));
     }
+
+    public function product()
+    {
+
+
+        $aProducts = ProductsModel::where('products.news', '=', '1')
+        ->get();
+
+        return view('product/product',compact('aProducts'));
+    }
 }

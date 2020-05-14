@@ -27,7 +27,8 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::resource('loguser', 'frontend\LoguserController');
 Route::resource('register', 'frontend\RegisterController');
 
-Route::resource('product', 'ProductController@index');
+Route::resource('product', 'frontend\ProductController');
+
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
