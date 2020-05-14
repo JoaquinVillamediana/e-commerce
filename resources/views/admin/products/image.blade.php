@@ -24,9 +24,9 @@
                 
                         <div class="file-loading">
                         <div class="table-responsive">
-                            <input id="image-file" type="file" name="file" accept="image/*" style="max-width:100%;height:auto;" data-min-file-count="1" multiple>
+                            <input id="image-file" type="file" name="file" accept="image/*" style="max-width:100%;height:auto;" responsive=true data-min-file-count="1" multiple>
                      
-                            </div>
+                           </div>
 
                         </div>
 
@@ -123,14 +123,16 @@
             theme: 'fa',
             uploadUrl: "{{route('image.upload')}}",
             uploadExtraData: function() {
+                
                 return {
                     _token: "{{ csrf_token() }}",
+                    responsive: true,
                 };
             },
             allowedFileExtensions: ['jpg', 'png', 'gif','jpeg', 'mp4'],
             overwriteInitial: false,
             maxFileSize:1000,
-            maxFilesNum: 10
+            maxFilesNum: 10,  responsive: true,
         });
     </script>
 
