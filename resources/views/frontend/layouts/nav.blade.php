@@ -75,3 +75,18 @@
       </ul>
   </div>
 </nav>
+@if (!Auth::guest())
+    
+
+@if (Auth::user()->type == 1)
+<a id="back-to-backend" href="{{route('user.index')}}" class="btn btn-dark btn-lg back-to-backend" role="button">Backend</a>
+<script>
+  $(document).ready(function(){
+	
+				$('#back-to-backend').fadeIn();
+		// scroll body to 0px on click
+});
+</script>
+@endif
+@endif
+
