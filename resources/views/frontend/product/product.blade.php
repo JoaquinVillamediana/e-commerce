@@ -2,37 +2,21 @@
 
 @section('content')
 <div class="mt-5 pb-5 container-fluid">
-
-
-
-
-
-    <div class="row pt-5 justify-content-center text-right">
-      @if(!empty($aProducts))
+@if(!empty($aProducts))
       @foreach ($aProducts as $product)
-  
-      <div class="col-3 offset-md-2" style="color: #4790de">
-        <h1>{{$product->name}}</h1>
-        </div>
-        
-        <div class="media">
-  <img src="..." class="mr-3" alt="...">
-  <div class="media-body">
-    <h5 class="mt-0">{{$product->price}}</h5>
 
-    {{$product->description}}
+<div class="card">
+  <h5 class="card-header">${{$product->price}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{$product->name}}</h5>
+    <p class="card-text">{{$product->description}}.</p>
+    <a href="#" class="btn btn-primary">Comprar</a>
   </div>
 </div>
-    </div>
-    <div class="row">
-    </br>
-    </br>
- </br>
- </br>
-   
-    </div>
 
-    @endforeach
+@endforeach
     @endif
-</div>
+
+
+   
 @endsection
