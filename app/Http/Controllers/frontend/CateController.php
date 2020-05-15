@@ -41,7 +41,10 @@ class CateController extends Controller {
                 sub_categories sub_categoriess
         ON      sub_categoriess.category_id = categoriess.id
                
-        WHERE   categoriess.visible = 1
+        WHERE   categoriess.visible = 1 and
+        categoriess.deleted_at is null and
+        sub_categoriess.deleted_at is null
+
               
         GROUP BY
                 categoriess.id

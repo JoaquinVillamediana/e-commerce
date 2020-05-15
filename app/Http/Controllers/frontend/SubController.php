@@ -35,16 +35,19 @@ class SubController extends Controller {
         ->where('id','=',$id)
         ->first();
 
-        $aCategories = DB::select('SELECT  categories.*, COUNT(sub_categories.id) AS countsub, COUNT(case sub_categories.visible when 1 then 1 else null end) AS countvis
-        FROM    categories categories
+        $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
+        FROM    categories categoriess
         LEFT JOIN
-                sub_categories sub_categories
-        ON      sub_categories.category_id = categories.id
+                sub_categories sub_categoriess
+        ON      sub_categoriess.category_id = categoriess.id
                
-        WHERE   categories.visible = 1
+        WHERE   categoriess.visible = 1 and
+
+categoriess.deleted_at is null and
+sub_categoriess.deleted_at is null
               
         GROUP BY
-                categories.id
+                categoriess.id
         ');
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
