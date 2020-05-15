@@ -187,6 +187,25 @@ else{
         return redirect()->back();
     }
 
+    public function setProductVisible(Request $request){
+        $aReturn = array();
+        $oProduct = ProductsModel::find($request['productId']);
+
+        if (empty($oProduct->visible)) {
+            $oProduct->visible = 1;
+            $oProduct->visible_at = date('Y-m-d H:i:s');
+        } else {
+            $oProduct->visible = 0;
+        }
+
+        $oProduct->save();
+
+        $aReturn['productId'] = $request['productId'];
+        $aReturn['visible'] = $oProduct->visible;
+
+        echo json_encode($aReturn);
+    }
+
 
 
 

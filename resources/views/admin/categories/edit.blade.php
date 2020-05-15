@@ -55,13 +55,19 @@
 <hr />
 <div id="dvPassport" style="display: none">
 <div class="form-group col-12 col-md-6">
-                                    <label>PROMOCION</label>
+                                    
+    <label>PROMOCION</label>
+                                    <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">%</span>
+                                    </div>
                                     <input type="number" id="prom" name="prom" maxlength="250" class="form-control{{ $errors->has('prom') ? ' is-invalid' : '' }}" placeholder="Promoción:" value="{{ $oCate->prom }}">
                                     @if ($errors->has('prom'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>Debe ingresar un promoción valido.</strong>
                                     </span>
                                     @endif
+                                </div>
                                 </div>       
 </div>    
 
