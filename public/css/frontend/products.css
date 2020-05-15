@@ -1,8 +1,11 @@
 #productBox{
   text-decoration: none;
-  width: 100%;
+ width: 18rem;
+color: #37474f;
 }
 
-#productBox .card:hover(){
+ .card:hover{
+
   transform: scale(1.1);
+  transition: all .5s ease ;
 }

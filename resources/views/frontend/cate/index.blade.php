@@ -23,16 +23,18 @@
     <div class="row">
       @foreach ($aProducts as $product)
           <div class="col">
-            <a href="" id="productBox">
-            <div id="" class="card" style="width: 18rem;">
+            
+            <div id="card" class="card" style="width: 18rem;">
+              <a onclick="alert('asd')" href="" id="productBox">
               <img class="card-img-top" src="..." alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
-                <p class="card-text">${{$product->price}}</p>
+                <p class="card-text text-dark">${{$product->price}}</p>
                 
               </div>
+            </a>
             </div>
-          </a>
+          
           </div>
       @endforeach
     </div>

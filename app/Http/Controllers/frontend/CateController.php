@@ -22,7 +22,15 @@ class CateController extends Controller {
 
     public function index($id) {
 
-        $aProducts = ProductsModel::where('category_id','=',$id)->get();
+        $aProducts = ProductsModel::select('products.*','images.image')
+        ->leftJoin('images', function ($join) {
+            $join->on('products.id', '=', DB::raw('(SELECT image FROM images WHERE products.id = images.product_id LIMIT 1)'));
+        })
+        ->where('category_id','=',$id)->get();
+
+        echo $aProducts;
+        die;
+
         $category_name = CategoriesModel::select('categories.name')
         ->where('id','=',$id)
         ->first();
