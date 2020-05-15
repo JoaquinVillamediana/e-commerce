@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<link rel="stylesheet" href="/css/admin_custom.css">
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -30,8 +30,8 @@
                                 <th>Subcategoria</th>
                                 <th>Precio</th>
                                 <th>Destacados</th>     
-                                
                                 <th>Stock</th>  
+                                <th>Visible</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -57,7 +57,7 @@
                                
                                 
                                 <td>{{ $product->stock }}</td>
-
+                                <td><a class="article_index_btn {{ $product->visible == 1 ? ' article_index_btn_active' : '' }}" href="" onClick="setProductVisible('{{ $product->id }}');"><i id="visible_icon_{{$product->id}}" class="fas fa-eye"></i></a></td>
                             <td><a class="btn btn-primary btn-circle" href="{{action('admin\ProductsController@edit',$product->id)}}"><i class="fa fa-list"></i></a></td>
                                 <td>
                                     <form id="deleteForm_{{$product->id}}" action="{{action('admin\ProductsController@destroy', $product->id)}}" method="POST">
@@ -100,6 +100,61 @@
         formId = id;
         $('#deleteModal').modal('show');
     }
+
+
+    
+    function setProductVisible(productId) {
+        
+        event.preventDefault();
+       
+        
+        var params = new Object();
+        params._token = "{{ csrf_token() }}";
+        params.productId = productId;
+        
+        ajaxRequest("POST", "{{route('product_visible')}}", params, "setVisibleProductResponse");
+    }
+    
+    function setVisibleProductResponse(data) {
+
+        var btn = $('#visible_icon_' + data.productId);
+        
+        if(data.visible > 0) {
+            btn.css('color', '#a7d158');
+        } else {
+            btn.css('color', '#343a40');
+        }
+    }
+    
+    function ajaxRequest(type, url, params, callBack) {
+
+        jQuery.support.cors = true;
+        params = JSON.stringify(params);
+
+        $.ajax({
+            type: type,
+            url: url,
+            data: params,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend: function () {
+                //$('#ajaxLoader').show();
+            },
+            complete: function () {
+                //$('#ajaxLoader').hide();
+            },
+            success: function (data) {
+               //console.log("REQUEST [ " + type + " ] [ " + url + " ] SUCCESS");
+               //console.log(data);
+                window[callBack](data);
+            },
+            error: function (msg, url, line) {
+               //console.log('ERROR !!! msg = ' + msg + ', url = ' + url + ', line = ' + line);
+            }
+        });
+    }
+
+
 
 </script>
 
