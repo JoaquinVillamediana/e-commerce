@@ -26,16 +26,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
-        ->where('categories.visible', '=', '1')
-        ->groupBy('categories.id')
-        ->get();
+        $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
+        FROM    categories categoriess
+        LEFT JOIN
+                sub_categories sub_categoriess
+        ON      sub_categoriess.category_id = categoriess.id
+               
+        WHERE   categoriess.visible = 1
+              
+        GROUP BY
+                categoriess.id
+        ');
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
 
-        $aProducts = ProductsModel::where('products.news', '=', '1')
-        ->get();
+        $aProducts = DB::select('   SELECT p.*,
+        MIN(i.image) image
+   FROM products p
+LEFT JOIN images i ON p.id = i.product_id
+where i.deleted_at is null
+
+and p.deleted_at is  null
+GROUP BY p.id');
 
 
         $aImage = ImageModel::select('products.*', 'images.image as image_dir')->leftjoin('products','products.id','=','images.product_id')

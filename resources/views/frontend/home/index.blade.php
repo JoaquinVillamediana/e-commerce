@@ -1,7 +1,9 @@
 @extends('frontend/layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="/css/frontend/products.css">
 <div class="mt-2 container-fluid">
+
 
 
 
@@ -111,21 +113,22 @@
 
 
       
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{$product->name}}   </h5>
-        <p class="card-text">
-        Precio: ${{$product->price}}
-        </br>
-        {!! $product->description!!}</p>
-     
-        <a href="{{route('product',$product->id)}}" class="btn btn-primary">Ver producto</a>
-      </div>
-    </div>
-    </br>
+      <div class="col">
+            
+            <div id="card" class="card" style="width: 18rem;">
+              <a  href="" id="productBox">
+              <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{$product->name}}</h5>
+                <p class="card-text text-dark">${{$product->price}}</p>
+                
+              </div>
+            </a>
+            </div>
+            </br>
  </br>
-  </div>
+ </br>
+          </div>
 
 
       @endforeach

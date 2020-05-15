@@ -1,5 +1,5 @@
 @extends('frontend/layouts.app')
-
+<link rel="stylesheet" href="/css/frontend/products.css">
 @section('content')
 <div class="mt-5 pb-5 container-fluid">
 @if(!empty($aProducts))
