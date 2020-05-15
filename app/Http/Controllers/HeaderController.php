@@ -14,7 +14,7 @@ class HeaderController extends Controller
      */
     public function __construct()
     {
-      $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'), DB::raw('count(sub_categories.visible)  as quantity_vis'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
+      $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'), 'sub_categories.visible  as quantity_vis'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
       ->where('categories.visible', '=', '1')
       ->groupBy('categories.id')
       ->get();
