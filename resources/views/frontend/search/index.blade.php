@@ -12,7 +12,7 @@
     <div class="row pt-5 justify-content-center text-right">
 
       <div class="col col-md-7 mb-2 pt-3 pr-1">
-          <h2 class="text-right">{{$scategory_name->name}}</h2>
+          <h2 class="text-right">Busqueda</h2>
       </div>
         <div class="col pl-0 mb-2">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

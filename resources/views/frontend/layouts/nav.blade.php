@@ -57,8 +57,8 @@
 
 
       <ul class="navbar-nav mr-5 ml-auto" >
-      <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0"  action="{{ route('search') }}"  id="task_form" role="form" enctype="multipart/form-data">
+      <input class="form-control mr-sm-2" type="text" name = "text" id="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
       

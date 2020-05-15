@@ -18,19 +18,22 @@ use App\Models\ImageModel;
 
 
 
-class SubController extends Controller {
+class SearchController extends Controller {
 
-    public function index($id) {
+    public function index(Request $request) {
+        $request['text'] = ucwords($request['text']);
 
-        $aProducts = DB::select('   SELECT p.*,
+$text =  $request['text'];
+
+        $aProducts = DB::select(' SELECT p.*,
         MIN(i.image) image
    FROM products p
 LEFT JOIN images i ON p.id = i.product_id
 where i.deleted_at is null
-and p.subcategory_id = "'.$id.'"
-and p.deleted_at is  null
+and p.name LIKE '%" . $text . "%'
+and p.deleted_at is null
 and p.visible = 1
-GROUP BY p.id');
+');
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM    categories categoriess
@@ -53,7 +56,7 @@ sub_categoriess.deleted_at is null
         ->where('id','=',$id)
         ->first();
 
-        return view('frontend/sub.index',compact('aCategories','aSubCategories','aProducts','scategory_name'));
+        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name'));
     }
 
     public function show() {
