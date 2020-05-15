@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\ProductsModel;
 use App\Models\SubModel;
+
 use DB;
 use Illuminate\Support\MessageBag;
 use Auth;
@@ -31,8 +32,14 @@ class ProductController extends Controller {
         ->get();
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
+
+        $aImage = ImageModel::select('images.image as image_dir')
+        ->where('images.product_id', '=', $id)
+        ->get();
+       
+
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts'));
+        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage'));
     }
 
     public function show() {

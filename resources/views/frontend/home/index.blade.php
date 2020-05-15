@@ -114,11 +114,11 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{$product->name}}</h5>
+        <h5 class="card-title">{{$product->name}}   </h5>
         <p class="card-text">
-       Precio: ${{$product->price}}
+        Precio: ${{$product->price}}
         </br>
-        {{$product->description}}</p>
+        {!! $product->description!!}</p>
      
         <a href="{{route('product',$product->id)}}" class="btn btn-primary">Ver producto</a>
       </div>

@@ -43,7 +43,7 @@
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->description }}</td>
+                                <td>{!! $product->description !!}</td>
                                 <td>{{ $product->category_name }}</td>
                                 <td>{{ $product->subcategory_name}}</td>
                                 <td>{{ $product->price }}</td>
