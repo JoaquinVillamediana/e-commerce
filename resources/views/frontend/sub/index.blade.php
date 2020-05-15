@@ -30,7 +30,7 @@
                 <p class="card-text">
                Precio: ${{$product->price}}
                 </br>
-                {{$product->description}}</p>
+                {!! $product->description !!}</p>
              
                 <a href="{{route('product',$product->id)}}" class="btn btn-primary">Ver producto</a>
               </div>
