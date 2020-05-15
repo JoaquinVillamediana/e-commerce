@@ -48,6 +48,7 @@ LEFT JOIN images i ON p.id = i.product_id
 where i.deleted_at is null
 and p.visible = 1
 and p.deleted_at is  null
+and p.news = 1
 GROUP BY p.id');
 
 

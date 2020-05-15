@@ -119,7 +119,9 @@
               <a  href="{{route('product',$product->id)}}" id="productBox">
                 
               <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
+              @if ($product->news == 1)
               <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>
+              @endif
               <div class="card-body mt-0">
                 <h5 class="card-title">{{$product->name}}</h5>
                 <p class="card-text text-dark">${{$product->price}}</p>

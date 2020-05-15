@@ -5,7 +5,9 @@ color: #37474f;
 background-color: #d1cfcf;
 border: #37474F solid .5px;
 }
-
+#productBox img{
+  border: #37474F solid .5px;
+}
  .card:hover{
 
   transform: scale(1.1);
