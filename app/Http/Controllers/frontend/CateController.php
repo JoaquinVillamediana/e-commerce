@@ -41,10 +41,17 @@ GROUP BY p.id');
         ->where('id','=',$id)
         ->first();
 
-        $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
-        ->where('categories.visible', '=', '1')
-        ->groupBy('categories.id')
-        ->get();
+        $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
+        FROM    categories categoriess
+        LEFT JOIN
+                sub_categories sub_categoriess
+        ON      sub_categoriess.category_id = categoriess.id
+               
+        WHERE   categoriess.visible = 1
+              
+        GROUP BY
+                categoriess.id
+        ');
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
