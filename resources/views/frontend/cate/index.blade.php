@@ -17,7 +17,7 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_HirsSZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player> --}}
 </div>
-@if (!empty($aProducts))
+{{-- @if (!empty($aProducts))
 @foreach ($aProducts as $product)
           
 
@@ -41,7 +41,7 @@
         
         
               @endforeach
-              @endif
+              @endif --}}
     </div>
 
 
@@ -50,7 +50,7 @@
           <div class="col">
             
             <div id="card" class="card" style="width: 18rem;">
-              <a onclick="alert('asd')" href="" id="productBox">
+              <a  href="" id="productBox">
               <img class="card-img-top" src="..." alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
