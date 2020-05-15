@@ -30,7 +30,7 @@
 <div class="col">
             
             <div id="card" class="card" style="width: 18rem;">
-              <a  href="" id="productBox">
+              <a  href="{{route('product',$product->id)}}" id="productBox">
               <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
