@@ -29,6 +29,7 @@ class SubController extends Controller {
         where i.deleted_at is null
         and p.subcategory_id = "'.$id.'"
         and p.deleted_at is  null
+        and p.visible = 1
         GROUP BY p.id');
 
         $sub_category_name = SubModel::select('sub_categories.name')

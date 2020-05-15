@@ -29,6 +29,7 @@ LEFT JOIN images i ON p.id = i.product_id
 where i.deleted_at is null
 and p.subcategory_id = "'.$id.'"
 and p.deleted_at is  null
+and p.visible = 1
 GROUP BY p.id');
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis

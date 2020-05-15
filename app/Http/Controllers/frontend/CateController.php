@@ -29,6 +29,7 @@ class CateController extends Controller {
         where i.deleted_at is null
         and p.category_id = "'.$id.'"
         and p.deleted_at is  null
+        and p.visible = 1
         GROUP BY p.id');
 
         $category_name = CategoriesModel::select('categories.name')
