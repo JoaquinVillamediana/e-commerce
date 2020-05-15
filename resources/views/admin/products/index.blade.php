@@ -30,7 +30,7 @@
                                 <th>Subcategoria</th>
                                 <th>Precio</th>
                                 <th>Destacados</th>     
-                                <th>Imagen</th>  
+                                
                                 <th>Stock</th>  
                                 <th>Editar</th>
                                 <th>Eliminar</th>
@@ -50,12 +50,12 @@
                                 @if ($product->news == 1)     
                                 <td>{{ "Destacado" }}</td>
                                 @else                     
-                                <td>{{ "Sin promociones" }}</td>
+                                <td>{{ "Sin destacar" }}</td>
                                 @endif  
 
                                 
                                
-                                <td><img   alt=""></td>
+                                
                                 <td>{{ $product->stock }}</td>
 
                             <td><a class="btn btn-primary btn-circle" href="{{action('admin\ProductsController@edit',$product->id)}}"><i class="fa fa-list"></i></a></td>

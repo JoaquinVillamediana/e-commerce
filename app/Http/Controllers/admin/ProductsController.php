@@ -70,9 +70,9 @@ else{
         $oProduct = ProductsModel::where('id',$id)->first();
         
         $aCategories = CategoriesModel::get();
-        $aImage  = ImageModel::where('product_id',$id)->first();
+        $aImages  = ImageModel::where('product_id',$id)->get();
      
-        return view('admin/products.edit', compact('oProduct','aCategories', 'aImage'));
+        return view('admin/products.edit', compact('oProduct','aCategories', 'aImages'));
     }
 
     public function update(Request $request, $id) {
@@ -127,7 +127,7 @@ else{
         $oProduct->category_id = $request['category_id'];
         $oProduct->save();
 
-        return redirect()->route('products.index')->with('success', 'Registro actualizado satisfactoriamente');
+        return redirect()->back();
     }
 
     public function destroy($id) {
@@ -168,7 +168,7 @@ else{
             
         }
 
-        return redirect()->route('indexImages' , $product_id);
+        return redirect()->back()->with('product_id' , $product_id);
     	
     }
     

@@ -30,7 +30,7 @@
         
         @endisset
         @empty($bodyclass)
-        @include('frontend/layouts.nav')
+        
     <body class="bg-blue-dark" id="page-top"> 
         @endempty
 
@@ -38,7 +38,7 @@
         <div class="container" style="padding-top:55px !important">
         @yield('content')
         </div>
-
+        @include('frontend/layouts.nav')
         <!-- Bootstrap core JavaScript-->
 
         <script src="/vendor/popper.min.js" crossorigin="anonymous"></script>

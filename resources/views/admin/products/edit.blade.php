@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<?php $product_id = $oProduct->id;
+?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -118,14 +120,40 @@
                                     <strong>Debe ingresar una promoción valido.</strong>
                                 </span>
                                 @endif -->
-                            </div>                              
+                            </div>            
+                            
+                           
   
 
                           
-                            
-                            <button type="submit" class="btn btn-primary">Editar Producto</button>
+                            <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                             <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
                         </form>
+                        <div class="row mt-5">
+                            @if (!empty($aImages))
+                            <div class="col-12 text-center  border-bottom"><h5>Fotos del Producto</h5></div>
+                            @foreach ($aImages as $image)
+                                <div class="col mt-4">
+                                    
+                                    <form id="deleteForm_{{$image->id}}" action="{{route('deleteImage', $image->id)}}" method="post">
+                                        {{csrf_field()}}
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <a href="#" data-toggle="modal" class="font-weight-bold" onclick="openDelModal({{$image->id}});" style="color:#343A40;text-decoration:none;font-size:25px;position: absolute;top:0;left:180px;">×</a>
+                                    </form>
+                                    <img style="width: 200px" src="/uploads/products/{{$image->image}}" alt="">
+                                </div>
+                            @endforeach
+                                
+                            @endif
+                                <div class="col-12 mt-5 text-center">
+                                    <a  class=" m-auto createButton" data-toggle="modal" data-target="#imageModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Imagen o Video'))</a>
+                                </div>
+                        </div>
+                        <div class="col  offset-md-10">
+                            <a href="{{route('products.index')}}" class=" btn btn-primary">Finalizar<i class="fas ml-1 fa-angle-right"></i></a>
+                        </div>
                     </div>
                 </div>
                 <br /><br />
@@ -156,6 +184,14 @@
     }
 </script>
 
+<script type="text/javascript">
+
+    function openDelModal(id) {
+        formId = id;
+        $('#deleteModal').modal('show');
+    }
+
+</script>
 
 <script>
     var productsubcat = "<?php echo $oProduct->subcategory_id; ?>";
