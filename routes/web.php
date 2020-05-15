@@ -31,6 +31,7 @@ Route::resource('register', 'frontend\RegisterController');
 Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
+Route::get('search', 'frontend\SearchController@index')->name('search');
 
 
 // Route::get('product/{id}', 'HomeController@product')->name('product');
