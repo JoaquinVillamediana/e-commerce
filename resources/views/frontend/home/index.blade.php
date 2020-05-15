@@ -114,16 +114,13 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{$product->name}}</h5>
+        <h5 class="card-title">{{$product->name}}   </h5>
         <p class="card-text">
-       Precio: ${{$product->price}}
+        Precio: ${{$product->price}}
         </br>
-        {{$product->description}}</p>
+        {!! $product->description!!}</p>
      
-        <form method="POST" action="" id="task_form" role="form">
-        <button type="submit" class="btn btn-primary">Más información</button>
-       
-        </form>
+        <a href="{{route('product',$product->id)}}" class="btn btn-primary">Ver producto</a>
       </div>
     </div>
     </br>
