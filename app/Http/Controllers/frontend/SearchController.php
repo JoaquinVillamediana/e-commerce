@@ -51,12 +51,26 @@ sub_categoriess.deleted_at is null
         GROUP BY
                 categoriess.id
         ');
+
+
+$aProductsNews = DB::select('   SELECT p.*,
+MIN(i.image) image
+FROM products p
+LEFT JOIN images i ON p.id = i.product_id
+where i.deleted_at is null
+and p.visible = 1
+and p.deleted_at is  null
+and p.news = 1
+GROUP BY p.id');
+
+
+
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
         $scategory_name = "No se encontro resultados para '".$text."'";
 
-        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name'));
+        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name','aProductsNews'));
     }
 
     public function show() {
