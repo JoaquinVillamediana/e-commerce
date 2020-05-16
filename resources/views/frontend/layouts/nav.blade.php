@@ -74,7 +74,7 @@
               <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item text-dark"  href="#">Perfil</a>
                 <a class="dropdown-item text-dark"  href="#">Compras</a>
-                <a class="dropdown-item text-dark"  href="#">Favoritos</a>
+                <a class="dropdown-item text-dark"  href="{{route('favorites') }}">Favoritos</a>
                 <a class="dropdown-item text-dark"  href="{{route('carrito') }}">Carrito</i></a>
                 
                 <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Salir</a>
