@@ -30,9 +30,11 @@ $text =  $request['text'];
    FROM products p
 LEFT JOIN images i ON p.id = i.product_id
 where i.deleted_at is null
-and p.name LIKE '%" . $text . "%'
+and p.name LIKE "%' . $text . '%"
 and p.deleted_at is null
 and p.visible = 1
+GROUP BY
+p.id
 ');
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
@@ -52,9 +54,7 @@ sub_categoriess.deleted_at is null
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
-        $scategory_name = SubModel::select('sub_categories.name')
-        ->where('id','=',$id)
-        ->first();
+   
 
         return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name'));
     }
