@@ -54,7 +54,7 @@ sub_categoriess.deleted_at is null
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
-   
+        $scategory_name = "No se encontro resultados para '".$text."'";
 
         return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name'));
     }

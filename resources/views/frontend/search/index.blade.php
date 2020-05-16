@@ -46,6 +46,8 @@
         
         
               @endforeach
+              @else
+              {{$scategory_name}}
               @endif
     </div>
 
