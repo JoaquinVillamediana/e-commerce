@@ -27,7 +27,7 @@
           <div class="col">
             
             <div id="card" class="card" style="width: 18rem;">
-              <a  href="" id="productBox">
+              <a  href="{{route('product',$product->id)}}" id="productBox">
               <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
               @if ($product->news == 1)
               <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>

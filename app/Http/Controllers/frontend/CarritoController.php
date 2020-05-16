@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\ProductsModel;
 use App\Models\SubModel;
-
 use DB;
 use Illuminate\Support\MessageBag;
 use Auth;
@@ -19,12 +18,27 @@ use App\Models\ImageModel;
 
 
 
-class ProductController extends Controller {
+class CarritoController extends Controller {
 
-    public function index($id) {
+    public function index() {
+    
 
-        $aProducts = ProductsModel::where('id','=',$id)->get();
-        
+        $user=Auth::user()->id;
+
+        $aProducts = DB::select('   SELECT p.*,
+        MIN(i.image) image
+        FROM products p
+        LEFT JOIN images i ON p.id = i.product_id
+         LEFT JOIN carrito c ON p.id = c.product_id 
+        where i.deleted_at is null
+       and  c.user_id = "'.$user.'"
+        and p.deleted_at is  null
+        and p.visible = 1
+        and c.status = 1
+        GROUP BY c.id');
+
+      
+
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM    categories categoriess
         LEFT JOIN
@@ -41,14 +55,8 @@ sub_categoriess.deleted_at is null
         ');
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
-
-        $aImage = ImageModel::select('images.image as image_dir')
-        ->where('images.product_id', '=', $id)
-        ->get();
-       
-
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage'));
+        return view('frontend/carrito.index',compact('aCategories','aSubCategories','aProducts'));
     }
 
     public function show() {
@@ -61,7 +69,7 @@ sub_categoriess.deleted_at is null
         FROM products p
         LEFT JOIN images i ON p.id = i.product_id
         where i.deleted_at is null
-        and p.subcategory_id = "'.$id.'"
+       
         and p.deleted_at is  null
         and p.visible = 1
         GROUP BY p.id');
@@ -85,9 +93,11 @@ sub_categoriess.deleted_at is null
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
-                DB::insert('insert into carrito (product_id, user_id,status) values ("'.$id.'", "'.$user.'",1)');
-                return back()->withInput();
-    }
+                DB::insert('insert into carrito (product_id, user_id) values ("'.$id.'", "'.$user.'")');
+                return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts'));
+              //  return view('frontend/carrito.index',compact('aCategories','aSubCategories','aProducts'));
+            }
+            
     
 
 }

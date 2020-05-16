@@ -10,6 +10,7 @@
   <div class="card-body">
     <h5 class="card-title">{{$product->name}}</h5>
     <p class="card-text">{!! $product->description !!}</p>
+    <a href="{{route('carritoadd',$product->id)}}" class="btn btn-primary">Añadir al carrito</a>
     <a href="#" class="btn btn-primary">Comprar</a>
   </div>
 </div>
