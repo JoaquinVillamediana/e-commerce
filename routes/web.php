@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function () {
             Route::resource('categories', 'admin\CategoriesController');
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
+            Route::post('product_visible', 'admin\ProductsController@setProductVisible')->name('product_visible');
            
             
             Route::resource('products', 'admin\ProductsController');
