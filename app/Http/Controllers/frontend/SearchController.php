@@ -9,6 +9,7 @@ use App\Models\ProductsModel;
 use App\Models\SubModel;
 use DB;
 use Illuminate\Support\MessageBag;
+use App\Models\HistoryModel;
 use Auth;
 use Hash;
 
@@ -63,6 +64,11 @@ and p.deleted_at is  null
 and p.news = 1
 GROUP BY p.id');
 
+
+$user=Auth::user()->id;
+
+$data=array('search' => $text,'user_id' => $user);
+HistoryModel::insert($data);
 
 
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
