@@ -32,6 +32,17 @@ Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
+Route::get('carrito', 'frontend\CarritoController@index')->name('carrito');
+Route::get('profile', 'frontend\ProfileController@index')->name('profile');
+Route::get('sales', 'frontend\SalesController@index')->name('sales');
+Route::get('carritoadd/{id}', 'frontend\ProductController@store')->name('carritoadd');
+Route::get('deleteCarrito/{id}', 'frontend\ProductController@deleteCarrito')->name('deleteCarrito');
+
+Route::get('favorites', 'frontend\FavoritesController@index')->name('favorites');
+Route::get('favoritesadd/{id}', 'frontend\FavoritesController@addfavoritos')->name('favoritesadd');
+Route::get('favoritesDelete/{id}', 'frontend\FavoritesController@deleteFav')->name('favoritesDelete');
+
+
 
 
 // Route::get('product/{id}', 'HomeController@product')->name('product');
@@ -54,6 +65,7 @@ Route::prefix('admin')->group(function () {
             Route::resource('categories', 'admin\CategoriesController');
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
+            Route::post('product_visible', 'admin\ProductsController@setProductVisible')->name('product_visible');
            
             
             Route::resource('products', 'admin\ProductsController');

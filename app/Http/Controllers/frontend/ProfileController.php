@@ -19,19 +19,20 @@ use App\Models\ImageModel;
 
 
 
-class ProductController extends Controller {
+class ProfileController extends Controller {
 
-    public function index($id) {
+    public function index() {
 
         $user=Auth::user()->id;
 
 
 
-        $aFavoritos = DB::select('SELECT id, COUNT(*) AS count_fav FROM favoritos WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
+        $aFavoritos = DB::select('SELECT id, COUNT(*) AS count_fav FROM favoritos WHERE user_id = "'.$user.'"        
+        GROUP BY
+                id');
         
-        $aCarrito = DB::select('SELECT id, COUNT(*) AS count_carrito FROM carrito WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
+        
 
-        $aProducts = ProductsModel::where('id','=',$id)->get();
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM    categories categoriess
@@ -50,13 +51,11 @@ sub_categoriess.deleted_at is null
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        $aImage = ImageModel::select('images.image as image_dir')
-        ->where('images.product_id', '=', $id)
-        ->get();
+    
        
 
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCarrito','aFavoritos'));
+        return view('frontend/profile.index',compact('aCategories','aSubCategories','aProducts','aFavoritos'));
     }
 
     public function show() {
