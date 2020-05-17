@@ -33,6 +33,7 @@ Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
 Route::get('carrito', 'frontend\CarritoController@index')->name('carrito');
+Route::get('profile', 'frontend\ProfileController@index')->name('profile');
 Route::get('carritoadd/{id}', 'frontend\ProductController@store')->name('carritoadd');
 Route::get('deleteCarrito/{id}', 'frontend\ProductController@deleteCarrito')->name('deleteCarrito');
 
