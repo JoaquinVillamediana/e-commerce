@@ -18,3 +18,31 @@ border: #37474F solid .5px;
   height:  250px;
   object-fit: cover;
 }
+
+#productBox .favBtn{
+  border: none; 
+
+  background-color:#CCCCCC;
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+#productBox .favBtnActive{
+  border: none;
+  display: none;
+  color: red; 
+  background-color:#CCCCCC;
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
+  
+}
+
+#productBox .favBtn:hover{
+  color: red;
+}
+
+#productBox .favBtnActive:hover{
+  color: black;
+}

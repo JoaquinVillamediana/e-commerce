@@ -130,6 +130,35 @@ sub_categoriess.deleted_at is null
                 return back()->withInput();
 
             }
+
+            // AJAX Function
+            public function setFavoriteProduct(Request $request)
+            {
+                $aReturn = array();
+                $user=Auth::user()->id;
+                $id = $request['productId'];
+                $favRecord = FavoritesModel::where('user_id','=',$user)
+                ->where('product_id','=',$id)
+                ->first();
+                
+                
+                if(empty($favRecord))
+                {
+                        $aReturn['favorite'] = 1;
+                        DB::insert('insert into favoritos (product_id, user_id,status) values ("'.$id.'", "'.$user.'",1)');
+                        
+                }
+                else{
+                        $aReturn['favorite'] = 0;
+                        FavoritesModel::where('user_id','=',$user)->where('product_id','=',$id)->delete();
+                }
+                
+                $aReturn['productId'] = $request['productId'];
+
+                echo json_encode($aReturn);
+
+                
+            }
     
 
 }

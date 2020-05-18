@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cart', 'frontend\CartController@index')->name('cart');
     Route::get('cartAction/{id}', 'frontend\CartController@carritoAction')->name('cartAction');
 
+    Route::post('product_favorite', 'frontend\FavoritesController@setFavoriteProduct')->name('product_favorite');
     
 });
 
