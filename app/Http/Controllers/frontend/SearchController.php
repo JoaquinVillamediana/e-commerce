@@ -65,10 +65,7 @@ and p.news = 1
 GROUP BY p.id');
 
 
-$user=Auth::user()->id;
 
-$data=array('search' => $text,'user_id' => $user);
-HistoryModel::insert($data);
 
 
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
