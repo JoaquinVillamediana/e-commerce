@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\ProductsModel;
 use App\Models\SubModel;
+use App\Models\FavoritesModel;
 
 use DB;
 use Illuminate\Support\MessageBag;
@@ -23,23 +24,16 @@ class ProductController extends Controller {
 
     public function index($id) {
 
-        if(!empty(Auth::user()->id)){
-                $user=Auth::user()->id;
-                $aFavoritos = DB::select('SELECT id, COUNT(*) AS count_fav FROM favoritos WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
-        
-                $aCarrito = DB::select('SELECT id, COUNT(*) AS count_carrito FROM carrito WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
-        }
-        else
+        if(!Auth::guest())
         {
-                $aFavoritos="30";
-                $aCarrito="30";
+        $user=Auth::user()->id;
         }
-
-
-        
-
-
-
+        else{
+          $user= 0;      
+        }
+        $aFavorites = FavoritesModel::where('user_id','=',$user)
+        ->where('product_id','=',$id)
+        ->first();
         
 
         $aProducts = ProductsModel::where('id','=',$id)->get();
@@ -67,7 +61,7 @@ sub_categoriess.deleted_at is null
        
 
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCarrito','aFavoritos'));
+        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCarrito','aFavorites'));
     }
 
     public function show() {

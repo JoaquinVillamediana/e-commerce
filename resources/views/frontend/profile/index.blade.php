@@ -14,7 +14,7 @@
   <div class="card-body">
     <h5 class="card-title">{{Auth::user()->dni}}</h5>
     <p class="card-text">{{Auth::user()->phone}}</p>
-    <a href="#" class="btn btn-primary">Comprar</a>
+    <a href="#" class="btn btn-primary">Editar datos</a>
   </div>
   
 </div>

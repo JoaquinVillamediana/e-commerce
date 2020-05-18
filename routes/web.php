@@ -39,9 +39,7 @@ Route::get('sales', 'frontend\SalesController@index')->name('sales');
 Route::get('carritoadd/{id}', 'frontend\ProductController@store')->name('carritoadd');
 Route::get('deleteCarrito/{id}', 'frontend\ProductController@deleteCarrito')->name('deleteCarrito');
 
-Route::get('favorites', 'frontend\FavoritesController@index')->name('favorites');
-Route::get('favoritesadd/{id}', 'frontend\FavoritesController@addfavoritos')->name('favoritesadd');
-Route::get('favoritesDelete/{id}', 'frontend\FavoritesController@deleteFav')->name('favoritesDelete');
+
 
 
 
@@ -79,10 +77,9 @@ Route::prefix('admin')->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['checkUser'])->group(function () {
-        
-        
-    });
+    Route::get('favorites', 'frontend\FavoritesController@index')->name('favorites');
+    Route::get('favoritesAction/{id}', 'frontend\FavoritesController@favoritesAction')->name('favoritesAction');
+    
 });
 
 Route::get('getSub_CategoriesByCategory', 'admin\SubController@getSub_CategoriesByCategory')->name('getSub_CategoriesByCategory');
