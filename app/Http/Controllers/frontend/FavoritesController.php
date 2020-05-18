@@ -146,7 +146,7 @@ sub_categoriess.deleted_at is null
             public function deleteFav($id){
                 $user=Auth::user()->id;
 
-                DB::delete('delete from carrito where product_id = "'.$id.'" and user_id = "'.$user.'"');
+                DB::delete('delete from favoritos where product_id = "'.$id.'" and user_id = "'.$user.'"');
                 return back()->withInput();
             }
             
