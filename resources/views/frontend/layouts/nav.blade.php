@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-sea fixed-top border-bottom border-secondary" id="mainNav">
-  <a class="navbar-brand" href="">E-COMMERCE</a>
+  <a class="navbar-brand" href="{{route('home')}}">E-COMMERCE</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
@@ -39,6 +39,11 @@
           <li class="nav-item border-bottom border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
             <a class="nav-link" href="{{route('sales')}}">
               <i class="fas fa-tags"></i></i><span class="ml-2 nav-link-text"  >Ofertas</span>
+            </a>
+        </li>
+        <li class="nav-item border-bottom border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
+            <a class="nav-link" href="{{route('history')}}">
+              <i class="fas fa-tags"></i></i><span class="ml-2 nav-link-text"  >Relacionadas con busqueda</span>
             </a>
         </li>
         

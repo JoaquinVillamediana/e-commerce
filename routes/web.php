@@ -35,6 +35,7 @@ Route::get('search', 'frontend\SearchController@index')->name('search');
 Route::get('carrito', 'frontend\CarritoController@index')->name('carrito');
 Route::get('profile', 'frontend\ProfileController@index')->name('profile');
 Route::get('sales', 'frontend\SalesController@index')->name('sales');
+Route::get('history', 'frontend\HistoryController@index')->name('history');
 Route::get('carritoadd/{id}', 'frontend\ProductController@store')->name('carritoadd');
 Route::get('deleteCarrito/{id}', 'frontend\ProductController@deleteCarrito')->name('deleteCarrito');
 
