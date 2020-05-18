@@ -24,8 +24,13 @@ class ProductController extends Controller {
 
     public function index($id) {
 
+        if(!Auth::guest())
+        {
         $user=Auth::user()->id;
-
+        }
+        else{
+          $user= 0;      
+        }
         $aFavorites = FavoritesModel::where('user_id','=',$user)
         ->where('product_id','=',$id)
         ->first();
