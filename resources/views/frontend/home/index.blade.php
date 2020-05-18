@@ -101,46 +101,9 @@
         
     
   </div>
-    </br>
-    </br> 
-    <div class="row">
-    </br>
-    </br>
- </br>
- </br>
-      @foreach ($aProducts as $product)
-          
-
-
-      
-      <div class="col">
-            
-            <div id="card" class="card" style="width: 18rem;">
-              <a  href="{{route('product',$product->id)}}" id="productBox">
-                
-              <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
-              @if ($product->news == 1)
-              <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>
-              @endif
-              <button id="favBtn_{{$product->id}}" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
-              <button id="favBtnActive_{{$product->id}}" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
-              {{-- window.location='{{ URL::route('favoritesAction',$product->id)}}' --}}
-              <div class="card-body mt-0">
-                <h5 class="card-title">{{$product->name}}</h5>
-                <p class="card-text text-dark">${{$product->price}}</p>
-                
-              </div>
-            </a>
-            </div>
-            </br>
- </br>
- </br>
-          </div>
-
-
-      @endforeach
-
-    </div>
+    
+  @include('frontend/layouts.products')
+    
 
     @endif
 </div>

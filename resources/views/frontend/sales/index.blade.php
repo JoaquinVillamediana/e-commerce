@@ -12,7 +12,7 @@
     <div class="row pt-5 justify-content-center text-right">
 
 <div class="col col-md-7 mb-2 pt-3 pr-1">
-  <h2 class="text-right">PRODUCTOS POR MENOS DE 1000$</h2>
+  <h2 class="text-right">PRODUCTOS POR MENOS DE 10000$</h2>
 </div>
 <div class="col pl-0 mb-2">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -26,43 +26,7 @@
       @if (!empty($aProducts))
      
      
-    </br>
-    </br> 
-    <div class="row">
-    </br>
-    </br>
- </br>
- </br>
-      @foreach ($aProducts as $product)
-          
-
-
-      
-      <div class="col">
-            
-            <div id="card" class="card" style="width: 18rem;">
-              <a  href="{{route('product',$product->id)}}" id="productBox">
-                
-              <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
-              @if ($product->news == 1)
-              <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>
-              @endif
-              <div class="card-body mt-0">
-                <h5 class="card-title">{{$product->name}}</h5>
-                <p class="card-text text-dark">${{$product->price}}</p>
-                
-              </div>
-            </a>
-            </div>
-            </br>
- </br>
- </br>
-          </div>
-
-
-      @endforeach
-
-    </div>
+    @include('frontend/layouts.products')
 
     @endif
 </div>

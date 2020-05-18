@@ -27,7 +27,7 @@ class SalesController extends Controller {
         FROM products p
         LEFT JOIN images i ON p.id = i.product_id
         where i.deleted_at is null
-     and p.price <= 1000
+     and p.price <= 10000
         and p.deleted_at is  null
         and p.visible = 1
         GROUP BY p.id');

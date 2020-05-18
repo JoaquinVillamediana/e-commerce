@@ -11,30 +11,7 @@
 
 
 @if (!empty($aProducts))
-@foreach ($aProducts as $product)
-          
-
-
-
-<div class="card">
-
-  <h5 class="card-header">${{$product->price}}</h5>
-  <div class="card-body">
-    <h5 class="card-title">{{$product->name}}</h5>
-    <p class="card-text">{!! $product->description !!}</p>
-    <a href="{{route('product',$product->id)}}" class="btn btn-primary">Comprar</a>
-  </div>
-  
-</div>
-
-            
-         
-            </br>
- </br>
- </br>
-        
-        
-              @endforeach
+@include('frontend/layouts.products')
               @else
 
             
