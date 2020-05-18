@@ -11,14 +11,14 @@
     <h5 class="card-title">{{$product->name}}</h5>
     <p class="card-text">{!! $product->description !!}</p>
     @if(empty($aCarrito))
-    <a href="{{route('carritoadd',$product->id)}}" class="btn btn-primary">Añadir al carrito</a>
+    <a href="{{route('favoritesAction',$product->id)}}" class="btn btn-primary">Añadir al carrito</a>
     @else
-    <a href="{{route('deleteCarrito',$product->id)}}" class="btn btn-primary">Eliminar del carrito</a>
+    <a href="{{route('favoritesAction',$product->id)}}" class="btn btn-primary">Eliminar del carrito</a>
     @endif
-    @if(empty($aFavoritos))
-    <a href="{{route('favoritesadd',$product->id)}}" class="btn btn-primary">Añadir al favoritos</a>
+    @if(empty($aFavorites))
+    <a href="{{route('favoritesAction',$product->id)}}" class="btn btn-primary">Añadir al favoritos</a>
     @else
-    <a href="{{route('favoritesDelete',$product->id)}}" class="btn btn-primary">Eliminar del favoritos</a>
+    <a href="{{route('favoritesAction',$product->id)}}" class="btn btn-primary">Eliminar del favoritos</a>
     @endif
 
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\ProductsModel;
 use App\Models\SubModel;
+use App\Models\FavoritesModel;
 
 use DB;
 use Illuminate\Support\MessageBag;
@@ -25,9 +26,9 @@ class ProductController extends Controller {
 
         $user=Auth::user()->id;
 
-
-
-        $aFavoritos = DB::select('SELECT id, COUNT(*) AS count_fav FROM favoritos WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
+        $aFavorites = FavoritesModel::where('user_id','=',$user)
+        ->where('product_id','=',$id)
+        ->first();
         
         $aCarrito = DB::select('SELECT id, COUNT(*) AS count_carrito FROM carrito WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
 
@@ -56,7 +57,7 @@ sub_categoriess.deleted_at is null
        
 
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCarrito','aFavoritos'));
+        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCarrito','aFavorites'));
     }
 
     public function show() {

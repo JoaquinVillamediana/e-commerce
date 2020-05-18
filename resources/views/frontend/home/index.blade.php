@@ -122,6 +122,7 @@
               @if ($product->news == 1)
               <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>
               @endif
+              <i onclick="window.location='{{ URL::route('favoritesAction',$product->id)}}'" class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i>
               <div class="card-body mt-0">
                 <h5 class="card-title">{{$product->name}}</h5>
                 <p class="card-text text-dark">${{$product->price}}</p>
