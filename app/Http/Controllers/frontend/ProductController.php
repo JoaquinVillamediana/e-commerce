@@ -31,12 +31,15 @@ class ProductController extends Controller {
         else{
           $user= 0;      
         }
+        
         $aFavorites = FavoritesModel::where('user_id','=',$user)
         ->where('product_id','=',$id)
         ->first();
         
-        $aCarrito = DB::select('SELECT id, COUNT(*) AS count_carrito FROM carrito WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
-
+        $aCart = FavoritesModel::where('user_id','=',$user)
+        ->where('product_id','=',$id)
+        ->first();
+        
         $aProducts = ProductsModel::where('id','=',$id)->get();
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
@@ -47,8 +50,8 @@ class ProductController extends Controller {
                
         WHERE   categoriess.visible = 1 and
 
-categoriess.deleted_at is null and
-sub_categoriess.deleted_at is null
+        categoriess.deleted_at is null and
+        sub_categoriess.deleted_at is null
               
         GROUP BY
                 categoriess.id
@@ -62,7 +65,7 @@ sub_categoriess.deleted_at is null
        
 
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCarrito','aFavorites'));
+        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCart','aFavorites'));
     }
 
     public function show() {

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\ProductsModel;
 use App\Models\SubModel;
+use App\Models\CartModel;
 use DB;
 use Illuminate\Support\MessageBag;
 use Auth;
@@ -18,7 +19,7 @@ use App\Models\ImageModel;
 
 
 
-class CarritoController extends Controller {
+class CartController extends Controller {
 
     public function index() {
     
@@ -44,12 +45,9 @@ class CarritoController extends Controller {
         LEFT JOIN
                 sub_categories sub_categoriess
         ON      sub_categoriess.category_id = categoriess.id
-               
         WHERE   categoriess.visible = 1 and
-
-categoriess.deleted_at is null and
-sub_categoriess.deleted_at is null
-              
+        categoriess.deleted_at is null and
+        sub_categoriess.deleted_at is null
         GROUP BY
                 categoriess.id
         ');
@@ -103,5 +101,27 @@ sub_categoriess.deleted_at is null
             }
             
     
+        public function carritoAction($id){
+
+                $user=Auth::user()->id;
+                $CartRecord = CartModel::where('user_id','=',$user)
+                ->where('product_id','=',$id)
+                ->first();
+                
+                
+                if(empty($CartRecord))
+                {
+                        
+                        DB::insert('insert into carrito (product_id, user_id,status) values ("'.$id.'", "'.$user.'",1)');
+                        
+                }
+                else{
+                        
+                        CartModel::where('user_id','=',$user)->where('product_id','=',$id)->delete();
+                }
+                
+
+                return back()->withInput();
+        }
 
 }

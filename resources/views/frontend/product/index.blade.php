@@ -10,7 +10,7 @@
   <div class="card-body">
     <h5 class="card-title">{{$product->name}}</h5>
     <p class="card-text">{!! $product->description !!}</p>
-    @if(empty($aCarrito))
+    @if(empty($aCart))
     <a href="{{route('favoritesAction',$product->id)}}" class="btn btn-primary">Añadir al carrito</a>
     @else
     <a href="{{route('favoritesAction',$product->id)}}" class="btn btn-primary">Eliminar del carrito</a>

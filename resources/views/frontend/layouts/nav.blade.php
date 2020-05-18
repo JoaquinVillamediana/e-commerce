@@ -47,14 +47,6 @@
 
 
       </ul>
-      {{-- <ul class="navbar-nav bg-secondary sidenav-toggler">
-        <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-                <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-        </li>
-    </ul> --}}
-      
 
 
       <ul class="navbar-nav mr-5 ml-auto" >
@@ -76,7 +68,7 @@
                 <a class="dropdown-item text-dark"  href="{{route('profile') }}">Perfil</a>
                 <a class="dropdown-item text-dark"  href="#">Compras</a>
                 <a class="dropdown-item text-dark"  href="{{route('favorites') }}">Favoritos</a>
-                <a class="dropdown-item text-dark"  href="{{route('carrito') }}">Carrito</i></a>
+                <a class="dropdown-item text-dark"  href="{{route('cart') }}">Carrito</i></a>
                 
                 <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Salir</a>
               </div>

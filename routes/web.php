@@ -32,12 +32,10 @@ Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
-Route::get('carrito', 'frontend\CarritoController@index')->name('carrito');
 Route::get('profile', 'frontend\ProfileController@index')->name('profile');
 Route::get('sales', 'frontend\SalesController@index')->name('sales');
 
-Route::get('carritoadd/{id}', 'frontend\ProductController@store')->name('carritoadd');
-Route::get('deleteCarrito/{id}', 'frontend\ProductController@deleteCarrito')->name('deleteCarrito');
+
 
 
 
@@ -77,8 +75,13 @@ Route::prefix('admin')->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
+    
     Route::get('favorites', 'frontend\FavoritesController@index')->name('favorites');
     Route::get('favoritesAction/{id}', 'frontend\FavoritesController@favoritesAction')->name('favoritesAction');
+
+    Route::get('cart', 'frontend\CartController@index')->name('cart');
+    Route::get('cartAction/{id}', 'frontend\CartController@carritoAction')->name('cartAction');
+
     
 });
 
