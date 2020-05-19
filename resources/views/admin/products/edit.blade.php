@@ -140,15 +140,25 @@
                                     <form id="deleteForm_{{$image->id}}" action="{{route('deleteImage', $image->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <a href="#" data-toggle="modal" class="font-weight-bold" onclick="openDelModal({{$image->id}});" style="color:#343A40;text-decoration:none;font-size:25px;position: absolute;top:0;left:180px;">×</a>
-                                    </form>
+                                        <a href="#" data-toggle="modal" class="font-weight-bold" onclick="openDelModal({{$image->id}});" style="color:#343A40;text-decoration:none;font-size:25px;position: absolute;top:0;left:180px;z-index:2;">×</a>
+                                        @if ($image->type==0)
                                     <img style="width: 200px" src="/uploads/products/{{$image->image}}" alt="">
+                                    @endif
+                                    @if ($image->type==1)
+                                        <video style="width: 200px;z-index:2;" src="/uploads/products/{{$image->image}}" controls>
+                                            Your browser does not support HTML5 video.
+                                        </video>
+                                    @endif
+                                    </form>
+                                    
+                                    
                                 </div>
                             @endforeach
                                 
                             @endif
                                 <div class="col-12 mt-5 text-center">
-                                    <a  class=" m-auto createButton" data-toggle="modal" data-target="#imageModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Imagen o Video'))</a>
+                                    <a  class=" m-auto createButton" data-toggle="modal" data-target="#imageModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Imagen'))</a>
+                                    <a  class=" m-auto createButton" data-toggle="modal" data-target="#videoModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Video'))</a>
                                 </div>
                         </div>
                         <div class="col  offset-md-10">
@@ -253,6 +263,19 @@ function setSub_categoryVal(value, formSelect, url, defVal, selectedItem){
     });
     }
     
+    
+</script>
+<script src="/js/admin/image_preview.js"></script>
+<script src="/js/admin/video_preview.js"></script>
+<script>
+
+$('#video').change(function() {
+        setVideoPreview(this, $(this).attr('id'));
+    });
+
+    $('#image').change(function() {
+        setImagePreview(this, $(this).attr('id'));
+    });
     
 </script>
 

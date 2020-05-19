@@ -21,7 +21,7 @@ function setVideoPreview(input, id) {
 
     var video = '';
 
-    video += '<video class="img-responsive article_video_preview" controls>';
+    video += '<video style="width:100%;" class="img-responsive article_video_preview" controls>';
     video += '<source src="' + URL.createObjectURL(input.files[0]) + '">';
     video += 'Your browser does not support HTML5 video.';
     video += '</video>';

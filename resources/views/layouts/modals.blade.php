@@ -143,7 +143,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Añadir Foto o Video</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Añadir Foto</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -177,4 +177,43 @@
         </div>
     </div>
 </div>
+
+<!-- Image Modal-->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir Video</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-3">
+                    <form method="POST" action="{{ route('addImage') }}" role="form" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input name="_method" type="hidden" >
+                    <input type="hidden" name="product_id" id="product_id" value="{{empty($product_id) ? '' : $product_id}}">
+                    <input type="file" class="form-control {{ $errors->has('video') ? ' is-invalid' : '' }}" name="video" id="video">
+                    @if ($errors->has('video'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe seleccionar un archivo (mp4) max. 512MB.</strong>
+                                </span>
+                                @endif
+                         
+                                <div id="preview_video" class="mt-2" style="border: 1px solid #ced4da; border-radius: .25rem; display:none;"></div> 
+                               
+              
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="submit">Cargar</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
 

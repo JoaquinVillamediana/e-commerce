@@ -140,17 +140,36 @@ else{
     public function addImage(Request $request)
     {
 
+        if(!empty($request['image']))
+        {
+            $aValidations = array(
+                'image' => 'required|max:10240|mimes:jpeg,png,jpg,gif,mp4'
+            );               
+        }
+        else
+        {
+            $aValidations = array(
+                'video' => 'required|max:10240|mimes:jpeg,png,jpg,gif,mp4'
+            ); 
+        }
 
-
-        $aValidations = array(
-            'image' => 'required|max:10240|mimes:jpeg,png,jpg,gif,mp4'
-        );
+        
 
         $this->validate($request , $aValidations);
 
-        if (!empty($request['image'])) {
-
-            $image = $request['image'];
+        if (!empty($request['image'] || !empty($request['video']) )) {
+            
+            if(!empty($request['image']))
+            {
+            $image = $request['image'];   
+            $type = 0;             
+            }
+            else
+            {
+                $image = $request['video'];  
+                $type = 1;
+            }
+            
             $fileName = $image->getClientOriginalName();
             $storeImageName = uniqid(rand(0, 1000), true) . "-" . $fileName;
             $fileExtension = $image->getClientOriginalExtension();
@@ -162,7 +181,7 @@ else{
             $destinationPath = 'uploads/products';
             $image->move($destinationPath, $storeImageName);
 
-            $data=array('image' => $storeImageName,'product_id' => $product_id);
+            $data=array('image' => $storeImageName,'product_id' => $product_id,'type' => $type);
             ImageModel::insert($data);
             
             

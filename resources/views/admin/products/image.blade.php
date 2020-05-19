@@ -18,7 +18,8 @@
               <div class="table-responsive">
 
           
-                <a class="m-auto createButton" data-toggle="modal" data-target="#imageModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Imagen o Video'))</a>
+                <a class="m-auto createButton" data-toggle="modal" data-target="#imageModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Imagen'))</a>
+                <a class="m-auto createButton" data-toggle="modal" data-target="#videoModal" >@include('admin.widgets.button', array('class'=>'primary', 'value'=>'Cargar Video'))</a>
                 
            </div>   
             </div>         
@@ -29,7 +30,8 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Producto</th>                                
+                                <th>Producto</th> 
+                                <th>Tipo</th>                               
                                 <th>Imagen</th>  
                                
                                 <th>Eliminar</th>
@@ -42,10 +44,23 @@
                             <tr>
                                 <td>{{ $image->id }}</td>
                                 <td>{{$image->product_name}}</td>
+                                @if ($image->type==0)
+                                <td>Imagen</td>
+                                @else
+                                <td>Video</td>
+                                @endif
+
+                
                              
                                
-                          
-                                  <td><img src="/uploads/products/{{$image->image}}" style="width:100px;margin:0 auto;" alt=""></td>
+                                @if ($image->type==0)
+                                <td><img src="/uploads/products/{{$image->image}}" style="width:100px;margin:0 auto;" alt=""></td>
+                                @else
+                                <td><video style="width: 100px;margin:0 auto;" src="/uploads/products/{{$image->image}}" >
+                                    Your browser does not support HTML5 video.
+                                </video></td>
+                                @endif
+                                  
                             
                                   <td>
                           
@@ -99,7 +114,12 @@
 
 </script>
 <script src="/js/admin/image_preview.js"></script>
+<script src="/js/admin/video_preview.js"></script>
 <script>
+
+$('#video').change(function() {
+        setVideoPreview(this, $(this).attr('id'));
+    });
 
     $('#image').change(function() {
         setImagePreview(this, $(this).attr('id'));
