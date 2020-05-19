@@ -32,7 +32,7 @@ Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
-Route::get('profile', 'frontend\ProfileController@index')->name('profile');
+
 Route::get('sales', 'frontend\SalesController@index')->name('sales');
 
 
@@ -83,6 +83,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cartAction/{id}', 'frontend\CartController@carritoAction')->name('cartAction');
 
     Route::post('product_favorite', 'frontend\FavoritesController@setFavoriteProduct')->name('product_favorite');
+
+    Route::get('profile', 'frontend\ProfileController@index')->name('profile');
+    Route::post('profile', 'frontend\ProfileController@update')->name('profile_update');
     
 });
 

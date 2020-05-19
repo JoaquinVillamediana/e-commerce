@@ -45,9 +45,9 @@
     {{-- cARROUSEL Out --}}
     <p class="card-text">{!! $oProduct->description !!}</p>
     @if(empty($aCart))
-    <a href="{{route('favoritesAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Añadir al carrito</a>
+    <a href="{{route('cartAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Añadir al carrito</a>
     @else
-    <a href="{{route('favoritesAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Eliminar del carrito</a>
+    <a href="{{route('cartAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Eliminar del carrito</a>
     @endif
     @if(empty($aFavorites))
     <a href="{{route('favoritesAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Añadir al favoritos</a>

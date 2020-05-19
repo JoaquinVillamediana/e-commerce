@@ -8,6 +8,7 @@ use App\Models\CategoriesModel;
 use App\Models\ProductsModel;
 use App\Models\SubModel;
 use App\Models\FavoritesModel;
+use App\Models\CartModel;
 
 use DB;
 use Illuminate\Support\MessageBag;
@@ -36,7 +37,7 @@ class ProductController extends Controller {
         ->where('product_id','=',$id)
         ->first();
         
-        $aCart = FavoritesModel::where('user_id','=',$user)
+        $aCart = CartModel::where('user_id','=',$user)
         ->where('product_id','=',$id)
         ->first();
         

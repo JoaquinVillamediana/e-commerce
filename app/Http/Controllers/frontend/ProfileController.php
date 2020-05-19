@@ -61,6 +61,70 @@ sub_categoriess.deleted_at is null
     public function show() {
         //
     }
+    
+    
+    public function update(Request $request) {
+        $aValidations = array();
+        if(!empty($request['name'] ))
+        {
+                $aValidations['name'] ='required|max:60'; 
+        }
+        if(!empty($request['last_name'] ))
+        {
+                $aValidations['last_name'] ='required|max:60'; 
+        }
+        if(!empty($request['phone'] ))
+        {
+                $aValidations['phone'] ='required|max:25'; 
+        }
+
+
+        $this->validate($request, $aValidations);
+
+        $id = Auth::user()->id;
+
+        $oUser = User::find($id);
+
+        if(!empty($request['name'] ))
+        {
+                $request['name'] = ucwords($request['name']);
+                $oUser->name = $request['name'];
+        }
+        if(!empty($request['last_name'] ))
+        {
+                $request['last_name'] = ucwords($request['last_name']);
+                $oUser->last_name = $request['last_name'];
+        }
+        if(!empty($request['phone'] ))
+        {
+                $request['phone'] = ucwords($request['phone']);
+                $oUser->phone = $request['phone'];
+        }
+
+        $oUser->save();
+
+        return redirect()->back()->with('success', 'Registro actualizado satisfactoriamente');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public function store($id){
         $user=Auth::user()->id;
         $aProducts = DB::select('   SELECT p.*,
@@ -144,5 +208,8 @@ public function deleteCarrito($id)
         DB::delete('delete from carrito where product_id = "'.$id.'" and user_id = "'.$user.'"');
         return back()->withInput();
 }
+
+
+
 
 }
