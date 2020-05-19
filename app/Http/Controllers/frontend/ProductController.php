@@ -40,7 +40,7 @@ class ProductController extends Controller {
         ->where('product_id','=',$id)
         ->first();
         
-        $aProducts = ProductsModel::where('id','=',$id)->get();
+        $oProduct = ProductsModel::where('id','=',$id)->first();
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM    categories categoriess
@@ -59,13 +59,12 @@ class ProductController extends Controller {
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        $aImage = ImageModel::select('images.image as image_dir')
-        ->where('images.product_id', '=', $id)
+        $aImage = ImageModel::where('images.product_id', '=', $id)
         ->get();
        
 
         
-        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aImage', 'aCart','aFavorites'));
+        return view('frontend/product.index',compact('aCategories','aSubCategories','oProduct','aImage', 'aCart','aFavorites'));
     }
 
     public function show() {
