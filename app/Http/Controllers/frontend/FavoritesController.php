@@ -57,7 +57,7 @@ sub_categoriess.deleted_at is null
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
-        return view('frontend/carrito.index',compact('aCategories','aSubCategories','aProducts'));
+        return view('frontend/favorites.index',compact('aCategories','aSubCategories','aProducts'));
     }
 
     public function show() {

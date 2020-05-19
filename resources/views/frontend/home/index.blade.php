@@ -88,7 +88,6 @@
       @if (!empty($aProducts))
      
       <div class="col col-md-7 mb-2 pt-3 pr-1" >
-     
         <h2 class="text-right">NOVEDADES</h2>
         </div>
     

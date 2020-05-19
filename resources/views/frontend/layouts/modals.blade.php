@@ -119,3 +119,35 @@
         </div>
     </div>
 </div>
+
+<!-- User Modal-->
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-3">
+                    <form method="POST" action="{{ route('addImage') }}" role="form" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input name="_method" type="hidden" >
+                    <input type="text" class="form-control {{ $errors->has('profile') ? ' is-invalid' : '' }}" name="profile" id="profile" @if($option=0)value="{{Auth::user()->name}}"@endif @if($option=1)value="{{Auth::user()->last_name}}"@endif @if($option=2)value="{{Auth::user()->phone}}"@endif>
+                    @if ($errors->has('profile'))
+                            <span id="profile_error" class="invalid-feedback" role="alert" style="display:block;">
+                                <strong>Debe cargar dato valido.</strong>
+                            </span>
+                            @endif   
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" onclick="deleteCustomBlock(delBlockButtonId);">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

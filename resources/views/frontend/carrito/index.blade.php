@@ -5,14 +5,23 @@
 <div class="mt-2 container-fluid">
 
 
-
-
-
-    <div class="row pt-5 justify-content-center text-right">
-
-      <div class="col ">
-          <h2 class="text-center">{{"MI carrito"}}</h2>
-      </div>
+  <div class="row pt-2 justify-content-center text-right">
+    <div class="col-4">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets5.lottiefiles.com/temp/lf20_adfZjR.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+    </div>
+    <div class="col-4">
+        <h2 class="text-center" id="headFav" style="    position: absolute;top: 115px;left: 120px;z-index: 2;display:none">Carrito</h2>
+        
+        
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_Iy9jag.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+    </div>
+    <div class="col-4">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets5.lottiefiles.com/temp/lf20_adfZjR.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+    </div>
+  </div>
         
 </div>
 <?php $total=0?>
@@ -48,4 +57,7 @@
     </div>
   </div>
 </div>
+<script>$( document ).ready(function() {
+  $('#headFav').fadeIn(400);
+});</script>
 @endsection
