@@ -1,3 +1,4 @@
+@if (!empty($aProducts))
 <div class="row">
 
     @foreach ($aProducts as $product)
@@ -30,6 +31,13 @@
     @endforeach
 
   </div>
+  @else
+  <div class="card mt-5 mt-md-1">
+    <div class="card-body">
+        <p>Lo sentimos, No hay productos disponibles en esta seccion</p>
+    </div>
+</div>
+  @endif
 
 
       <script type="text/javascript">
