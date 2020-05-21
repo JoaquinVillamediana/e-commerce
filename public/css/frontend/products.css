@@ -30,7 +30,6 @@ border: #37474F solid .5px;
 
 #productBox .favBtnActive{
   border: none;
-  display: none;
   color: red; 
   background-color:#CCCCCC;
   float: right;
