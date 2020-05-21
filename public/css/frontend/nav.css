@@ -1,6 +1,57 @@
 /*
     DEMO STYLE
 */
+
+.header{
+    width: 100%;
+    display: inline-block !important;
+}
+
+.header .login{
+    display: inline-block !important;
+    float: right;
+}
+
+.header .search{
+    display: inline-block !important;
+    width: 50%;
+    margin-left: 20%;
+    margin-right: 10%;
+}
+
+.header .search input{
+    width: 90%;
+    
+}
+
+@media (orientation: portrait){
+    .header .search{
+        display: inline-block !important;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .header .search input{
+        width: 86%;
+        
+    }
+    .header .login{
+        border-top: 1px solid;
+        display: inline-block !important;
+        float: left;
+        width: 100%;
+        border-color: #6c757d!important;
+    }
+}
+
+form .text{
+    margin-right: 0 !important;
+}
+
+.btn-white{
+    background-color: #fff;
+}
+
 .bg-sea{
     background:#37474f !important;
     

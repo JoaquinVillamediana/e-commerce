@@ -19,7 +19,7 @@
         
         <div class="col-md-7  col-12 m-auto">
             <div class="form-group">
-                <label class="text-light " for="exampleInputEmail1">Email address</label>
+                <label style="color: #37474f" for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" placeholder="example@example.com" aria-describedby="emailHelp">
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
         
         <div class="col-md-7  col-12 m-auto">
             <div class="form-group">
-                <label class="text-light" for="exampleInputPass1">Contraseña</label>
+                <label style="color: #37474f"  for="exampleInputPass1">Contraseña</label>
                 <input id="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  aria-describedby="emailHelp">
                 <small id="emailHelp" class=" text-light form-text text-muted">Nunca compartiremos tus datos personales.</small>
                 @if ($errors->has('password'))
@@ -55,7 +55,12 @@
                 }
             </style>
         </div>
-    
+        
+        <div class="text-center mt-3 col-12 col-md-2 offset-md-5">
+            
+            <a id="createAc" class="text-secondary"  href="{{ route('register.index') }}">Crear Cuenta</a>
+           
+        </div>
     </form>
 
 </div>
