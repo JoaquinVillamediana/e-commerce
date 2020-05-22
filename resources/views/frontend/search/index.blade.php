@@ -7,8 +7,8 @@
 
 
 
-
-
+<h2 class="text-center">Resultados para "{{$text}}"</h2>
+</br></br>
 
 @if (!empty($aProducts))
 @include('frontend/layouts.products')

@@ -84,7 +84,7 @@ GROUP BY p.id');
         
         $scategory_name = "No se encontro resultados para '".$text."'";
 
-        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name','aProductsNews'));
+        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name','aProductsNews','text'));
     }
 
     public function show() {
