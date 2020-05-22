@@ -30,6 +30,7 @@ $text =  $request['text'];
         MIN(i.image) image
    FROM products p
 LEFT JOIN images i ON p.id = i.product_id
+LEFT JOIN favoritos c ON p.id = c.product_id 
 where i.deleted_at is null
 and p.name LIKE "%' . $text . '%"
 and p.deleted_at is null
@@ -80,5 +81,25 @@ GROUP BY p.id');
         //
     }
     
+
+    public function product($id)
+    {
+
+        $aCategories = CategoriesModel::select('categories.*', DB::raw('count(sub_categories.id)  as quantity_sub'))->leftjoin('sub_categories','categories.id','=','sub_categories.category_id')
+        ->where('categories.visible', '=', '1')
+        ->groupBy('categories.id')
+        ->get();
+        $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
+        ->get();
+
+        $aProducts = ProductsModel::where('products.id', '=', $id)
+        ->get();
+
+        return view('frontend/home.product',compact('aCategories','aSubCategories','aProducts'))->with('id',$id);
+   
+      
+
+        
+    }
 
 }
