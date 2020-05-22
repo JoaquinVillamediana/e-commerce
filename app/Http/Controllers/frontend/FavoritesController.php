@@ -33,6 +33,7 @@ class FavoritesController extends Controller {
          LEFT JOIN favoritos c ON p.id = c.product_id 
         where i.deleted_at is null
        and  c.user_id = "'.$user.'"
+       and c.deleted_at is null
         and p.deleted_at is  null
         and p.visible = 1
         and c.status = 1

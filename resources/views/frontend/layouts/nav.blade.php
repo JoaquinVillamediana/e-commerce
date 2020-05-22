@@ -49,17 +49,18 @@
       </ul>
 
 
-      <ul class="navbar-nav mr-5 ml-auto" >
+      <ul class="navbar-nav mr-5 header" >
+        <li class="nav-item search">
       <form class="form-inline my-2 my-lg-0"  action="{{ route('search') }}"  id="task_form" role="form" enctype="multipart/form-data">
-      <input class="form-control mr-sm-2" type="text" name = "text" id="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2 mr-0" style="margin-right: -5px !important;" type="text" name="text" id="text" placeholder="Search" aria-label="Search">
+      <button class="ml-0 btn btn-white my-2 my-sm-0 border-left" type="submit"><i class="fas fa-search"></i></button>
     </form>
-      
+  </li>
         @if (empty(Auth::user()->id))
-        <li class="nav-item ml-md-3  border-dark"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('register.index') }}">Registarme</a></li>
+        <li class="nav-item ml-md-3  border-dark login"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
+            
             @else
-            <li class="nav-item dropdown  ml-3 ">
+            <li class="nav-item dropdown login ml-3 ">
               
               <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  {{Auth::user()->name}}

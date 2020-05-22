@@ -1,3 +1,4 @@
+@if (!empty($aProducts))
 <div class="row">
 
     @foreach ($aProducts as $product)
@@ -14,8 +15,8 @@
             @if ($product->news == 1)
             <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>
             @endif
-            <button id="favBtn_{{$product->id}}" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
-            <button id="favBtnActive_{{$product->id}}" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
+            <button id="favBtn_{{$product->id}}" style="@if(empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
+            <button id="favBtnActive_{{$product->id}}" style="@if(!empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
             <div class="card-body mt-0">
               <h5 class="card-title">{{$product->name}}</h5>
               <p class="card-text text-dark">${{$product->price}}</p>
@@ -30,6 +31,13 @@
     @endforeach
 
   </div>
+  @else
+  <div class="card mt-5 mt-md-1">
+    <div class="card-body">
+        <p>Lo sentimos, No hay productos disponibles en esta seccion</p>
+    </div>
+</div>
+  @endif
 
 
       <script type="text/javascript">

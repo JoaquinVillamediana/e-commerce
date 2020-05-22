@@ -26,11 +26,21 @@ class SearchController extends Controller {
 
 $text =  $request['text'];
 
+
+
+if(Auth::check())
+{
+    $user_id = Auth::user()->id;
+}
+else
+{
+    $user_id = 0;
+}
         $aProducts = DB::select(' SELECT p.*,
-        MIN(i.image) image
+        MIN(i.image) image,(f.product_id) favoritos
    FROM products p
 LEFT JOIN images i ON p.id = i.product_id
-LEFT JOIN favoritos c ON p.id = c.product_id 
+LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
 where i.deleted_at is null
 and p.name LIKE "%' . $text . '%"
 and p.deleted_at is null

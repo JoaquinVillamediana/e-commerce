@@ -6,8 +6,9 @@ use App\Models\ProductsModel;
 use App\Models\ImageModel;
 use Illuminate\Http\Request;
 use App\Models\SubModel;
-use Auth;
+
 use DB;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -41,40 +42,25 @@ class HomeController extends Controller
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-if(!empty(Auth::user()))
-{
-$user=Auth::user()->id;
+        if(Auth::check())
+        {
+            $user_id = Auth::user()->id;
+        }
+        else
+        {
+            $user_id = 0;
+        }
 
-    $aProducts = DB::select('   SELECT p.*,
-    MIN(i.image) image
-FROM products p
-LEFT JOIN images i ON p.id = i.product_id
-LEFT JOIN favoritos f ON p.id = f.product_id
-where i.deleted_at is null
-and f.user_id = "'.$user.'" 
-and p.visible = 1
-and p.deleted_at is  null
-and p.news = 1
-GROUP BY p.id');
-}
-else
-{
-
-    $aProducts = DB::select('   SELECT p.*,
-    MIN(i.image) image
-FROM products p
-LEFT JOIN images i ON p.id = i.product_id
-where i.deleted_at is null
-and p.visible = 1
-and p.deleted_at is  null
-and p.news = 1
-GROUP BY p.id');
-}
-
-
-
-
-
+        $aProducts = DB::select('SELECT p.*,
+        MIN(i.image) image,(f.product_id) favoritos
+    FROM products p
+    LEFT JOIN images i ON p.id = i.product_id
+    LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
+    where i.deleted_at is null
+    and p.visible = 1
+    and p.deleted_at is  null
+    and p.news = 1
+    GROUP BY p.id;');
 
 
         $aImage = ImageModel::select('products.*', 'images.image as image_dir')->leftjoin('products','products.id','=','images.product_id')

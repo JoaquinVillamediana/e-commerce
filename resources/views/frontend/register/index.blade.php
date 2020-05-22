@@ -22,7 +22,7 @@ enctype="multipart/form-data">
 <div class="row">
 
     <div class="form-group col col-md-3 offset-md-3">
-        <label class="text-light">Nombre</label>
+        <label style="color: #37474f">Nombre</label>
         <input id="name" name="name" maxlength="60"
             class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
             placeholder="Nombre" value="{{ old('name') }}">
@@ -34,7 +34,7 @@ enctype="multipart/form-data">
     </div>
 
     <div class="form-group col col-md-3 ">
-        <label class="text-light">Apellido</label>
+        <label style="color: #37474f">Apellido</label>
         <input id="last_name" name="last_name" maxlength="60"
             class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
             placeholder="Apellido" value="{{ old('last_name') }}">
@@ -50,7 +50,7 @@ enctype="multipart/form-data">
 </div>
 <div class="row">
 <div class="form-group col col-md-3 offset-md-3">
-    <label class="text-light">Email</label>
+    <label style="color: #37474f">Email</label>
     <input id="email" name="email" maxlength="60"
         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
         placeholder="Email" value="{{ old('email') }}">
@@ -68,7 +68,7 @@ enctype="multipart/form-data">
 
 
 <div class="form-group col col-md-3 ">
-    <label class="text-light">Teléfono</label>
+    <label style="color: #37474f">Teléfono</label>
     <input id="phone" name="phone" maxlength="60"
         class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
         placeholder="Teléfono" value="{{ old('phone') }}">
@@ -81,7 +81,7 @@ enctype="multipart/form-data">
 </div>
 <div class="row">
 <div class="form-group col-md-6 offset-md-3" id="box_password">
-    <label class="text-light">Contraseña</label>
+    <label style="color: #37474f">Contraseña</label>
     <input type="password" id="password" name="password"
         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
         placeholder="Password" value="{{ old('password') }}">
@@ -94,7 +94,7 @@ enctype="multipart/form-data">
 </div>
 <div class="row">
     <div class="form-group col-md-6 offset-md-3" id="box_password">
-        <label class="text-light">Confirmar Contraseña</label>
+        <label style="color: #37474f">Confirmar Contraseña</label>
         <input type="password" id="verif_password" name="verif_password"
             class="form-control{{ $errors->has('verif_password') ? ' is-invalid' : '' }}"
             placeholder="Repite tu Password" value="{{ old('verif_password') }}">
