@@ -33,7 +33,7 @@ Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
 
-Route::get('sales', 'frontend\SalesController@index')->name('sales');
+
 
 
 

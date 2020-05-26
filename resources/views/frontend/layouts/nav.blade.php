@@ -36,13 +36,7 @@
                   
               </ul>
           </li>
-          <li class="nav-item border-bottom border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
-            <a class="nav-link" href="{{route('sales')}}">
-              <i class="fas fa-tags"></i></i><span class="ml-2 nav-link-text"  >Ofertas</span>
-            </a>
-        </li>
-      
-        
+               
           
 
 
