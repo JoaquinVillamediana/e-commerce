@@ -6,7 +6,7 @@ use App\Models\ProductsModel;
 use App\Models\ImageModel;
 use Illuminate\Http\Request;
 use App\Models\SubModel;
-
+use App\Models\SliderModel;
 use DB;
 use Auth;
 class HomeController extends Controller
@@ -67,9 +67,10 @@ class HomeController extends Controller
         ->where('products.news', '=', '1')
         ->get();
         
+        $aSlider = SliderModel::get();
        
 
-        return view('frontend/home.index',compact('aCategories','aSubCategories','aProducts','aImage'));
+        return view('frontend/home.index',compact('aCategories','aSubCategories','aProducts','aImage','aSlider'));
     }
 
     public function product($id)

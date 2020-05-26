@@ -27,7 +27,7 @@ class ProductsController extends Controller {
     }
 
     public function store(Request $request) {
-
+        
         $aValidations = array(
             
             'name' => 'required|max:60',

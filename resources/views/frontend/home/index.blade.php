@@ -18,30 +18,51 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_HirsSZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player>
 </div>
-
+@if (!empty($aSlider))
 <!--Carousel Wrapper-->
 <div id="carousel-example-2" class="mt-4 carousel slide carousel-fade" data-ride="carousel">
   <!--Indicators-->
+  @if (count($aSlider) > 1)
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-2" data-slide-to="1"></li>
-    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+    <?php $i = 0;?>
+    @foreach ($aSlider as $slider)
+    <li data-target="#carousel-example-2" data-slide-to="{{$i}}" @if($slider == $aSlider[0]) class="active" @endif></li>
+    <?php $i++; ?>
+    @endforeach
   </ol>
+  @endif
   <!--/.Indicators-->
   <!--Slides-->
   <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
+    @foreach ($aSlider as $slider)
+        
+    
+    <div class="carousel-item @if($slider == $aSlider[0])active @endif">
+      <a href="">
       <div class="view">
-        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg"
-          alt="First slide">
+        <img class="d-block w-100" src="/uploads/slider/{{$slider->image}}"
+          alt="">
         <div class="mask rgba-black-light"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">PROMOCION 1</h3>
-        <p>Comentario</p>
+        <style>
+          .alert-transp{
+  background-color:rgba(0,0,0,.5) ;
+    border-color: rgba(0,0,0,.8);
+    padding: 0;
+}
+        </style>
+          
+       <div class="alert alert-transp"> 
+        <h3 class="h3-responsive">{{$slider->name}}</h3>
+        <p>{{$slider->description}}</p>
+      
       </div>
+      </div>
+    </a>
     </div>
-    <div class="carousel-item">
+    @endforeach
+    {{-- <div class="carousel-item">
       <!--Mask color-->
       <div class="view">
         <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg"
@@ -64,7 +85,7 @@
         <h3 class="h3-responsive">PROMOCION 3</h3>
         <p>Comentario</p>
       </div>
-    </div>
+    </div> --}}
   </div>
   <!--/.Slides-->
   <!--Controls-->
@@ -82,6 +103,7 @@
   
 </div>
 <!--/.Carousel Wrapper-->
+@endif
 </div>
   <div class="row mt-4">
 

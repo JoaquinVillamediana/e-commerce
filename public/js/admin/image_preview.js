@@ -4,7 +4,7 @@ function setImagePreview(input, id) {
     $('#' + id + '_error_lrv').hide();
     $('#preview_' + id).hide();
     $('#' + id).removeClass('is-invalid');
-    alert("sad");
+ 
     var imageExtensions = ["png", "gif", "jpg", "jpeg", "mp4"];
 
     if (input.files && input.files[0]) {

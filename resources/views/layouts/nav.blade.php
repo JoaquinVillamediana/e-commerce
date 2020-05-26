@@ -33,6 +33,14 @@
                 </a>
             </li>
 
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Products">
+                <a class="nav-link" href="{{ route('slider.index') }}">
+                    <i class="far fa-images"></i>
+                    <span class="nav-link-text">Slider Promos</span>
+                </a>
+            </li>
+
            
             
 
