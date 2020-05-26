@@ -56,10 +56,10 @@
             </style>
         </div>
         
-        <div class="text-center mt-3 col-12 col-md-2 offset-md-5">
+        <div class="text-center mt-3 col-12 col-md-4 offset-md-4">
             
-            <a id="createAc" class="text-secondary"  href="{{ route('register.index') }}">Crear Cuenta</a>
-           
+            <p style="font-size: 1rem" class="text-secondary">Todav&iacute;a no tienes cuenta? <u> <a id="createAc" class="text-secondary"  href="{{ route('register.index') }}">Crear Cuenta</a></u>
+            </p>
         </div>
     </form>
 
