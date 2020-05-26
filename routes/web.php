@@ -33,7 +33,7 @@ Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
 
-Route::get('sales', 'frontend\SalesController@index')->name('sales');
+
 
 
 
@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function () {
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
             Route::post('product_visible', 'admin\ProductsController@setProductVisible')->name('product_visible');
            
-            
+        
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
         });
