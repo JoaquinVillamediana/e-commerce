@@ -30,6 +30,7 @@
                                 <th>Link</th>
                                 <th>Imagen</th>
                                 <th>Publicado</th>
+                                <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
@@ -44,6 +45,8 @@
                                 <td>{{$slider->link}}</td>
                                 <td><img src="/uploads/slider/{{$slider->image}}" style="width:100px;margin:0 auto;" alt=""></td>
                                 <td>{{$slider->created_at}}</td>
+                                <td><a class="btn btn-primary btn-circle" href="{{action('admin\SliderController@edit',$slider->id)}}"><i class="fa fa-list"></i></a></td>
+
                                 <td>
                                 <form id="deleteForm_{{$slider->id}}" action="{{action('admin\SliderController@destroy', $slider->id)}}" method="POST">
                                         {{csrf_field()}}
