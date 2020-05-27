@@ -36,6 +36,16 @@
                                     <strong>Debe ingresar una descripcion valido.</strong>
                                 </span>
                                 @endif
+                            </div>       
+                            
+                            <div class="form-group">
+                                <label>Link</label>
+                                <input id="link" name="link" maxlength="255" class="form-control{{ $errors->has('link') ? ' is-invalid' : '' }}" placeholder="Link:" value="{{ old('link') }}">
+                                @if ($errors->has('link'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debe ingresar un link valido.</strong>
+                                </span>
+                                @endif
                             </div>         
                         
                             <label for="">Imagen</label>

@@ -27,6 +27,7 @@
                                 <th>Id</th>
                                 <th>Nombre</th>                                
                                 <th>Descripcion</th>
+                                <th>Link</th>
                                 <th>Imagen</th>
                                 <th>Publicado</th>
                                 <th>Eliminar</th>
@@ -40,6 +41,7 @@
                                 <td>{{ $slider->id }}</td>
                                 <td>{{ $slider->name }}</td>
                                 <td>{{ $slider->description }}</td>
+                                <td>{{$slider->link}}</td>
                                 <td><img src="/uploads/slider/{{$slider->image}}" style="width:100px;margin:0 auto;" alt=""></td>
                                 <td>{{$slider->created_at}}</td>
                                 <td>

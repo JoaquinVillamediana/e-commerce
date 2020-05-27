@@ -29,7 +29,8 @@ class SliderController extends Controller {
             
             'name' => 'required|max:45',
             'description' => 'required|max:45',
-            'slider_image' => 'required|max:10240|mimes:jpeg,png,jpg,gif'
+            'slider_image' => 'required|max:10240|mimes:jpeg,png,jpg,gif',
+            'link' => 'max:255'
             
            
         );
@@ -55,7 +56,7 @@ class SliderController extends Controller {
         $destinationPath = 'uploads/slider';
         $image->move($destinationPath, $storeImageName);
 
-        $data=array('image' => $storeImageName, 'name' => $request['name'],'description' => $request['description'],'created_at' => now() ,'updated_at' => now());
+        $data=array('link' => $request['link'],'image' => $storeImageName, 'name' => $request['name'],'description' => $request['description'],'created_at' => now() ,'updated_at' => now());
         SliderModel::insert($data);
 
         return redirect()->route('slider.index')->with('success', 'Slider actualizado satisfactoriamente');
@@ -66,69 +67,20 @@ class SliderController extends Controller {
     }
 
     public function edit($id) {
-      //  $aObj = CategoriesModel::select('title','id')->get();
-        $oCate = CategoriesModel::find($id);
-       // $aProvinces = ProvincesModel::get();
-        return view('admin/categories.edit', compact('oCate'));
+
     }
 
     public function update(Request $request, $id) {
-        
-        $aValidations = array(
-            
-            'name' => 'required|max:60',
-            'description' => 'required|max:150'
-                   );
-
-        
-       
-
-        $this->validate($request, $aValidations);
-
-        $oCate = CategoriesModel::find($id);
-          
-        $request['name'] = ucwords($request['name']);
-        $request['description'] = ucwords($request['description']);
-
-if(!empty($request['prom'])){
-    $request['prom'] = ucwords($request['prom']);
-    $oCate->prom = $request['prom'];
-}
-
-        
-        $oCate->name = $request['name'];
-        $oCate->description = $request['description'];
-               
-        $oCate->save();
-
-        return redirect()->route('categories.index')->with('success', 'Categoria actualizada satisfactoriamente');
+  
     }
 
     public function destroy($id) {
 
-        CategoriesModel::find($id)->delete();
+        SliderModel::find($id)->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Categoria eliminada satisfactoriamente');
+        return redirect()->route('slider.index')->with('success', 'Categoria eliminada satisfactoriamente');
     }
 
-    public function setCategoryVisible(Request $request){
-        $aReturn = array();
-        $oCategory = CategoriesModel::find($request['categoryId']);
-
-        if (empty($oCategory->visible)) {
-            $oCategory->visible = 1;
-            $oCategory->visible_at = date('Y-m-d H:i:s');
-        } else {
-            $oCategory->visible = 0;
-        }
-
-        $oCategory->save();
-
-        $aReturn['categoryId'] = $request['categoryId'];
-        $aReturn['visible'] = $oCategory->visible;
-
-        echo json_encode($aReturn);
-    }
    
 
 }

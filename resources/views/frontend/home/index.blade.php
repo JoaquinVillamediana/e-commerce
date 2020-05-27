@@ -38,7 +38,7 @@
         
     
     <div class="carousel-item @if($slider == $aSlider[0])active @endif">
-      <a href="">
+      <a href="{{$slider->link}}">
       <div class="view">
         <img class="d-block w-100" src="/uploads/slider/{{$slider->image}}"
           alt="">
