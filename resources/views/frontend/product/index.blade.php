@@ -28,7 +28,7 @@
           @if ($image->type==0)
           <img class="d-block w-100" style="width: 100%;max-height:530px;object-fit:cover" src="/uploads/products/{{$image->image}}" alt="First slide">
           @else
-          <video class="d-block w-100" style="width:100%;" src="/uploads/products/{{$image->image}}" loop autoplay >
+          <video class="d-block w-100" style="width:100%;" src="/uploads/products/{{$image->image}}" loop autoplay muted >
             Your browser does not support HTML5 video.
           </video>
           @endif
