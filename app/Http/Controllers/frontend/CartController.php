@@ -30,7 +30,7 @@ class CartController extends Controller {
         MIN(i.image) image
         ,(categories.prom) prom
     FROM products p
-    LEFT JOIN categories ON p.category_id = categories.id
+    LEFT JOIN categories ON (p.category_id = categories.id and  categories.deleted_at is null)
         LEFT JOIN images i ON p.id = i.product_id
          LEFT JOIN carrito c ON p.id = c.product_id 
         where i.deleted_at is null
@@ -38,7 +38,7 @@ class CartController extends Controller {
         and p.deleted_at is  null
         and p.visible = 1
         and c.status = 1
-        and categories.deleted_at is null
+        
         GROUP BY c.id');
 
       

@@ -15,6 +15,9 @@
             @if ($product->prom != null)
             <span class="{{ $product->news == 1 ? ' secondPill' : 'firstPill' }} badge badge-warning">{{$product->prom}}% OFF</span>
             @endif
+            @if ($product->stock < 1)
+                <span class="@if($product->news == 1 && $product->prom != null) thirdPill @elseif($product->news == 1 || $product->prom != null) secondPill @else firstPill @endif badge badge-info">SIN STOCK</span>
+            @endif
             <a  href="{{route('product',$product->id)}}" id="productBox">
               
             <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">

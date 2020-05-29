@@ -30,7 +30,7 @@ class FavoritesController extends Controller {
         MIN(i.image) image
         ,(categories.prom) prom
     FROM products p
-    LEFT JOIN categories ON p.category_id = categories.id
+    LEFT JOIN categories ON (p.category_id = categories.id and categories.deleted_at is null)
         LEFT JOIN images i ON p.id = i.product_id
          LEFT JOIN favoritos c ON p.id = c.product_id 
         where i.deleted_at is null
