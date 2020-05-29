@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\SubModel;
-
 use DB;
 
-class RegisterController extends Controller {
+class NewPasswordController extends Controller {
 
     public function index() {
 
@@ -30,7 +29,7 @@ sub_categoriess.deleted_at is null
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
-        return view('frontend/register.index',compact('aCategories','aSubCategories'));
+        return view('frontend/login.resetpassword',compact('aCategories','aSubCategories'));
     }
 
     public function store(Request $request) {
@@ -71,7 +70,7 @@ sub_categoriess.deleted_at is null
         $request['phone'] = ucwords($request['phone']);
         $request['last_name'] = ucwords($request['last_name']);
 
-      
+        User::create($request->all());
 
         $oUser = new User();
         
@@ -83,12 +82,11 @@ sub_categoriess.deleted_at is null
         $oUser->last_name = $request['last_name'];
         $oUser->password = $request['password'];
         $oUser->save();
-       
+
         return redirect()->route('home')->with('success', 'Usuario creado correctamente');
         
     }
 
-   
     
 
 }

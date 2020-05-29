@@ -19,12 +19,17 @@ Route::get('/admin', function () {
     return redirect('/admin/user');
 });
 
-Auth::routes();
+
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes(['verify' => true]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('agregarfoto', 'admin\ProductsController@agregarfoto');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::resource('loguser', 'frontend\LoguserController');
+Route::resource('reset', 'frontend\NewPasswordController');
 Route::resource('register', 'frontend\RegisterController');
 
 
@@ -32,7 +37,6 @@ Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
-
 
 
 
