@@ -19,10 +19,6 @@ Route::get('/admin', function () {
     return redirect('/admin/user');
 });
 
-
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
 Auth::routes(['verify' => true]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('agregarfoto', 'admin\ProductsController@agregarfoto');
