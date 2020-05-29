@@ -38,13 +38,16 @@ else
 }
         $aProducts = DB::select(' SELECT p.*,
         MIN(i.image) image,(f.product_id) favoritos
-   FROM products p
+        ,(categories.prom) prom
+    FROM products p
+    LEFT JOIN categories ON (p.category_id = categories.id and categories.deleted_at is null)
 LEFT JOIN images i ON p.id = i.product_id
 LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
 where i.deleted_at is null
 and p.name LIKE "%' . $text . '%"
 and p.deleted_at is null
 and p.visible = 1
+
 GROUP BY
 p.id
 ');

@@ -7,20 +7,33 @@
 
     
     <div class="col">
-          
+     
           <div id="card" class="card mb-5" style="width: 18rem;">
+            @if ($product->news == 1)
+            <span  class="firstPill badge  badge-danger">NUEVO</span>
+            @endif
+            @if ($product->prom != null)
+            <span class="{{ $product->news == 1 ? ' secondPill' : 'firstPill' }} badge badge-warning">{{$product->prom}}% OFF</span>
+            @endif
+            @if ($product->stock < 1)
+                <span class="@if($product->news == 1 && $product->prom != null) thirdPill @elseif($product->news == 1 || $product->prom != null) secondPill @else firstPill @endif badge badge-info">SIN STOCK</span>
+            @endif
             <a  href="{{route('product',$product->id)}}" id="productBox">
               
             <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
-            @if ($product->news == 1)
-            <span class=" ml-3 badge badge-pill badge-danger">NUEVO</span>
-            @endif
+            
+           
             <button id="favBtn_{{$product->id}}" style="@if(empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
             <button id="favBtnActive_{{$product->id}}" style="@if(!empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
             <div class="card-body mt-0">
               <h5 class="card-title">{{$product->name}}</h5>
+              @if ($product->prom != null)
+              <p ><span class="card-text text-danger"><del>${{$product->price}}</del> </span>
+              <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
+              </p>   
+              @else
               <p class="card-text text-dark">${{$product->price}}</p>
-              
+              @endif
             </div>
           </a>
           </div>

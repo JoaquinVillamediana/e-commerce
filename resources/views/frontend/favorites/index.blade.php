@@ -35,7 +35,13 @@
 
     <div class="card m-3">
 
-      <h5 class="card-header">${{$product->price}}</h5>
+      <h5 class="card-header">@if ($product->prom != null)
+        <p ><span class="card-text text-danger"><del>${{$product->price}}</del> </span>
+        <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
+        </p>   
+        @else
+        <p class="card-text text-dark">${{$product->price}}</p>
+        @endif</h5>
        <div class="card-body">
         <h5 class="card-title"> <a href="{{route('product',$product->id)}}">{{$product->name}}</a></h5>
         <p class="card-text">{!! $product->description !!}</p>
