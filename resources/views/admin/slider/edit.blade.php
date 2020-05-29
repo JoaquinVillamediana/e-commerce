@@ -61,8 +61,9 @@
 
                             @if (!empty($oSlider->image))
                             <div class="col-12 text-center  border-bottom"><h5>Imagen</h5></div> 
-                            <img style="width: 200px" src="/uploads/slider/{{$oSlider->image}}" alt="">
-
+                            <div class="col 12">
+                            <img style="width: 200px" class="m-auto" src="/uploads/slider/{{$oSlider->image}}" alt="">
+                            </div>
                             <div class="col-12 text-center  border-bottom"><h5>Nueva Imagen</h5></div> 
 
                             <input type="file" class="form-control {{ $errors->has('slider_image') ? ' is-invalid' : '' }}" name="slider_image" id="slider_image">
@@ -85,8 +86,8 @@
 
                    
 
-                            <button type="submit" class="btn btn-primary">Editar slider</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                            <button type="submit" class="mt-3 btn btn-primary">Editar slider</button>
+                            <button type="reset" class="mt-3  btn btn-default">Reset</button>
                         </form>
 
 

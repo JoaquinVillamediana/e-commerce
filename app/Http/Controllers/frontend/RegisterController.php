@@ -83,7 +83,7 @@ sub_categoriess.deleted_at is null
         $oUser->password = $request['password'];
         $oUser->save();
 
-        return redirect()->route('home.index')->with('success', 'Usuario creado correctamente');
+        return redirect('/home')->with('success', 'Usuario creado correctamente');
         
     }
 

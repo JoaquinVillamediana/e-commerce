@@ -33,10 +33,19 @@
         
     <body class="bg-blue-dark" id="page-top"> 
         @endempty
-
-
-        <div class="container" style="padding-top:55px !important">
-        @yield('content')
+        <style>
+            @media (orientation:landscape)
+            {
+                .nav-margin{
+                margin-left: 250px
+            }
+            }
+            
+        </style>
+        <div class="nav-margin">
+            <div class="container" style="padding-top:55px !important">
+            @yield('content')
+            </div>
         </div>
         @include('frontend/layouts.nav')
         <!-- Bootstrap core JavaScript-->

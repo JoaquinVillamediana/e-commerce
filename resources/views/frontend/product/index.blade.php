@@ -4,11 +4,17 @@
 <div class="mt-5 pb-5 container-fluid">
 @if(!empty($oProduct))
       
-
+@foreach($oProduct as $product)
 <div class="card">
-  <h5 class="card-header">${{$oProduct->price}}</h5>
+  <h5 class="card-header">@if ($product->prom != null)
+    <span class="card-text text-danger"><del>${{$product->price}}</del> </span>
+    <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
+       
+    @else
+    <span class="card-text text-dark">${{$product->price}}</span>
+    @endif</h5>
   <div class="card-body">
-    <h5 class="card-title">{{$oProduct->name}}</h5>
+    <h5 class="card-title">{{$product->name}}</h5>
 
     {{-- Carrousel IN --}}
 
@@ -43,16 +49,16 @@
     </div>
 
     {{-- cARROUSEL Out --}}
-    <p class="card-text">{!! $oProduct->description !!}</p>
+    <p class="card-text">{!! $product->description !!}</p>
     @if(empty($aCart))
-    <a href="{{route('cartAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Añadir al carrito</a>
+    <a href="{{route('cartAction',$product->id)}}" class="btn mt-2 btn-primary">Añadir al carrito</a>
     @else
-    <a href="{{route('cartAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Eliminar del carrito</a>
+    <a href="{{route('cartAction',$product->id)}}" class="btn mt-2 btn-primary">Eliminar del carrito</a>
     @endif
     @if(empty($aFavorites))
-    <a href="{{route('favoritesAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Añadir al favoritos</a>
+    <a href="{{route('favoritesAction',$product->id)}}" class="btn mt-2 btn-primary">Añadir al favoritos</a>
     @else
-    <a href="{{route('favoritesAction',$oProduct->id)}}" class="btn mt-2 btn-primary">Eliminar del favoritos</a>
+    <a href="{{route('favoritesAction',$product->id)}}" class="btn mt-2 btn-primary">Eliminar del favoritos</a>
     @endif
 
 
@@ -60,7 +66,7 @@
   </div>
 </div>
 
-
+@endforeach
     @endif
 
 

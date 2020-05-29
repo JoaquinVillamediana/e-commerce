@@ -33,13 +33,16 @@ class SubController extends Controller {
 
         $aProducts = DB::select('   SELECT p.*,
         MIN(i.image) image,(f.product_id) favoritos
-        FROM products p
+        ,(categories.prom) prom
+    FROM products p
+    LEFT JOIN categories ON p.category_id = categories.id
         LEFT JOIN images i ON p.id = i.product_id
         LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
         where i.deleted_at is null
         and p.subcategory_id = "'.$id.'"
         and p.deleted_at is  null
         and p.visible = 1
+        and categories.deleted_at is null
         GROUP BY p.id');
 
         $sub_category_name = SubModel::select('sub_categories.name')

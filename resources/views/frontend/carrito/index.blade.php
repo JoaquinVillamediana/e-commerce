@@ -34,7 +34,13 @@
 
 <div class="card mt-3 mb-3">
 
-  <h5 class="card-header">${{$product->price}}</h5>
+  <h5 class="card-header">@if ($product->prom != null)
+    <span class="card-text text-danger"><del>${{$product->price}}</del> </span>
+    <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
+       
+    @else
+    <span class="card-text text-dark">${{$product->price}}</span>
+    @endif</h5>
   <div class="card-body">
     <h5 class="card-title"> <a href="{{route('product',$product->id)}}">{{$product->name}}</a></h5>
     <p class="card-text">{!! $product->description !!}</p>
@@ -43,7 +49,15 @@
   
 </div>
 </div>
-        <?php $total+=$product->price?>
+        <?php
+        if($product->prom != null)
+        {
+          $total += $product->price * ($product->prom / 100);
+        }
+        else {
+          $total+=$product->price;
+        }
+        ?>
               @endforeach
   <div class="col-md-8 col-12 offset-md-2 mt-3 border-top border-dark pt-2">
     <h5 class="text-center">Total: ${{$total}}</h5>

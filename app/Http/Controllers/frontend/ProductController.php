@@ -41,7 +41,23 @@ class ProductController extends Controller {
         ->where('product_id','=',$id)
         ->first();
         
-        $oProduct = ProductsModel::where('id','=',$id)->first();
+        // $oProduct = ProductsModel::where('id','=',$id)->first();
+        $oProduct = DB::select('   SELECT p.*,
+        MIN(i.image) image
+        ,(categories.prom) prom
+    FROM products p
+    LEFT JOIN categories ON p.category_id = categories.id
+        LEFT JOIN images i ON p.id = i.product_id
+         LEFT JOIN favoritos c ON p.id = c.product_id 
+        where i.deleted_at is null
+       and  c.user_id = "'.$user.'"
+       and p.id = "'.$id.'"
+       and c.deleted_at is null
+        and p.deleted_at is  null
+        and p.visible = 1
+        and c.status = 1
+        GROUP BY c.id');
+
         
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM    categories categoriess
