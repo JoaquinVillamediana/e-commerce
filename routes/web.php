@@ -19,7 +19,7 @@ Route::get('/admin', function () {
     return redirect('/admin/user');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('agregarfoto', 'admin\ProductsController@agregarfoto');
 

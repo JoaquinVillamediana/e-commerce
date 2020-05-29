@@ -41,7 +41,13 @@
         <h5 class="d-inline-block"><span class="font-weight-bold"> Apellido:</span> {{Auth::user()->last_name}} </h5><input style="width:30%;display:none !important;" class="d-inline-block ml-4 form-control {{ $errors->has('last_name') ? ' is-invalid' : '' }}"  name="last_name" id="last_name"     type="text">
         </div>
         <div class="col-12 mt-3">
-        <h5 class=""><span class="font-weight-bold"> E-mail: </span> {{Auth::user()->email}}</h5>
+        <h5 class=""><span class="font-weight-bold"> E-mail: </span> {{Auth::user()->email}}
+        @if (Auth::user()->email_verified_at != null)
+        <i style="color: #238AE6" class="fa fa-check-circle" aria-hidden="true"></i>
+        @else 
+        <a href="../email/verify">Verificar E-mail</a>
+        @endif
+        </h5>
       </div>
       <div class="col-12 mt-3">
         <h5 class="d-inline-block"><span class="font-weight-bold"> Telefono: </span> {{Auth::user()->phone}}</h5><input  style="width:30%;display:none !important;" class="d-inline-block ml-4 form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}"  name="phone" id="phone" type="number">
