@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
 use App\Models\SubModel;
 use DB;
+use Sentinel;
+use Mail;
 
-class NewPasswordController extends Controller {
 
-    public function index() {
+class ForgotPasswordController extends Controller {
+
+    public function forgot() {
 
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM    categories categoriess
@@ -87,6 +90,40 @@ sub_categoriess.deleted_at is null
         
     }
 
+
+
+    public function password(Request $request)
+    {
+       $user = User::whereEmail($request->email)->first();
+
+       if(count($user) < 1)
+       {
+           return redirect()->back()->with(['error' => 'Email not exist']);
+       } 
+
+    $user = Sentinel::findById($user->id);
+    $reminder = Reminder::exists($user) ? : Reminder::create($user);
+    $this->sendEmail($user, $reminder->code);
+
+    return redirect()->back()->with(['succes' => 'Reset code sent']);
+
+      
+
+    }
     
+
+    public function sendEmail($user, $code)
+    {
+        Mail::send('email.forgot',
+        [
+          'user'  => $user, 'code'  => $code
+        ],
+        function($message) use ($user){
+            $message->to($user->email);
+            $message->subject(" $user->name", "reset your password");
+        }
+        );
+
+    }
 
 }

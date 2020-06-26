@@ -4,13 +4,13 @@
 <div class="container mt-5">
     <h2 class="text-center justify-content-center mt-5 mb-3" style="color: #37474F">Recuperacion de contraseña</h2>
 
-    <form method="POST" action="{{ route('login') }}" style="display:none" id="form-login" class="row mt-4">
+    <form method="POST" action="{{ url('/forgot_password') }}" style="display:none" id="form-login" class="row mt-4">
         {{csrf_field()}}
         
         <div class="col-md-7  col-12 m-auto">
             <div class="form-group">
                 <label style="color: #37474f" for="exampleInputEmail1">Nueva contraseña</label>
-                <input id="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  aria-describedby="emailHelp">
+                <input id="email" type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"  aria-describedby="emailHelp">
                 <small id="emailHelp" class=" text-light form-text text-muted">Nunca compartiremos tus datos personales.</small>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
@@ -21,19 +21,7 @@
         </div>
   
         
-        <div class="col-md-7  col-12 m-auto">
-            <div class="form-group">
-                <label style="color: #37474f"  for="exampleInputPass1">Confirmar nueva contraseña</label>
-                <input id="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  aria-describedby="emailHelp">
-                <small id="emailHelp" class=" text-light form-text text-muted">Nunca compartiremos tus datos personales.</small>
-                @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                    @endif
-            </div>
-
-        </div>
+ 
    
         <div class=" col-12 col-md-2 offset-md-5">
             

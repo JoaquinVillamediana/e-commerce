@@ -33,6 +33,8 @@ Route::get('category/{id}', 'frontend\CateController@index')->name('cate');
 Route::get('subcategory/{id}', 'frontend\SubController@index')->name('sub');
 Route::get('product/{id}', 'frontend\ProductController@index')->name('product');
 Route::get('search', 'frontend\SearchController@index')->name('search');
+Route::get('/forgot_password', 'frontend\ForgotPasswordController@forgot');
+Route::post('/forgot_password', 'frontend\ForgotPasswordController@password');
 
 
 

@@ -32,6 +32,12 @@ class HeaderController extends Controller
 
       $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
       ->get();
+
+
+
+
+    
+
     }
 
     /**
@@ -39,5 +45,6 @@ class HeaderController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
 
 }

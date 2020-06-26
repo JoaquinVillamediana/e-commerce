@@ -64,7 +64,7 @@
 
         <div class="text-center mt-3 col-12 col-md-4 offset-md-4">
             
-            <p style="font-size: 1rem" class="text-secondary"> ¿Has olvidado tu contraseña? <u> <a id="createAc" class="text-secondary"  href="{{ route('reset.index') }}">Recuperar contraseña</a></u>
+            <p style="font-size: 1rem" class="text-secondary"> ¿Has olvidado tu contraseña? <u> <a id="createAc" class="text-secondary"  href="{{ url('/forgot_password') }}">Recuperar contraseña</a></u>
             </p>
         </div>
 
