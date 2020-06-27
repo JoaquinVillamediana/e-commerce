@@ -51,7 +51,7 @@ class ProductController extends Controller {
     where i.deleted_at is null
     and p.visible = 1
     and p.deleted_at is  null
-    and p.news = 1
+    
     and p.id = "'.$id.'"
     
     GROUP BY p.id;');
@@ -76,6 +76,8 @@ class ProductController extends Controller {
         $aImage = ImageModel::where('images.product_id', '=', $id)
         ->get();
        
+        // var_dump($oProduct);
+        // die;
 
         
         return view('frontend/product.index',compact('aCategories','aSubCategories','oProduct','aImage', 'aCart','aFavorites'));
