@@ -131,6 +131,7 @@
                             <button type="reset" class="btn btn-default">Reset</button>
                         </div>
                         </form>
+                        
                         <div class="row mt-5">
                             @if (!empty($aImages))
                             <div class="col-12 text-center  border-bottom"><h5>Fotos del Producto</h5></div>
@@ -141,6 +142,7 @@
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <a href="#" data-toggle="modal" class="font-weight-bold" onclick="openDelModal({{$image->id}});" style="color:#343A40;text-decoration:none;font-size:25px;position: absolute;top:0;left:180px;z-index:2;">×</a>
+                                        
                                         @if ($image->type==0)
                                     <img style="width: 200px" src="/uploads/products/{{$image->image}}" alt="">
                                     @endif

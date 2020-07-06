@@ -45,7 +45,7 @@
         @if (Auth::user()->email_verified_at != null)
         <i style="color: #238AE6" class="fa fa-check-circle" aria-hidden="true"></i>
         @else 
-        <a href="../email/verify">Verificar E-mail</a>
+        {{-- <a href="../email/verify">Verificar E-mail</a> --}}
         @endif
         </h5>
       </div>

@@ -9,11 +9,11 @@
     <div class="col">
      
           <div id="card" class="card mb-5" style="width: 18rem;">
-            @if ($product->news == 1)
-            <span  class="firstPill badge  badge-danger">NUEVO</span>
-            @endif
+            
             @if ($product->prom != null)
-            <span class="{{ $product->news == 1 ? ' secondPill' : 'firstPill' }} badge badge-warning">{{$product->prom}}% OFF</span>
+            <div class="discount">
+            <span class="">{{$product->prom}}%</span>
+            </div>
             @endif
             @if ($product->stock < 1)
                 <span class="@if($product->news == 1 && $product->prom != null) thirdPill @elseif($product->news == 1 || $product->prom != null) secondPill @else firstPill @endif badge badge-info">SIN STOCK</span>
@@ -25,11 +25,15 @@
            
             <button id="favBtn_{{$product->id}}" style="@if(empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
             <button id="favBtnActive_{{$product->id}}" style="@if(!empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
-            <div class="card-body mt-0">
+            <div class="card-body mt-0 pt-1">
+                @if ($product->news == 1)
+                <span  class="new font-weight-bold">NUEVO</span>
+                @endif
               <h5 class="card-title">{{$product->name}}</h5>
               @if ($product->prom != null)
-              <p ><span class="card-text text-danger"><del>${{$product->price}}</del> </span>
-              <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
+              <p >
+                <span class=" text-danger">${{$product->price * ($product->prom / 100)}}</span>  
+                <span class="card-text"><del>${{$product->price}}</del> </span>
               </p>   
               @else
               <p class="card-text text-dark">${{$product->price}}</p>

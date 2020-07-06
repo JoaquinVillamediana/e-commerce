@@ -31,7 +31,7 @@
         @endisset
         @empty($bodyclass)
         
-    <body class="bg-blue-dark" id="page-top"> 
+    <body class="bg-white" id="page-top"> 
         @endempty
         <style>
             @media (orientation:landscape)

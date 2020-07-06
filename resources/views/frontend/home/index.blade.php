@@ -2,6 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/frontend/products.css">
+<link rel="stylesheet" href="/css/frontend/home.css">
 <div class="mt-2 container-fluid">
 
 {{-- 
@@ -11,22 +12,17 @@
 
     <div class="row pt-5 justify-content-center text-right">
 
-<div class="col col-md-7 mb-2 pt-3 pr-1">
-  <h2 class="text-right">PROMOCIONES</h2>
-</div>
-<div class="col pl-0 mb-2">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_HirsSZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player>
-</div>
+
+
 @if (!empty($aSlider))
 <!--Carousel Wrapper-->
-<div id="carousel-example-2" class="mt-4 carousel slide carousel-fade" data-ride="carousel">
+<div id="carousel-promo-2" class="mt-4 carousel slide carousel-fade" data-ride="carousel">
   <!--Indicators-->
   @if (count($aSlider) > 1)
   <ol class="carousel-indicators">
     <?php $i = 0;?>
     @foreach ($aSlider as $slider)
-    <li data-target="#carousel-example-2" data-slide-to="{{$i}}" @if($slider == $aSlider[0]) class="active" @endif></li>
+    <li data-target="#carousel-promo-2" data-slide-to="{{$i}}" @if($slider == $aSlider[0]) class="active" @endif></li>
     <?php $i++; ?>
     @endforeach
   </ol>
@@ -89,14 +85,24 @@
   </div>
   <!--/.Slides-->
   <!--Controls-->
-  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <div class="view-now">
+    <div class="arrow">
+      <i class="fas fa-arrow-right"></i>
+    </div>
+    <span>Ver Ahora</span>
+  </div>
+  <div class="btn-prev">
+    <a class="carousel-control-prev" href="#carousel-promo-2" role="button" data-slide="prev">
+      <span><i class="fas fa-arrow-left"></i></span>
+      <span class="sr-only">Previous</span>
+    </a>
+  </div>
+  <div class="btn-next">
+  <a class="carousel-control-next" href="#carousel-promo-2" role="button" data-slide="next">
+    <span><i class="fas fa-arrow-right"></i></span>
     <span class="sr-only">Next</span>
   </a>
+</div>
   <!--/.Controls-->
 
   
