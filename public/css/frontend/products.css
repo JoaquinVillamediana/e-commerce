@@ -13,7 +13,10 @@ background-color: #fff;
   transform: scale(1.1);
   transition: all .5s ease ;
 } */
+#card{
+  border: none;
 
+}
 #card img{
   height:  250px;
   object-fit: cover;
@@ -70,20 +73,4 @@ background-color: #fff;
   color: #fff;
   padding: 5px 15px;
   font-size: 15px;
-}
-.card .secondPill{
-  
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  position: absolute !important;
-  top: -16px !important;
-  left: 60px !important;
-}
-
-.card .thirdPill{
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  position: absolute !important;
-  top: -16px !important;
-  left: 125px !important;
 }

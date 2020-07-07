@@ -34,7 +34,7 @@
         
     
     <div class="carousel-item @if($slider == $aSlider[0])active @endif">
-      <a href="{{$slider->link}}">
+      
       <div class="view">
         <img class="d-block w-100" src="/uploads/slider/{{$slider->image}}"
           alt="">
@@ -55,7 +55,7 @@
       
       </div>
       </div>
-    </a>
+  
     </div>
     @endforeach
     {{-- <div class="carousel-item">
@@ -85,12 +85,20 @@
   </div>
   <!--/.Slides-->
   <!--Controls-->
-  <div class="view-now">
-    <div class="arrow">
-      <i class="fas fa-arrow-right"></i>
+  <a href="{{$slider->link}}">
+  <div class="view-now row">
+    
+    <div class="col-4">
+      <div class="arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
     </div>
-    <span>Ver Ahora</span>
+    <div class="col pl-0">
+      <span class="text-left">Ver Ahora</span>
+    </div>
+    
   </div>
+</a>
   <div class="btn-prev">
     <a class="carousel-control-prev" href="#carousel-promo-2" role="button" data-slide="prev">
       <span><i class="fas fa-arrow-left"></i></span>
@@ -111,20 +119,14 @@
 <!--/.Carousel Wrapper-->
 @endif
 </div>
-  <div class="row mt-4">
+  <div class="row mt-4 mb-5">
 
       @if (!empty($aProducts))
      
-      <div class="col col-md-7 mb-2 pt-3 pr-1" >
-        <h2 class="text-right">NOVEDADES</h2>
+      <div class="col" >
+        <h2 style="font-size: 25px;color:#000;" class="font-weight-bold text-left">NOVEDADES</h2>
         </div>
     
-        
-        <div class="col pl-0 pt-1 mb-2">
-          
-          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-          <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_qznxcZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player>
-        </div>
         
     
   </div>

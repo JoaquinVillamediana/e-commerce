@@ -9,14 +9,12 @@
 
 
 
-    <div class="row pt-5 justify-content-center text-right">
+    <div class="row pt-5 mb-5 justify-content-center text-right">
 
       <div class="col ">
-          <h2 class="text-center">{{$sub_category_name->name}}</h2>
+        <h2 style="font-size: 25px;color:#000;" class="font-weight-bold text-center">{{$sub_category_name->name}}</h2>
       </div>
-        {{-- <div class="col pl-0 mb-2">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_HirsSZ.json"  background="transparent"  speed="1"  style="width: 70px; height: 70px;"    autoplay></lottie-player> --}}
+        
 </div>
 
     </div>

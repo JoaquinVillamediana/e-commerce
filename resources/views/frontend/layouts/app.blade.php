@@ -43,7 +43,7 @@
             
         </style>
         <div class="nav-margin">
-            <div class="container" style="padding-top:55px !important">
+            <div class="container" id="main-container" style="padding-top:55px !important">
             @yield('content')
             </div>
         </div>

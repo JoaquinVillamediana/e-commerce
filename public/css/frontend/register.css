@@ -1,0 +1,32 @@
+
+body{
+  box-sizing: border-box;
+}
+
+#form_register input{
+  border-radius: 30px;
+  padding: 10px 25px;
+}
+
+
+#form_register input{
+  border-radius: 30px;
+  padding: 10px 25px;
+  width: 100%;
+}
+
+#form_register button{
+  background-color: #FBB03B;
+  color: #000;
+  border-radius: 30px;
+  padding: 10px 25px;
+  width: 100%;
+}
+
+#form_register button:hover{
+  background-color: #f9ca3b;
+}
+
+.container{
+  max-width: 600px ;
+}

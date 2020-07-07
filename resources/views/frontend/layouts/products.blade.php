@@ -15,9 +15,9 @@
             <span class="">{{$product->prom}}%</span>
             </div>
             @endif
-            @if ($product->stock < 1)
+            {{-- @if ($product->stock < 1)
                 <span class="@if($product->news == 1 && $product->prom != null) thirdPill @elseif($product->news == 1 || $product->prom != null) secondPill @else firstPill @endif badge badge-info">SIN STOCK</span>
-            @endif
+            @endif --}}
             <a  href="{{route('product',$product->id)}}" id="productBox">
               
             <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
