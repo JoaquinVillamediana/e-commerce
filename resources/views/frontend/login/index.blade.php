@@ -25,8 +25,10 @@
         <div class=" col-12 m-auto">
             <div class="form-group">
                 
-                <input id="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Contraseña"  aria-describedby="emailHelp">
-                
+                <input id="password" type="password" name="password" class="input-password form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Contraseña"  aria-describedby="emailHelp">
+                <div class="eye">
+                   <a id="eye-pass" onclick="unlockPass()" style=""><i class="far fa-eye"></i></a>  
+                </div>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -36,7 +38,7 @@
 
         </div>
    
-        <div class=" col-12">
+        <div class=" col-12 mt-3">
             
             <button type="submit" id="submitBtn" class="btn-block btn  "  >
                 {{ __('Login') }}
@@ -57,6 +59,25 @@
 $( document ).ready(function() {
     $('#form-login').fadeIn(1000);
 });
+var pass_view = 0;
+function unlockPass(){
+    event.preventDefault();
+    if(pass_view == 0)
+    {
+        $('#password').attr('type','text');
+        $('.fa-eye').addClass('fa-eye-slash');
+        $('.fa-eye').removeClass('fa-eye');
+        pass_view = 1;
+    }
+    else{
+        $('#password').attr('type','password');
+        $('.fa-eye-slash').addClass('fa-eye');
+        $('.fa-eye-slash').removeClass('fa-eye-slash');
+        pass_view = 0;
+        
+    }
+    
+}
 </script>
 
 @endsection

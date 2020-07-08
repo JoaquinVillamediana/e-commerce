@@ -6,7 +6,7 @@
 
 
     
-    <div class="col">
+    <div class="col" style="display:flex;justify-content:center;">
      
           <div id="card" class="card mb-5" style="width: 18rem;">
             
