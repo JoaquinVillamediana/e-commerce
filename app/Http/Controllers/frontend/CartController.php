@@ -100,13 +100,13 @@ sub_categoriess.deleted_at is null
         
                 DB::insert('insert into carrito (product_id, user_id) values ("'.$id.'", "'.$user.'")');
                 return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aCarrito'));
-              //  return view('frontend/carrito.index',compact('aCategories','aSubCategories','aProducts'));
             }
             
     
-        public function carritoAction($id){
+        public function carritoAction(Request $request,$id){
 
                 $user=Auth::user()->id;
+                $quantity = $request['quantity'];
                 $CartRecord = CartModel::where('user_id','=',$user)
                 ->where('product_id','=',$id)
                 ->first();
@@ -115,12 +115,12 @@ sub_categoriess.deleted_at is null
                 if(empty($CartRecord))
                 {
                         
-                        DB::insert('insert into carrito (product_id, user_id,status) values ("'.$id.'", "'.$user.'",1)');
+                        DB::insert('insert into carrito (product_id, user_id,status,quantity) values ("'.$id.'", "'.$user.'",1,"'.$quantity.'")');
                         
                 }
                 else{
                         
-                        CartModel::where('user_id','=',$user)->where('product_id','=',$id)->delete();
+                        CartModel::where('user_id','=',$user)->where('product_id','=',$id)->forceDelete();
                 }
                 
 

@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="/css/frontend/home.css">
 <div class="mt-2 container-fluid">
 
-{{-- 
-<a href="{{route('email/verify')}}"></a> --}}
-
 
 
     <div class="row pt-5 justify-content-center text-right">
@@ -41,19 +38,6 @@
         <div class="mask rgba-black-light"></div>
       </div>
       <div class="carousel-caption">
-        <style>
-          .alert-transp{
-  background-color:rgba(0,0,0,.5) ;
-    border-color: rgba(0,0,0,.8);
-    padding: 0;
-}
-        </style>
-          
-       <div class="alert alert-transp"> 
-        <h3 class="h3-responsive">{{$slider->name}}</h3>
-        <p>{{$slider->description}}</p>
-      
-      </div>
       </div>
   
     </div>
