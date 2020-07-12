@@ -122,7 +122,7 @@
           <h5 class="">{{$product->name}}</h5>
         </div>
         <div class="col-12">
-          {{$product->description}}
+        {!! $product->description !!}
         </div>
         <div class="col-12 mt-2">
           @if ($product->prom != null)
