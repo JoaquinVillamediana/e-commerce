@@ -19,11 +19,9 @@ class CategoriesController extends Controller {
     }
 
     public function create() {
-        // $aProvinces = ProvincesModel::get();
-        // $aObj = ObjectivesModel::select('title','id')->get();
 
-        // $aCategories = CategoriesModel::get();
         return view('admin/categories.create');
+
     }
 
     public function store(Request $request) {
@@ -70,21 +68,18 @@ class CategoriesController extends Controller {
     }
 
     public function edit($id) {
-      //  $aObj = CategoriesModel::select('title','id')->get();
+
         $oCate = CategoriesModel::find($id);
-       // $aProvinces = ProvincesModel::get();
         return view('admin/categories.edit', compact('oCate'));
+
     }
 
     public function update(Request $request, $id) {
         
         $aValidations = array(
-            
             'name' => 'required|max:60',
             'description' => 'required|max:150'
-                   );
-
-        
+        );
        
 
         $this->validate($request, $aValidations);
@@ -94,10 +89,12 @@ class CategoriesController extends Controller {
         $request['name'] = ucwords($request['name']);
         $request['description'] = ucwords($request['description']);
 
-if(!empty($request['prom'])){
-    $request['prom'] = ucwords($request['prom']);
-    $oCate->prom = $request['prom'];
-}
+        if(!empty($request['prom'])){
+
+            $request['prom'] = ucwords($request['prom']);
+            $oCate->prom = $request['prom'];
+
+        }
 
         
         $oCate->name = $request['name'];
@@ -115,6 +112,7 @@ if(!empty($request['prom'])){
         return redirect()->route('categories.index')->with('success', 'Categoria eliminada satisfactoriamente');
     }
 
+    
     public function setCategoryVisible(Request $request){
         $aReturn = array();
         $oCategory = CategoriesModel::find($request['categoryId']);

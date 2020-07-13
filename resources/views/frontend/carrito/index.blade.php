@@ -1,101 +1,121 @@
 @extends('frontend/layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="/css/frontend/cart.css">
+<div class="mt-5 container-fluid">
+
+  
+
+    <div class="d-inline">
+      <div class="cart-icon">
+      <i class="fas fa-shopping-cart"></i>
+      </div>
+    <div class="div-title">
+    <h2 style="color:#000;" class=" d-inline title font-weight-bold text-left">Carrito de compras</h2>
+  </div>
+      
+  
+        
+</div>
+</div>
+<?php $total=0?>
+<div class="row">
+@if (!empty($aProducts))
+<div class="col-12 mb-4 mt-5">
+  <div class="row">
+    <div class="col-5">
+      <h3 class="grid-header">Producto</h3>
+    </div>
+    <div class="col-3">
+      <h3 class="grid-header">Cantidad</h3>
+    </div>
+    <div class="col-4">
+      <h3 class="grid-header">Precio</h3>
+    </div>
+  </div>
+</div>
+@foreach ($aProducts as $product)
+          
+<div class="col-12 mb-4">
+
+  <div class="row">
+    <div class="col-5">
+      @foreach ($aImage as $image)
+      @if ($image->product_id == $product->id && $image->type == 0 && $image->main_image == 1) 
+        <img class="product_image" src="/uploads/products/{{$image->image}}" alt="">
+      @endif    
+      @endforeach
+      <div class="text">
+        
+            <h4>{{$product->name}} <br>
 
 
-</br>
+            <span>Codigo de producto: #{{$product->id}}</span></h4>
 
+        </div>
+        
+        
+      </div>
     
-    <div class="col-md-4 col-12">
-        <h2 class="text-center" id="headFav" style="position: absolute;z-index: 2;display:none">Carrito de compras</h2>
-        
-        
+    <div class="col-3">
+      
+        <input id="quantity"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
       
     </div>
-   
-  
-        
-</br>
-</br>
-
-
-<?php $total=0?>
-
-@if (!empty($aProducts))
-@foreach ($aProducts as $product)
-<div class="row">   
-  <div class="col-md-6 col-10">
-  <div class="row"> 
-  <img src="/uploads/products/{{$product->image}}" alt="ProductImage" width="40px" height="40px">
-  
-    <h5> <a href="{{route('product',$product->id)}}">{{$product->name}}</a></h5>
+    <div class="col-4">
+      @if ($product->prom != null)
+        <h2 class="price">${{$product->price * ($product->prom / 100)}}</h2>
+      @else
+        <h2 class="price">${{$product->price}}</h2>
+      @endif
     </div>
-  </div>  
-  <div class="col-md-4 col-10">     
-    <p>
-      1
-    </p>
-  </div>  
-   <div class="col-md-2 col-10">  
-            
-             
-    <h5>@if ($product->prom != null)
-    <span class="card-text text-danger"><del>${{$product->price}}</del> </span>
-    <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
-       
-    @else
-  
-    <span class="text-dark">${{$product->price}}</span>
-  
-    @endif
-    </h5>
-            
-      </div>  
- </div>
-
-
-   
-
+</div>
+</div>
         <?php
         if($product->prom != null)
         {
-          $total += $product->price * ($product->prom / 100);
+          $total += ($product->price * ($product->prom / 100)) * $product->quantity;
         }
         else {
-          $total+=$product->price;
+          $total+=$product->price * $product->quantity;
         }
         ?>
-
-    @endforeach
-
-    <div class="row"> 
-       
-    
-
-        <div class="col-md-4 col-10">
-          <h5 class="text-center">Costo total: ${{$total}}</h5>
-        </div>
-        <div class="col-md-8 col-10 ">
-        <button type="submit" id="submitBtn" class="btn-block btn btn-dark " style="background-color: #37474F; border:#37474F;" >
-                {{ __('Login') }}
-            </button>
-            <style>
-                #submitBtn:hover{
-                    background-color: #435a66 !important;
-                }
-            </style>
-        </div>
-    
-      </div> 
-    
-    
+        
+              @endforeach
+            </div>
+ <div class="row">
+   <div class="col-7">
+     <div class="continue">
+      <a class="continue" href="{{route('home')}}"><i class="fas fa-arrow-left mr-1"></i>Continuar comprando</a>
+     </div>
+   
+   </div>
+   <div class="col-3">
+    <p class="total-price">Costo total: <span>${{$total}}</span></p>
+   </div>
+   <div class="col-2">
+    <a href="" class="shop-btn btn">PAGAR</a>
+   </div>
+ </div>
               @endif
   
 
-   
+    
   </div>
 </div>
+<script src="/vendor/bootstrap-input-spinner-cart.js"></script>
+<script>
+    $("input[type='number']").inputSpinner()
+</script>
 <script>$( document ).ready(function() {
   $('#headFav').fadeIn(400);
+  
 });</script>
+
+<script>
+  function quantityChange(product_id)
+  { 
+    alert(product_id);
+  }
+</script>
 @endsection

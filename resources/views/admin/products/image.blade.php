@@ -33,7 +33,7 @@
                                 <th>Producto</th> 
                                 <th>Tipo</th>                               
                                 <th>Imagen</th>  
-                               
+                                <th>Imagen Principal</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
@@ -60,8 +60,11 @@
                                     Your browser does not support HTML5 video.
                                 </video></td>
                                 @endif
-                                  
-                            
+                                @if($image->type == 0)
+                                <td> <button type="button" id="pinBtn_{{$image->id}}" class="btn @if($image->main_image == 0) btn-light @else btn-success @endif btn-circle my-custom-confirmation" data-toggle="modal" onclick="setMainImage({{$image->id}});"><i class="fas fa-thumbtack"></i></button></td>
+                                @else
+                                <td></td>
+                                @endif
                                   <td>
                           
                                     <form id="deleteForm_{{$image->id}}" action="{{route('deleteImage',$image->id)}}" method="POST">
@@ -126,6 +129,72 @@ $('#video').change(function() {
     });
     
 </script>
+
+
+<script>
+
+    
+    
+    function setMainImage(image_id) {
+            
+            event.preventDefault();
+           
+            
+            var params = new Object();
+            params._token = "{{ csrf_token() }}";
+            params.image_id = image_id;
+            
+            ajaxRequest("POST", "{{route('setMainImage')}}", params, "setMainImageResponse");
+        }
+        
+        function setMainImageResponse(data) {
+    
+            images = <?php echo json_encode($aImages, JSON_NUMERIC_CHECK); ?>;
+            
+            for (const image of images) {
+                if(image.id == data.image_id)
+                {
+                    $('#pinBtn_'+image.id).removeClass('btn-light');
+                    $('#pinBtn_'+image.id).addClass('btn-success');
+                }
+                else{
+                    $('#pinBtn_'+image.id).removeClass('btn-success');
+                    $('#pinBtn_'+image.id).addClass('btn-light');
+                }
+            }
+    
+        }
+        
+        function ajaxRequest(type, url, params, callBack) {
+    
+            jQuery.support.cors = true;
+            params = JSON.stringify(params);
+    
+            $.ajax({
+                type: type,
+                url: url,
+                data: params,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function () {
+                    //$('#ajaxLoader').show();
+                },
+                complete: function () {
+                    //$('#ajaxLoader').hide();
+                },
+                success: function (data) {
+                   //console.log("REQUEST [ " + type + " ] [ " + url + " ] SUCCESS");
+                   //console.log(data);
+                    window[callBack](data);
+                },
+                error: function (msg, url, line) {
+                   //console.log('ERROR !!! msg = ' + msg + ', url = ' + url + ', line = ' + line);
+                }
+            });
+        }
+    
+    
+    </script>
 
 <script src="/assets/js/admin/user/datatables.js" crossorigin="anonymous"></script>
 

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="/css/admin/products_edit.css">
 <?php $product_id = $oProduct->id;
 ?>
 
@@ -141,10 +142,19 @@
                                     <form id="deleteForm_{{$image->id}}" action="{{route('deleteImage', $image->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <a href="#" data-toggle="modal" class="font-weight-bold" onclick="openDelModal({{$image->id}});" style="color:#343A40;text-decoration:none;font-size:25px;position: absolute;top:0;left:180px;z-index:2;">×</a>
+                                        <div class="deleteImage">
+                                            <a href="#" data-toggle="modal" class="font-weight-bold" onclick="openDelModal({{$image->id}});" style="color:#343A40;text-decoration:none;font-size:25px;z-index:2;">×</a>
+                                        </div>
+                                        @if ($image->type == 0)
+                                            
+                                        <div class="pinImage" id="">
+                                            <a href="#" id="pinIcon_{{$image->id}}" onclick="setMainImage({{$image->id}});" style="@if($image->main_image == 1)color:#25890f ;@endif"><i class="fas fa-thumbtack"></i></a>
+                                        </div>
+                                        @endif
+                                        
                                         
                                         @if ($image->type==0)
-                                    <img style="width: 200px" src="/uploads/products/{{$image->image}}" alt="">
+                                    <img style="width: 200px" id="image_{{$image->id}}" src="/uploads/products/{{$image->image}}" alt="">
                                     @endif
                                     @if ($image->type==1)
                                         <video style="width: 200px;z-index:2;" src="/uploads/products/{{$image->image}}" controls>
@@ -265,8 +275,76 @@ function setSub_categoryVal(value, formSelect, url, defVal, selectedItem){
     });
     }
     
+
     
 </script>
+
+{{-- AJAX --}}
+
+<script>
+
+    
+    
+function setMainImage(image_id) {
+        
+        event.preventDefault();
+       
+        
+        var params = new Object();
+        params._token = "{{ csrf_token() }}";
+        params.image_id = image_id;
+        
+        ajaxRequest("POST", "{{route('setMainImage')}}", params, "setMainImageResponse");
+    }
+    
+    function setMainImageResponse(data) {
+
+        images = <?php echo json_encode($aImages, JSON_NUMERIC_CHECK); ?>;
+        
+        for (const image of images) {
+            if(image.id == data.image_id)
+            {
+                $('#pinIcon_'+image.id).css('color','#25890f');
+            }
+            else{
+                $('#pinIcon_'+image.id).css('color','#343a40');
+            }
+        }
+
+    }
+    
+    function ajaxRequest(type, url, params, callBack) {
+
+        jQuery.support.cors = true;
+        params = JSON.stringify(params);
+
+        $.ajax({
+            type: type,
+            url: url,
+            data: params,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend: function () {
+                //$('#ajaxLoader').show();
+            },
+            complete: function () {
+                //$('#ajaxLoader').hide();
+            },
+            success: function (data) {
+               //console.log("REQUEST [ " + type + " ] [ " + url + " ] SUCCESS");
+               //console.log(data);
+                window[callBack](data);
+            },
+            error: function (msg, url, line) {
+               //console.log('ERROR !!! msg = ' + msg + ', url = ' + url + ', line = ' + line);
+            }
+        });
+    }
+
+
+</script>
+
+
 <script src="/js/admin/image_preview.js"></script>
 <script src="/js/admin/video_preview.js"></script>
 <script>

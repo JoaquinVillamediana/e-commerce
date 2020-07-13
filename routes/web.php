@@ -39,15 +39,6 @@ Route::post('/forgot_password', 'frontend\ForgotPasswordController@password');
 
 
 
-
-
-
-
-
-// Route::get('product/{id}', 'HomeController@product')->name('product');
-// Route::post('product', 'HomeController@product')->name('product');
-
-
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth'])->group(function () {
          Route::middleware(['checkAdmin'])->group(function () {
@@ -65,6 +56,7 @@ Route::prefix('admin')->group(function () {
             Route::post('category_visible', 'admin\CategoriesController@setCategoryVisible')->name('category_visible');
             Route::post('subcategory_visible', 'admin\SubController@setSubcategoryVisible')->name('subcategory_visible');
             Route::post('product_visible', 'admin\ProductsController@setProductVisible')->name('product_visible');
+            Route::post('setMainImage', 'admin\ProductsController@setMainImage')->name('setMainImage');
             
             Route::resource('slider', 'admin\SliderController');
             

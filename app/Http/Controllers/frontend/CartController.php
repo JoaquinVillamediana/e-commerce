@@ -26,44 +26,42 @@ class CartController extends Controller {
 
         $user=Auth::user()->id;
 
-        $aProducts = DB::select('   SELECT p.*,
-        MIN(i.image) image
-        ,(categories.prom) prom
-    FROM products p
-    LEFT JOIN categories ON (p.category_id = categories.id and  categories.deleted_at is null)
+        $aProducts = DB::select('   SELECT p.*, MIN(i.image) image ,(categories.prom) prom,c.quantity
+        FROM products p
+        LEFT JOIN categories ON (p.category_id = categories.id and  categories.deleted_at is null)
         LEFT JOIN images i ON p.id = i.product_id
-         LEFT JOIN carrito c ON p.id = c.product_id 
+        LEFT JOIN carrito c ON p.id = c.product_id 
         where i.deleted_at is null
-       and  c.user_id = "'.$user.'"
+        and c.user_id = "'.$user.'"
         and p.deleted_at is  null
         and p.visible = 1
         and c.status = 1
-        
-        GROUP BY c.id');
-
-      
+        GROUP BY c.id
+        ');
 
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
-        FROM    categories categoriess
-        LEFT JOIN
-                sub_categories sub_categoriess
-        ON      sub_categoriess.category_id = categoriess.id
-        WHERE   categoriess.visible = 1 and
-        categoriess.deleted_at is null and
-        sub_categoriess.deleted_at is null
-        GROUP BY
-                categoriess.id
+        FROM categories categoriess
+        LEFT JOIN sub_categories sub_categoriess ON sub_categoriess.category_id = categoriess.id
+        WHERE categoriess.visible = 1 
+        and categoriess.deleted_at is null 
+        and sub_categoriess.deleted_at is null
+        GROUP BY categoriess.id
         ');
+
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
+
+        $aImage = ImageModel::get();
         
-        return view('frontend/carrito.index',compact('aCategories','aSubCategories','aProducts'));
+        return view('frontend/carrito.index',compact('aCategories','aSubCategories','aProducts','aImage'));
     }
 
     public function show() {
         //
     }
+
     public function store($id){
+
         $user=Auth::user()->id;
         $aProducts = DB::select('   SELECT p.*,
         MIN(i.image) image
@@ -78,19 +76,14 @@ class CartController extends Controller {
       
 
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
-        FROM    categories categoriess
-        LEFT JOIN
-                sub_categories sub_categoriess
-        ON      sub_categoriess.category_id = categoriess.id
-               
-        WHERE   categoriess.visible = 1 and
-
-categoriess.deleted_at is null and
-sub_categoriess.deleted_at is null
-              
-        GROUP BY
-                categoriess.id
+        FROM categories categoriess
+        LEFT JOIN sub_categories sub_categoriess ON sub_categoriess.category_id = categoriess.id  
+        WHERE categoriess.visible = 1 
+        and categoriess.deleted_at is null 
+        and sub_categoriess.deleted_at is null  
+        GROUP BY categoriess.id
         ');
+
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
@@ -98,9 +91,10 @@ sub_categoriess.deleted_at is null
         $aCarrito = DB::select('SELECT id, COUNT(*) AS count_carrito FROM carrito WHERE user_id = "'.$user.'" and product_id =  "'.$id.'"  GROUP BY id;');
 
         
-                DB::insert('insert into carrito (product_id, user_id) values ("'.$id.'", "'.$user.'")');
-                return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aCarrito'));
-            }
+        DB::insert('insert into carrito (product_id, user_id) values ("'.$id.'", "'.$user.'")');
+        return view('frontend/product.index',compact('aCategories','aSubCategories','aProducts','aCarrito'));
+    
+        }
             
     
         public function carritoAction(Request $request,$id){

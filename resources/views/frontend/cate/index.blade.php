@@ -2,6 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/frontend/products.css">
+
 <div class="mt-2 container-fluid">
 
 

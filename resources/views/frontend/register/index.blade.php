@@ -72,21 +72,28 @@ enctype="multipart/form-data">
     @endif
 </div>
 </div>
-<div class="row">
-<div class="form-group col-12" id="box_password">
+<div class="row mb-3">
     
-    <input type="password" id="password" name="password"
-        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-        placeholder="Contraseña" value="{{ old('password') }}">
-    @if ($errors->has('password'))
-    <span class="invalid-feedback" role="alert">
-        <strong>Debe ingresar un password (min. 8 caracteres).</strong>
-    </span>
-    @endif
+        
+    <div class=" col-12 m-auto" id="box_password">
+        <div class="form-group">
+            
+            <input id="password" type="password" name="password" class="input-password form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Contraseña"  aria-describedby="emailHelp">
+            <div class="eye">
+               <a id="eye-pass" onclick="unlockPass(0)" style=""><i id="eye-pass-icon" class="far fa-eye"></i></a>  
+            </div>
+            @if ($errors->has('password'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>Debe ingresar un password (min. 8 caracteres).</strong>
+                </span>
+                @endif
+        </div>
+
+    </div>
+
 </div>
-</div>
-<div class="row">
-    <div class="form-group col-12" id="box_password">
+<div class="row mb-3">
+    {{-- <div class="form-group col-12" id="box_password">
        
         <input type="password" id="verif_password" name="verif_password"
             class="form-control{{ $errors->has('verif_password') ? ' is-invalid' : '' }}"
@@ -96,7 +103,26 @@ enctype="multipart/form-data">
             <strong>Las contraseñas deben ser iguales.</strong>
         </span>
         @endif
+    </div> --}}
+
+    
+    <div class=" col-12 m-auto" id="box_password">
+        <div class="form-group">
+            
+            <input id="verif_password" type="password" name="verif_password" class="input-password form-control{{ $errors->has('verif_password') ? ' is-invalid' : '' }}" placeholder="Confirmar Contraseña">
+            <div class="eye">
+               <a id="eye-pass" onclick="unlockPass(1)" style=""><i id="eye-pass-verif-icon" class="far fa-eye"></i></a>  
+            </div>
+            @if ($errors->has('verif_password'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>Las contraseñas deben ser iguales.</strong>
+                </span>
+                @endif
+        </div>
+
     </div>
+
+
     </div>
     <div class="row">
         <div class="col-12">
@@ -117,4 +143,46 @@ $( document ).ready(function() {
 });
 </script>
 
+
+
+<script>
+    var pass_view = 0;
+    var verif_view = 0;
+    function unlockPass(type){
+        event.preventDefault();
+        if(type == 0)
+        {
+            if(pass_view == 0)
+            {
+                $('#password').attr('type','text');
+                $('#eye-pass-icon').addClass('fa-eye-slash');
+                $('#eye-pass-icon').removeClass('fa-eye');
+                pass_view = 1;
+            }
+            else{
+                $('#password').attr('type','password');
+                $('#eye-pass-icon').addClass('fa-eye');
+                $('#eye-pass-icon').removeClass('fa-eye-slash');
+                pass_view = 0;
+            }
+        }
+        else{
+            if(verif_view == 0)
+            {
+                $('#verif_password').attr('type','text');
+                $('#eye-pass-verif-icon').addClass('fa-eye-slash');
+                $('#eye-pass-verif-icon').removeClass('fa-eye');
+                verif_view = 1;
+            }
+            else{
+                $('#verif_password').attr('type','password');
+                $('#eye-pass-verif-icon').addClass('fa-eye');
+                $('#eye-pass-verif-icon').removeClass('fa-eye-slash');
+                verif_view = 0;
+            }
+        }
+        
+        
+    }
+    </script>
 @endsection
