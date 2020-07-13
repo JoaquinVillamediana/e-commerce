@@ -61,7 +61,7 @@
                                 </video></td>
                                 @endif
                                 @if($image->type == 0)
-                                <td> <button type="button" id="submiBtn" class="btn @if($image->main_image == 0) btn-light @else btn-success @endif btn-circle my-custom-confirmation" data-toggle="modal" onclick="({{$image->id}});"><i class="fas fa-thumbtack"></i></button></td>
+                                <td> <button type="button" id="pinBtn_{{$image->id}}" class="btn @if($image->main_image == 0) btn-light @else btn-success @endif btn-circle my-custom-confirmation" data-toggle="modal" onclick="setMainImage({{$image->id}});"><i class="fas fa-thumbtack"></i></button></td>
                                 @else
                                 <td></td>
                                 @endif
@@ -154,10 +154,12 @@ $('#video').change(function() {
             for (const image of images) {
                 if(image.id == data.image_id)
                 {
-                    $('#pinIcon_'+image.id).css('color','#25890f');
+                    $('#pinBtn_'+image.id).removeClass('btn-light');
+                    $('#pinBtn_'+image.id).addClass('btn-success');
                 }
                 else{
-                    $('#pinIcon_'+image.id).css('color','#343a40');
+                    $('#pinBtn_'+image.id).removeClass('btn-success');
+                    $('#pinBtn_'+image.id).addClass('btn-light');
                 }
             }
     

@@ -195,9 +195,24 @@ class ProductsController extends Controller {
             $destinationPath = 'uploads/products';
             $image->move($destinationPath, $storeImageName);
 
-            $data=array('image' => $storeImageName,'product_id' => $product_id,'type' => $type);
+            $data=array('image' => $storeImageName,'product_id' => $product_id,'type' => $type,'main_image' => 1);
             ImageModel::insert($data);
-            
+            $image_id = ImageModel::max('id');
+            $aImages = ImageModel::where('product_id','=',$request['product_id'])
+            ->get();
+
+            foreach($aImages as $image)
+            {
+                if($image->id != $image_id)
+                {
+                    if($image->main_image == 1)
+                    {
+                        $image->main_image = 0;
+                        $image->save();
+                    }
+                }
+
+            }
             
         }
 
