@@ -6,7 +6,7 @@
 
 
     
-    <div class="col">
+    <div class="col" style="display:flex;justify-content:center;">
      
           <div id="card" class="card mb-5" style="width: 18rem;">
             
@@ -15,17 +15,16 @@
             <span class="">{{$product->prom}}%</span>
             </div>
             @endif
-            {{-- @if ($product->stock < 1)
-                <span class="@if($product->news == 1 && $product->prom != null) thirdPill @elseif($product->news == 1 || $product->prom != null) secondPill @else firstPill @endif badge badge-info">SIN STOCK</span>
-            @endif --}}
             <a  href="{{route('product',$product->id)}}" id="productBox">
               
             <img class="card-img-top" src="/uploads/products/{{$product->image}}" alt="Card image cap">
             
-           
-            <button id="favBtn_{{$product->id}}" style="@if(empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
-            <button id="favBtnActive_{{$product->id}}" style="@if(!empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right mr-3 mt-1" style="font-size: 20px"></i></button>
-            <div class="card-body mt-0 pt-1">
+            <div class="fav-bg">
+            <button id="favBtn_{{$product->id}}" style="@if(empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtn"  onclick="setFavoriteProduct({{$product->id}})"><i  class="far fa-heart float-right" style="font-size: 20px"></i></button>
+
+            <button id="favBtnActive_{{$product->id}}" style="@if(!empty($product->favoritos)) display:block; @else display:none; @endif" class="favBtnActive" onclick="setFavoriteProduct({{$product->id}})"><i  class="fas fa-heart float-right " style="font-size: 20px"></i></button>
+            </div>
+            <div class="card-body pl-1 mt-0 pt-1">
                 @if ($product->news == 1)
                 <span  class="new font-weight-bold">NUEVO</span>
                 @endif

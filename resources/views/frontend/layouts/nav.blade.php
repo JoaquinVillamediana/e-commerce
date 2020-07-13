@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-sea fixed-top border-bottom border-secondary" id="mainNav">
+<nav class="navbar pl-3 navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
   <a class="navbar-brand" href="{{route('home')}}">E-COMMERCE</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -6,14 +6,14 @@
 
   
   <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav bg-sea "  id="exampleAccordion">
-          <li class="nav-item border-top border-secondary" data-toggle="tooltip" data-placement="right" title="Home">
-              <a class="nav-link" href="{{route('home')}}">
+      <ul class="navbar-nav navbar-sidenav bg-white "  id="exampleAccordion">
+          <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Home">
+              <a class="nav-link " href="{{route('home')}}">
                 <i class="fas fa-home"></i><span class="ml-2 nav-link-text"  >Home</span>
               </a>
           </li>
           
-          <li class="nav-item border-top border-bottom border-secondary">
+          <li class="nav-item ">
             <a href="#CatSubmenu" data-toggle="collapse" class="nav-link" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-bars mr-2"></i>Categorias</a>
               <ul class="collapse list-unstyled"  id="CatSubmenu">
                   @foreach ($aCategories as $category)
@@ -42,34 +42,40 @@
 
       </ul>
 
-
+      <div class="container">
       <ul class="navbar-nav mr-5 header" >
-        <li class="nav-item search">
-      <form class="form-inline my-2 my-lg-0"  action="{{ route('search') }}"  id="task_form" role="form" enctype="multipart/form-data">
-      <input class="form-control mr-sm-2 mr-0" style="margin-right: -5px !important;" type="text" name="text" id="text" placeholder="Search" aria-label="Search">
-      <button class="ml-0 btn btn-white my-2 my-sm-0 border-left" type="submit"><i class="fas fa-search"></i></button>
-    </form>
-  </li>
+       
         @if (empty(Auth::user()->id))
         <li class="nav-item ml-md-3  border-dark login"><a  class="nav-link" href="{{ route('loguser.index') }}">Ingresar</a></li>
             
             @else
+            
             <li class="nav-item dropdown login ml-3 ">
               
               <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 {{Auth::user()->name}}
+                <i class="fas fa-user"></i>
               </a>
               <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item text-dark"  href="{{route('profile') }}">Perfil</a>
                 <a class="dropdown-item text-dark"  href="#">Compras</a>
                 <a class="dropdown-item text-dark"  href="{{route('favorites') }}">Favoritos</a>
-                <a class="dropdown-item text-dark"  href="{{route('cart') }}">Carrito</i></a>
-                
                 <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Salir</a>
               </div>
             </li>
+            <li class="nav-item login">
+              <a class="nav-link"  href="{{route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+             </li>
             @endif
+            <li class="nav-item search login">
+                <form class="form-inline" id="search-form" action="{{ route('search') }}" style="justify-content: flex-end">
+                  <input type="text" name="text"  class="search-input" id="search-input" placeholder="Buscar" style="display: none">
+                  <button class="btn btn-white " onclick="displaySearch()" id="nav-search" type="submit"><i class="fas fa-search"></i></button>
+                  
+                </form>
+            
+          </li>
       </ul>
+    </div>
   </div>
 </nav>
 @if (!Auth::guest())
@@ -81,9 +87,35 @@
   $(document).ready(function(){
 	
 				$('#back-to-backend').fadeIn();
-		// scroll body to 0px on click
+	
 });
+
 </script>
 @endif
 @endif
+
+<script>
+  var search = 0;
+function displaySearch(){
+  event.preventDefault();
+  if(search == 0)
+  {
+    $('#search-input').fadeIn();
+    search = 1;
+  }
+  else{
+    if( $('#search-input').val() == '' || $('#search-input').val() == null )
+    {
+      $('#search-input').fadeOut();
+    search = 0;
+    }
+    else{
+      $('#search-form').submit();
+    }
+    
+  }
+}
+</script>
+
+
 

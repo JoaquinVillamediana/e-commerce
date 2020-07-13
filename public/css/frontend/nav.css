@@ -2,6 +2,10 @@
     DEMO STYLE
 */
 
+.text-black{
+    color: #000 !important;
+}
+
 .header{
     width: 100%;
     display: inline-block !important;
@@ -12,15 +16,32 @@
     float: right;
 }
 
+.search-input{
+    padding: 5px 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(222, 222, 222, 1);
+    width: 50%;
+}
+.search-input::placeholder { 
+    color: #000;
+    opacity: 1; 
+    font-size: 12.5px;
+  }
+
 .header .search{
     display: inline-block !important;
     width: 60%;
-    margin-left: 20%;
-    margin-right: 5%;
+    /* margin-left: 20%; */
+    /* margin-right: 5%; */
 }
 
-.header .search input{
-    width: 90%;
+.header .search input:focus,.header .search input:active{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(222, 222, 222, 1);ssss
     
 }
 
@@ -59,17 +80,6 @@ form .text{
 
 
 
-.navbar{
-    -webkit-box-shadow: -8px 6px 39px -2px rgba(0,0,0,0.41) !important;
-    -moz-box-shadow: -8px 6px 39px -2px rgba(0,0,0,0.41) !important;
-    box-shadow: -8px 6px 39px -2px rgba(0,0,0,0.41) !important;
-}
-
-.navbar-sidenav  li:hover{
-    background-color: #435a66;
-
-    transition: all 0.5s ease;
-}
 
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
@@ -96,14 +106,18 @@ a:focus {
 }
 
 .navbar {
-    padding: 15px 10px;
+    padding: 25px 10px !important;
     background: #fff;
     
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     
+    
+}
+
+#mainNav .navbar-collapse .navbar-sidenav{
+    margin-top: 90px !important;
 }
 
 .navbar-btn {
@@ -121,14 +135,17 @@ a:focus {
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
+
 ----------------------------------------------------- */
+
+
 .navbar-sidenav a{
     color : #FFF !important;
     font-size: 1.1rem;
 }
 
 .navbar-nav .nav-link,.navbar-brand{
-    color: #FFF !important;
+    color: #000 !important;
 }
 
 .back-to-backend {
