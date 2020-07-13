@@ -24,63 +24,42 @@ class SearchController extends Controller {
     public function index(Request $request) {
         $request['text'] = ucwords($request['text']);
 
-$text =  $request['text'];
+        $text =  $request['text'];
 
+        if(Auth::check())
+        {
+            $user_id = Auth::user()->id;
+        }
+        else
+        {
+            $user_id = 0;
+        }
 
-
-if(Auth::check())
-{
-    $user_id = Auth::user()->id;
-}
-else
-{
-    $user_id = 0;
-}
-        $aProducts = DB::select(' SELECT p.*,
-        MIN(i.image) image,(f.product_id) favoritos
-        ,(categories.prom) prom
-    FROM products p
-    LEFT JOIN categories ON (p.category_id = categories.id and categories.deleted_at is null)
-LEFT JOIN images i ON p.id = i.product_id
-LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
-where i.deleted_at is null
-and p.name LIKE "%' . $text . '%"
-and p.deleted_at is null
-and p.visible = 1
-
-GROUP BY
-p.id
-');
+        $aProducts = DB::select(' SELECT p.*, MIN(i.image) image,(f.product_id) favoritos ,(categories.prom) prom
+        FROM products p
+        LEFT JOIN categories ON (p.category_id = categories.id and categories.deleted_at is null)
+        LEFT JOIN images i ON p.id = i.product_id
+        LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
+        where i.deleted_at is null and p.name LIKE "%' . $text . '%" and p.deleted_at is null and p.visible = 1
+        GROUP BY p.id
+        ');
         
-        $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
-        FROM    categories categoriess
-        LEFT JOIN
-                sub_categories sub_categoriess
-        ON      sub_categoriess.category_id = categoriess.id
-               
-        WHERE   categoriess.visible = 1 and
-
-categoriess.deleted_at is null and
-sub_categoriess.deleted_at is null
-              
-        GROUP BY
-                categoriess.id
+        $aCategories = DB::select('SELECT categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
+        FROM categories categoriess
+        LEFT JOIN sub_categories sub_categoriess
+        ON sub_categoriess.category_id = categoriess.id    
+        WHERE categoriess.visible = 1 and categoriess.deleted_at is null and sub_categoriess.deleted_at is null
+        GROUP BY categoriess.id
         ');
 
-
-$aProductsNews = DB::select('   SELECT p.*,
-MIN(i.image) image
-FROM products p
-LEFT JOIN images i ON p.id = i.product_id
-where i.deleted_at is null
-and p.visible = 1
-and p.deleted_at is  null
-and p.news = 1
-GROUP BY p.id');
-
-
-
-
+        $aProductsNews = DB::select('SELECT p.*, MIN(i.image) image
+        FROM products p
+        LEFT JOIN images i ON p.id = i.product_id
+        where i.deleted_at is null
+        and p.visible = 1
+        and p.deleted_at is  null
+        and p.news = 1
+        GROUP BY p.id');
 
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
@@ -102,6 +81,7 @@ GROUP BY p.id');
         ->where('categories.visible', '=', '1')
         ->groupBy('categories.id')
         ->get();
+
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 
@@ -109,9 +89,6 @@ GROUP BY p.id');
         ->get();
 
         return view('frontend/home.product',compact('aCategories','aSubCategories','aProducts'))->with('id',$id);
-   
-      
-
         
     }
 

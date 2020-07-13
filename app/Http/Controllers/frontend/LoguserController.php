@@ -13,19 +13,14 @@ class LoguserController extends Controller {
     public function index() {
 
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
-        FROM    categories categoriess
-        LEFT JOIN
-                sub_categories sub_categoriess
-        ON      sub_categoriess.category_id = categoriess.id
-               
-        WHERE   categoriess.visible = 1 and
-
-        categoriess.deleted_at is null and
-        sub_categoriess.deleted_at is null
-              
-        GROUP BY
-                categoriess.id
+        FROM categories categoriess
+        LEFT JOIN sub_categories sub_categoriess ON sub_categoriess.category_id = categoriess.id
+        WHERE   categoriess.visible = 1 
+        and categoriess.deleted_at is null 
+        and sub_categoriess.deleted_at is null  
+        GROUP BY categoriess.id
         ');
+        
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
 

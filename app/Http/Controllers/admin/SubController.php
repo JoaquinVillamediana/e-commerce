@@ -13,21 +13,21 @@ use DB;
 class SubController extends Controller{
 
     public function index(){
+
         $aCategories = CategoriesModel::get();
         $aSub = SubModel::select('sub_categories.*','categories.name as category_name')->leftjoin('categories','sub_categories.category_id','=','categories.id')->get();
         return view('admin/sub.index',compact('aSub'));
+
     }
 
   
     public function create() {
 
         $aCategories = CategoriesModel::get();
-        // $aProvinces = ProvincesModel::get();
-        // $aObj = ObjectivesModel::select('title','id')->get();
-        // $aCategories = CategoriesModel::get();
-        //return view('admin/sub.create');
         return view('admin/sub.create',compact('aCategories'));
+
     }
+
 
     public function store(Request $request) {
 
@@ -65,16 +65,18 @@ class SubController extends Controller{
         return redirect()->route('sub.index')->with('success', 'SubCatgorias actualizado satisfactoriamente');
     }
 
+
     public function show($id) {
         //
     }
 
+
     public function edit($id) {
         $aCategories = CategoriesModel::get();
         $oSub = SubModel::find($id);
-       // $aProvinces = ProvincesModel::get();
         return view('admin/sub.edit', compact('oSub','aCategories'));
     }
+
 
     public function update(Request $request, $id) {
         
@@ -105,12 +107,15 @@ class SubController extends Controller{
         return redirect()->route('sub.index')->with('success', 'Sub-Categoria actualizado satisfactoriamente');
     }
 
+
+
     public function destroy($id) {
 
         SubModel::find($id)->delete();
 
         return redirect()->route('sub.index')->with('success', 'Registro eliminado satisfactoriamente');
     }
+    
     
     public function getSub_CategoriesByCategory(Request $request){
         $categoryId = $request['option'];
