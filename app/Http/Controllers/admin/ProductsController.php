@@ -240,6 +240,31 @@ class ProductsController extends Controller {
         echo json_encode($aReturn);
     }
 
+    public function setMainImage(Request $request ){
+        $aReturn = array();
+        $oImage = ImageModel::find($request['image_id']);
+        $aImages = ImageModel::where('product_id','=',$oImage->product_id)
+        ->get();
+
+        foreach($aImages as $image)
+        {
+            if($image->id == $oImage->id)
+            {
+                $oImage->main_image = 1;
+                $oImage->save();;
+            }
+            else{
+                if($image->main_image == 1)
+                {
+                    $image->main_image = 0;
+                    $image->save();
+                }
+            }
+        }
+        $aReturn['image_id'] = $request['image_id'];
+
+        echo json_encode($aReturn);
+    }
 
  
 
