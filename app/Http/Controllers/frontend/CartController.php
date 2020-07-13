@@ -26,7 +26,7 @@ class CartController extends Controller {
 
         $user=Auth::user()->id;
 
-        $aProducts = DB::select('   SELECT p.*, MIN(i.image) image ,(categories.prom) prom
+        $aProducts = DB::select('   SELECT p.*, MIN(i.image) image ,(categories.prom) prom,c.quantity
         FROM products p
         LEFT JOIN categories ON (p.category_id = categories.id and  categories.deleted_at is null)
         LEFT JOIN images i ON p.id = i.product_id
@@ -38,7 +38,6 @@ class CartController extends Controller {
         and c.status = 1
         GROUP BY c.id
         ');
-
 
         $aCategories = DB::select('SELECT  categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM categories categoriess

@@ -48,11 +48,11 @@
 
         var html = '<div id="spinner" class="input-group ' + config.groupClass + '">' +
             '<div class="input-group-prepend">' +
-            '<button style="min-width: ' + config.buttonsWidth + '" id="btn-less" class="btn btn-decrement ' + config.buttonsClass + '" type="button">' + config.decrementButton + '</button>' +
+            '<button style="min-width: ' + config.buttonsWidth + '" id="btn-less" onclick="" class="btn btn-decrement ' + config.buttonsClass + '" type="button">' + config.decrementButton + '</button>' +
             '</div>' +
             '<input type="text" inputmode="decimal" id="input_spinner" style="border-right: none;border-left: none;text-align: ' + config.textAlign + '" class="form-control"/>' +
             '<div class="input-group-append">' +
-            '<button style="min-width: ' + config.buttonsWidth + '" id="btn-more" class="btn btn-increment ' + config.buttonsClass + '" type="button">' + config.incrementButton + '</button>' +
+            '<button style="min-width: ' + config.buttonsWidth + '" id="btn-more" onclick="" class="btn btn-increment ' + config.buttonsClass + '" type="button">' + config.incrementButton + '</button>' +
             '</div>' +
             '</div>'
 

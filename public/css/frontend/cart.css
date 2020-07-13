@@ -102,3 +102,31 @@
 .continue a:hover{
   color: #000;
 }
+
+#input_spinner{
+  width: 25%;
+  max-width: 75px;
+}
+
+#btn-more{
+  width: 10%;
+  border: 1px solid #ced4da;
+  border-left: none;border-top-right-radius: 25px;border-bottom-right-radius: 25px;
+}
+
+#btn-less{
+  width: 10%;
+  border: 1px solid #ced4da;
+  border-right: none;border-top-left-radius: 25px;border-bottom-left-radius: 25px;
+}
+
+#btn-more i{
+  font-weight: bold;
+  color: #000;
+  font-size: 15px;
+}
+#btn-less i{
+  font-weight: bold;
+
+  font-size: 15px;
+}

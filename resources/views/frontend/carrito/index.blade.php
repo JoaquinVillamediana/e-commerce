@@ -58,7 +58,9 @@
       </div>
     
     <div class="col-3">
-
+      
+        <input id="quantity"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
+      
     </div>
     <div class="col-4">
       @if ($product->prom != null)
@@ -72,10 +74,10 @@
         <?php
         if($product->prom != null)
         {
-          $total += $product->price * ($product->prom / 100);
+          $total += ($product->price * ($product->prom / 100)) * $product->quantity;
         }
         else {
-          $total+=$product->price;
+          $total+=$product->price * $product->quantity;
         }
         ?>
         
@@ -101,7 +103,19 @@
     
   </div>
 </div>
+<script src="/vendor/bootstrap-input-spinner-cart.js"></script>
+<script>
+    $("input[type='number']").inputSpinner()
+</script>
 <script>$( document ).ready(function() {
   $('#headFav').fadeIn(400);
+  
 });</script>
+
+<script>
+  function quantityChange(product_id)
+  { 
+    alert(product_id);
+  }
+</script>
 @endsection
