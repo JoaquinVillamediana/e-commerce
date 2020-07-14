@@ -53,8 +53,10 @@ class FavoritesController extends Controller {
 
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
+
+        $aImage = ImageModel::get();
         
-        return view('frontend/favorites.index',compact('aCategories','aSubCategories','aProducts'));
+        return view('frontend/favorites.index',compact('aCategories','aSubCategories','aProducts','aImage'));
     }
 
     public function show() {

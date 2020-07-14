@@ -68,6 +68,7 @@
       @else
         <h2 class="price">${{$product->price}}</h2>
       @endif
+      <i  onclick="window.location='{{ route('cartAction',$product->id) }}'" class="deleteItem float-right fas fa-times"></i>
     </div>
 </div>
 </div>

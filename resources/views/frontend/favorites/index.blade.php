@@ -1,60 +1,94 @@
 @extends('frontend/layouts.app')
 
 @section('content')
-
-<div class=" container-fluid">
-
-
+<link rel="stylesheet" href="/css/frontend/favorites.css">
+<div class="mt-5 container-fluid">
 
 
 
-  <div class="row pt-2 justify-content-center text-right">
-    <div class="col-4 d-none d-lg-block d-xl-block d-md-block">
-      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets5.lottiefiles.com/temp/lf20_adfZjR.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+  <div class="d-inline">
+    <div class="fav-icon">
+      <i class="fas fa-heart"></i>
     </div>
-    <div class="col-md-4 col-12">
-        <h2 class="text-center" id="headFav" style="    position: absolute;top: 100px;left: 100px;z-index: 2;display:none">Favoritos</h2>
-        
-        
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <lottie-player src="https://assets2.lottiefiles.com/temp/lf20_5taKk6.json"  background="transparent"  speed="0.5"  style="width: 300px; height: 300px;"    autoplay></lottie-player>
+    <div class="div-title">
+      <h2 style="color:#000;" class=" d-inline title font-weight-bold text-left">Favoritos</h2>
     </div>
-    <div class="col-4 d-none d-lg-block d-xl-block d-md-block">
-      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets5.lottiefiles.com/temp/lf20_adfZjR.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
-    </div>
+
+
+
   </div>
-
-  <div class="row">
+</div>
+<?php $total=0?>
+<div class="row">
   @if (!empty($aProducts))
-  @foreach ($aProducts as $product)
-          
-
-
-
-    <div class="card m-3">
-
-      <h5 class="card-header">@if ($product->prom != null)
-        <p ><span class="card-text text-danger"><del>${{$product->price}}</del> </span>
-        <span class="text-success">${{$product->price * ($product->prom / 100)}}</span>
-        </p>   
-        @else
-        <p class="card-text text-dark">${{$product->price}}</p>
-        @endif</h5>
-       <div class="card-body">
-        <h5 class="card-title"> <a href="{{route('product',$product->id)}}">{{$product->name}}</a></h5>
-        <p class="card-text">{!! $product->description !!}</p>
-        <a href="{{route('product',$product->id)}}" class="btn btn-primary">Comprar</a>
-       </div>
-    </div>        
-  @endforeach
-  
-  @endif
+  <div class="col-12 mb-4 mt-5">
+    <div class="row">
+      <div class="col-6">
+        <h3 class="grid-header">Producto</h3>
+      </div>
+      <div class="col-6">
+        <h3 class="grid-header">Precio</h3>
+      </div>
+    </div>
   </div>
+  @foreach ($aProducts as $product)
+
+  <div class="col-12 mb-4">
+
+    <div class="row">
+      <div class="col-6">
+        @foreach ($aImage as $image)
+        @if ($image->product_id == $product->id && $image->type == 0 && $image->main_image == 1)
+        <img class="product_image" src="/uploads/products/{{$image->image}}" alt="">
+        @endif
+        @endforeach
+        <div class="text">
+
+          <h4>{{$product->name}} <br>
+
+
+            <span>Codigo de producto: #{{$product->id}}</span></h4>
+
+        </div>
+
+
+      </div>
+
+      <div class="col-6">
+        @if ($product->prom != null)
+        <h2 class="price">${{$product->price * ($product->prom / 100)}}</h2>
+        @else
+        <h2 class="price">${{$product->price}}</h2>
+        @endif
+        <i onclick="window.location='{{ route('favoritesAction',$product->id) }}'"
+          class="deleteItem float-right fas fa-times"></i>
+      </div>
+    </div>
+  </div>
+
+
+  @endforeach
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="continue">
+      <a class="continue" href="{{route('home')}}"><i class="fas fa-arrow-left mr-1"></i>Continuar comprando</a>
+    </div>
+
+  </div>
+</div>
+@endif
+
+
 
 </div>
-<script>$( document ).ready(function() {
+</div>
+
+<script>
+  $( document ).ready(function() {
   $('#headFav').fadeIn(400);
-});</script>
+  
+});
+</script>
+
 @endsection

@@ -1,0 +1,28 @@
+footer {
+  margin-left: 250px;
+}
+
+footer .footer-title{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+footer .left-section p{
+  font-size: 11px;
+  margin-top: 30px;
+}
+
+footer .left-section .social-media{
+  margin-top: 50px;
+}
+
+footer .left-section .social-media i{
+  color: #aaaaaa;
+
+}
+
+.copyright p{
+  margin-top: 60px;
+  color: #bbbbbb;
+  font-size: 11px;
+}

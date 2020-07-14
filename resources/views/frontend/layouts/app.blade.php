@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="/vendor/bootstrap.min.css" crossorigin="anonymous">
         <!-- Custom fonts for this template-->
         <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">   
+        <link rel="stylesheet" href="/css/frontend/footer.css">
         <!-- Custom styles for this template-->
         <link href="/css/sb-admin.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
@@ -50,7 +51,7 @@
         </div>
         @include('frontend/layouts.nav')
         <!-- Bootstrap core JavaScript-->
-
+        @include('frontend/layouts.footer')
         <script src="/vendor/popper.min.js" crossorigin="anonymous"></script>
         <script src="/vendor/bootstrap.min.js" crossorigin="anonymous"></script>
 
