@@ -36,7 +36,7 @@ Route::get('search', 'frontend\SearchController@index')->name('search');
 Route::get('/forgot_password', 'frontend\ForgotPasswordController@forgot');
 Route::post('/forgot_password', 'frontend\ForgotPasswordController@password');
 
-
+Route::get('frecuent', 'frontend\FrecuentController@index')->name('frecuent');
 
 
 Route::prefix('admin')->group(function () {
