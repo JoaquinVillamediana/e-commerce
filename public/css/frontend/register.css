@@ -27,7 +27,7 @@ body{
   background-color: #f9ca3b;
 }
 
-.container{
+#main-container .container{
   max-width: 600px ;
 }
 
@@ -65,4 +65,12 @@ body{
   border-right: none !important;
   padding: 10px 25px; 
   width: 90% !important;
+}
+@media (orientation: portrait)
+{
+  .input-password{
+ 
+    width: 88% !important;
+  }
+
 }
