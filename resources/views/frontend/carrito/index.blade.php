@@ -57,12 +57,12 @@
         
       </div>
     
-    <div class="col-3">
+    <div class="col-md-3 col-7">
       
         <input id="quantity_{{$product->id}}"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
       
     </div>
-    <div class="col-4">
+    <div class="col-md-4 col-12">
       @if ($product->prom != null)
         <h2 class="price">${{$product->price * ($product->prom / 100)}}</h2>
       @else
