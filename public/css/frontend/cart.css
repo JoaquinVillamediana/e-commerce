@@ -146,4 +146,18 @@
     width: 100%;
     object-fit: cover;
   }
+
+  .price-section{
+    padding-top: 10%;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .section-payment{
+    flex-direction: column-reverse;
+  }
+  .section-payment .col-12
+  {
+    margin-top: 20px;
+  }
 }

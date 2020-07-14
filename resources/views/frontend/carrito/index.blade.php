@@ -57,19 +57,26 @@
         
       </div>
     
-    <div class="col-md-3 col-7">
-      
-        <input id="quantity_{{$product->id}}"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
+    <div class="col-7">
+      <div class="row">
+        <div class="col-12 col-md-5">
+          <input id="quantity_{{$product->id}}"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
+        </div>
+        <div class="col-12 col-md-7 price-section">
+          
+            @if ($product->prom != null)
+              <h2 class="price">${{$product->price * ($product->prom / 100)}}</h2>
+            @else
+              <h2 class="price">${{$product->price}}</h2>
+            @endif
+            <i  onclick="window.location='{{ route('cartAction',$product->id) }}'" class="deleteItem float-right fas fa-times"></i>
+          
+        </div>
+      </div>
+        
       
     </div>
-    <div class="col-md-4 col-12">
-      @if ($product->prom != null)
-        <h2 class="price">${{$product->price * ($product->prom / 100)}}</h2>
-      @else
-        <h2 class="price">${{$product->price}}</h2>
-      @endif
-      <i  onclick="window.location='{{ route('cartAction',$product->id) }}'" class="deleteItem float-right fas fa-times"></i>
-    </div>
+    
 </div>
 </div>
         <?php
@@ -84,17 +91,17 @@
         
               @endforeach
             </div>
- <div class="row">
-   <div class="col-7">
+ <div class="row section-payment">
+   <div class="col-md-7 col-12">
      <div class="continue">
       <a class="continue" href="{{route('home')}}"><i class="fas fa-arrow-left mr-1"></i>Continuar comprando</a>
      </div>
    
    </div>
-   <div class="col-3">
+   <div class="col-md-3 col-12">
     <p class="total-price">Costo total: <span id="final_price">${{$total}}</span></p>
    </div>
-   <div class="col-2">
+   <div class="col-md-2 col-12">
     <a href="" class="shop-btn btn">PAGAR</a>
    </div>
  </div>
