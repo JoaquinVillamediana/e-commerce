@@ -122,4 +122,25 @@ class CartController extends Controller {
                 return back()->withInput();
         }
 
+        public function changeProductQuantity(Request $request)
+        {
+                $user=Auth::user()->id;
+                $aReturn = array();
+                $oCart = CartModel::where('user_id','=',$user)->where('product_id','=',$request['product_id'])->first();
+
+                if($oCart->quantity != $request['quantity'])
+                {
+                        $aReturn['price'] = $request['price'];
+                        $aReturn['change'] = (intval($request['quantity']) - intval($oCart->quantity) );
+                        $aReturn['product_id'] =  $request['product_id'];
+                        $oCart->quantity = $request['quantity'];
+                        $oCart->save();
+                }
+                else{
+                        $aReturn['change'] = 0;
+                }
+
+                echo json_encode($aReturn);
+        }
+
 }

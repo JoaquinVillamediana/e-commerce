@@ -59,7 +59,7 @@
     
     <div class="col-3">
       
-        <input id="quantity"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
+        <input id="quantity_{{$product->id}}"   name="quantity" type="number" value="{{$product->quantity}}" min="1" max="{{$product->stock}}" step="1" />
       
     </div>
     <div class="col-4">
@@ -91,7 +91,7 @@
    
    </div>
    <div class="col-3">
-    <p class="total-price">Costo total: <span>${{$total}}</span></p>
+    <p class="total-price">Costo total: <span id="final_price">${{$total}}</span></p>
    </div>
    <div class="col-2">
     <a href="" class="shop-btn btn">PAGAR</a>
@@ -112,10 +112,78 @@
   
 });</script>
 
+@foreach ($aProducts as $product)
+    <script>
+      $('#quantity_{{$product->id}}').change( () => {
+        let newQuantity = $('#quantity_{{$product->id}}').val();
+        changeProductQuantity({{$product->id}},newQuantity,{{$product->price}},{{$product->prom}});
+      });
+    </script>
+@endforeach
+
 <script>
-  function quantityChange(product_id)
-  { 
-    alert(product_id);
+
+  function changeProductQuantity(product_id,quantity,price,prom)
+  {
+    event.preventDefault();
+
+    var params = new Object();
+    params._token =  "{{ csrf_token() }}";
+    params.quantity = quantity;
+    params.product_id = product_id;
+    if(prom != null)
+    {
+      params.price = Number(price) * (Number(prom)/100);
+    }
+    else{
+      params.price = price;
+    }
+    ajaxRequest("POST","{{route('changeProductQuantity')}}", params, "changeProductQuantityResponse")
   }
+
+    
+    function changeProductQuantityResponse(data) {
+
+        if(data.change != 0)
+        {
+          let old_total = {{intval($total)}};
+          console.log(old_total);
+          console.log('Price= '+data.price);
+          console.log('Change= '+data.change);
+          let new_total = old_total + (Number(data.price) * Number(data.change));
+          console.log(new_total);
+          $('#final_price').text('$'+new_total); 
+        }
+
+    }
+    
+    function ajaxRequest(type, url, params, callBack) {
+
+        jQuery.support.cors = true;
+        params = JSON.stringify(params);
+
+        $.ajax({
+            type: type,
+            url: url,
+            data: params,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend: function () {
+                //$('#ajaxLoader').show();
+            },
+            complete: function () {
+                //$('#ajaxLoader').hide();
+            },
+            success: function (data) {
+               //console.log("REQUEST [ " + type + " ] [ " + url + " ] SUCCESS");
+               //console.log(data);
+                window[callBack](data);
+            },
+            error: function (msg, url, line) {
+               //console.log('ERROR !!! msg = ' + msg + ', url = ' + url + ', line = ' + line);
+            }
+        });
+    }
+
 </script>
 @endsection
