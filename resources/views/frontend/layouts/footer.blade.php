@@ -17,19 +17,19 @@
           </div>
         </div>
       </div>
-      <div class="col-6 pt-3">
+      <div class="col-6 ">
         <div class="row">
-          <div class="col-4">
-            <h4 class="footer-section-title">Comprar</h4>
+          <div class="col-md-4 col-12">
+            <h4 class="footer-section-title first">Comprar</h4>
             <a class="footer-link" href="">Opciones de pago</a>
             <a class="footer-link" href="">Envíos</a>
           </div>
-          <div class="col-4">
+          <div class="col-md-4 col-12">
             <h4 class="footer-section-title">Soporte</h4>
             <a class="footer-link" href="">Ayuda</a>
             <a class="footer-link" href="{{route('frecuent')}}">Preguntas Frecuentes</a>
           </div>
-          <div class="col-4">
+          <div class="col-md-4 col-12">
             <h4 class="footer-section-title">Contacto</h4>
             @if (empty(Auth::user()->id))
                 <p class="footer-link">soporte@eshop.com.ar</p>
