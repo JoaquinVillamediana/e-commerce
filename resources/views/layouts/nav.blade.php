@@ -41,7 +41,13 @@
                 </a>
             </li>
 
-           
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Products">
+                <a class="nav-link" href="{{ route('contact.index') }}">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                    <span class="nav-link-text">Contactados</span>
+                </a>
+            </li>
+
            
             
 

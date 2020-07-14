@@ -59,6 +59,8 @@ Route::prefix('admin')->group(function () {
             Route::post('setMainImage', 'admin\ProductsController@setMainImage')->name('setMainImage');
             
             Route::resource('slider', 'admin\SliderController');
+
+            Route::resource('contact', 'admin\ContactController');
             
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
@@ -81,6 +83,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('profile', 'frontend\ProfileController@index')->name('profile');
     Route::post('profile', 'frontend\ProfileController@update')->name('profile_update');
+
+   
+
+    Route::get('contact', 'frontend\ContactController@index')->name('contact');
+    Route::post('contact_post', 'frontend\ContactController@store')->name('contact_post');
     
 });
 

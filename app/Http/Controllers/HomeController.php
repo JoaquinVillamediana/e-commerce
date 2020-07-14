@@ -61,6 +61,7 @@ class HomeController extends Controller
     where i.deleted_at is null
     and p.visible = 1
     and p.deleted_at is  null
+    and i.main_image = 1
     and p.news = 1
     and categories.deleted_at is null
     GROUP BY p.id;');

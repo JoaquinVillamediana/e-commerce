@@ -38,6 +38,7 @@ class SubController extends Controller {
         LEFT JOIN images i ON p.id = i.product_id
         LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
         where i.deleted_at is null
+        and i.main_image = 1
         and p.subcategory_id = "'.$id.'"
         and p.deleted_at is  null
         and p.visible = 1

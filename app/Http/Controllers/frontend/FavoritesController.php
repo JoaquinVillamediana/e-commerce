@@ -32,6 +32,7 @@ class FavoritesController extends Controller {
         LEFT JOIN images i ON p.id = i.product_id
         LEFT JOIN favoritos c ON p.id = c.product_id 
         where i.deleted_at is null
+        and i.main_image = 1
         and  c.user_id = "'.$user.'"
         and c.deleted_at is null
         and p.deleted_at is  null
