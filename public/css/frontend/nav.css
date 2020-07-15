@@ -5,6 +5,9 @@
 .text-black{
     color: #000 !important;
 }
+.header .cart-text{
+    display: none;
+}
 
 .header{
     width: 100%;
@@ -12,7 +15,7 @@
 }
 
 .header .login{
-    display: inline-block !important;
+    display: inline-block ;
     float: right;
 }
 
@@ -41,29 +44,10 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid rgba(222, 222, 222, 1);ssss
+    border-bottom: 1px solid rgba(222, 222, 222, 1);
     
 }
 
-@media (orientation: portrait){
-    .header .search{
-        display: inline-block !important;
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .header .search input{
-        width: 86%;
-        
-    }
-    .header .login{
-        border-top: 1px solid;
-        display: inline-block !important;
-        float: left;
-        width: 100%;
-        border-color: #6c757d!important;
-    }
-}
 
 form .text{
     margin-right: 0 !important;
@@ -153,4 +137,66 @@ a:focus {
     bottom: 25px;
     right: 25px;
     display: none;
+}
+
+
+@media (orientation: portrait){
+
+    #search-form{
+        flex-direction: row-reverse;
+    }
+
+    #nav-search{
+        padding-left: 0 !important;
+    }
+    #mainNav .navbar-collapse .navbar-sidenav{
+        margin-top: 0 !important;
+    }
+
+    .header .search{
+        display: inline-block !important;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .header .search input{
+        width: 86%;
+        
+    }
+    .header .login{
+        
+        display: inline-block !important;
+        float: left;
+        width: 100%;
+        
+    }
+
+    #options-display{
+        display: none !important;
+    }
+
+    .user-icon-responsive{
+        font-size: 25px;
+    }
+
+    .navbar-collapse .container{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .header .cart-text{
+        display: inline-block !important;
+        font-size: 1.1rem;
+        margin-left: .5rem!important;
+    }
+    .nav-item.dropdown.login{
+        margin-left: 0 !important;
+    }
+    
+}
+
+@media (orientation: landscape){
+    .responsive-drop{
+        display: none !important;
+    }
 }

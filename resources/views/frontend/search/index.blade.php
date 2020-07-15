@@ -2,6 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/frontend/products.css">
+<link rel="stylesheet" href="/css/frontend/search.css">
 <div class="mt-5 pb-5 container-fluid">
 
 
@@ -21,14 +22,16 @@
   @else
 
 
-  <h2 class="text-right"> {{$scategory_name}}</h2>
+  <h2 class="text-center not-found"> {{$scategory_name}}</h2>
+  <h2 class="text-left not-found">Productos que te pueden interesar</h2>
   @include('frontend/layouts.products')
   @endif
 
-      <script>
-        $( document ).ready(function() {
+  <script>
+    $( document ).ready(function() {
   $('#text').fadeIn(400);
   
 });
-      </script>
-      @endsection
+  </script>
+</div>
+@endsection

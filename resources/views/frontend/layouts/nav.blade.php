@@ -50,20 +50,27 @@
             
             @else
             
-            <li class="nav-item dropdown login ml-3 ">
+            <li id="options-display" class="nav-item dropdown login ml-3 ">
               
               <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user"></i>
               </a>
-              <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu text-dark" id="dropdown-links" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item text-dark"  href="{{route('profile') }}">Perfil</a>
                 <a class="dropdown-item text-dark"  href="#">Compras</a>
                 <a class="dropdown-item text-dark"  href="{{route('favorites') }}">Favoritos</a>
                 <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Salir</a>
               </div>
             </li>
+            <li class="nav-item login responsive-drop">
+              <i class="fas fa-user-circle user-icon-responsive nav-link"></i>
+              <a class="ml-2 nav-link text-dark"  href="{{route('profile') }}">Perfil</a>
+              <a class="ml-2 nav-link text-dark"  href="#">Compras</a>
+              <a class="ml-2 nav-link text-dark"  href="{{route('favorites') }}">Favoritos</a>
+              <a class="ml-2 nav-link" data-toggle="modal" data-target="#exampleModal">Salir</a>
+            </li>
             <li class="nav-item login">
-              <a class="nav-link"  href="{{route('cart') }}"><i class="fas fa-shopping-cart"></i></a>
+              <a class="nav-link"  href="{{route('cart') }}"><i class="fas fa-shopping-cart"></i><span class="cart-text">Carrito</span></a>
              </li>
             @endif
             <li class="nav-item search login">
@@ -115,6 +122,7 @@ function displaySearch(){
     
   }
 }
+
 </script>
 
 
