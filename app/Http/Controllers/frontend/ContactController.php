@@ -93,7 +93,7 @@ class ContactController extends Controller {
         $description = $request['description']; 
 
 
-        $data=array('text' => $description,'user_id' => $user_id,'type' => $contacts_type);
+        $data=array('text' => $description,'user_id' => $user_id,'type' => $contacts_type,'created_at' => now() );
         ContactModel::insert($data);
 
        

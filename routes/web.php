@@ -61,7 +61,8 @@ Route::prefix('admin')->group(function () {
             Route::resource('slider', 'admin\SliderController');
 
             Route::resource('contact', 'admin\ContactController');
-            
+            Route::delete('contactDelete/{id}', 'admin\ContactController@destroy')->name('contactDelete');
+
             Route::resource('products', 'admin\ProductsController');
             Route::resource('sub', 'admin\SubController');
         });

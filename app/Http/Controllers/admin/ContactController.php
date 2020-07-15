@@ -25,5 +25,10 @@ class ContactController extends Controller {
         //
     }
 
-   
+    public function destroy($id) {
+
+        ContactModel::find($id)->delete();
+
+        return redirect()->route('contact.index')->with('success', 'Registro eliminado satisfactoriamente');
+    }
 }
