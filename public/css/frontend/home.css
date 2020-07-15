@@ -61,3 +61,25 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (orientation: portrait)
+{
+    .btn-prev,.btn-next{
+        height: 40px;
+        width: 40px;
+        bottom: 20px;
+    }
+    .btn-prev{
+
+        right: 80px;
+    }
+    .btn-next{
+        right: 20px;
+    }
+
+    .view-now{
+        
+        top: 10%;
+        
+    }
+}
