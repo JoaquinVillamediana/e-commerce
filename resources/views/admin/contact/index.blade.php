@@ -30,7 +30,7 @@
                                 <th>Email</th>
                                 <th>Teléfono</th>                                
                                 <th>Fecha</th>
-                                <th>Editar</th>
+                              
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
@@ -54,9 +54,9 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->created_at }}</td>
-                                <td><a class="btn btn-primary btn-circle" href="{{action('admin\UserController@edit', $user->id)}}"><i class="fa fa-list"></i></a></td>
+                              
                                 <td>
-                                    <form id="deleteForm_{{$user->id}}" action="{{action('admin\UserController@destroy', $user->id)}}" method="post">
+                                    <form id="deleteForm_{{$user->id}}" action="{{action('admin\ContactController@destroy', $user->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="button" id="submiBtn" class="btn btn-warning btn-circle my-custom-confirmation" data-toggle="modal" onclick="openDelModal({{$user->id}});"><i class="fa fa-times"></i></button>
