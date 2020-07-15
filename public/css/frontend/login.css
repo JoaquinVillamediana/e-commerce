@@ -18,6 +18,10 @@ input:focus{
   outline: none !important;
 }
 
+footer{
+  display: none !important;
+}
+
 .eye{
   border-top-right-radius: 30px !important;
   border-bottom-right-radius:30px !important;

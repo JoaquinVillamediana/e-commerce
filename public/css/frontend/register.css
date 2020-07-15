@@ -1,3 +1,6 @@
+footer{
+  display: none !important;
+}
 
 body{
   box-sizing: border-box;

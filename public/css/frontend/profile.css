@@ -1,3 +1,7 @@
+footer{
+  display: none !important;
+}
+
 .section-name{
   font-size: 13px;
   font-weight: bold;
