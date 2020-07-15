@@ -54,17 +54,17 @@ class HomeController extends Controller
 
         $aProducts = DB::select('SELECT p.*,
         MIN(i.image) image,(f.product_id) favoritos,(categories.prom) prom
-    FROM products p
-    LEFT JOIN categories ON p.category_id = categories.id
-    LEFT JOIN images i ON p.id = i.product_id
-    LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
-    where i.deleted_at is null
-    and p.visible = 1
-    and p.deleted_at is  null
-    and i.main_image = 1
-    and p.news = 1
-    and categories.deleted_at is null
-    GROUP BY p.id;');
+        FROM products p
+        LEFT JOIN categories ON p.category_id = categories.id
+        LEFT JOIN images i ON p.id = i.product_id
+        LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
+        where i.deleted_at is null
+        and p.visible = 1
+        and p.deleted_at is  null
+        and i.main_image = 1
+        and p.news = 1
+        and categories.deleted_at is null
+        GROUP BY p.id;');
 
 
         $aImage = ImageModel::select('products.*', 'images.image as image_dir')->leftjoin('products','products.id','=','images.product_id')

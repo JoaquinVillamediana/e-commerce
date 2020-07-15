@@ -47,6 +47,27 @@ class SearchController extends Controller {
         and p.visible = 1
         GROUP BY p.id
         ');
+
+        if(empty($aProducts))
+        {
+            $scategory_name = "No se encontro resultados para '".$text."'";
+            $aProducts = DB::select('SELECT p.*,
+            MIN(i.image) image,(f.product_id) favoritos,(categories.prom) prom
+            FROM products p
+            LEFT JOIN categories ON p.category_id = categories.id
+            LEFT JOIN images i ON p.id = i.product_id
+            LEFT JOIN favoritos f ON  (p.id = f.product_id and  f.user_id = "'.$user_id.'" and f.deleted_at is null)
+            where i.deleted_at is null
+            and p.visible = 1
+            and p.deleted_at is  null
+            and i.main_image = 1
+            and p.news = 1
+            and categories.deleted_at is null
+            GROUP BY p.id;');
+        }
+        else{
+            $scategory_name = null;
+        }
         
         $aCategories = DB::select('SELECT categoriess.*, COUNT(sub_categoriess.id) AS countsub, COUNT(case sub_categoriess.visible when 1 then 1 else null end) AS countvis
         FROM categories categoriess
@@ -56,21 +77,21 @@ class SearchController extends Controller {
         GROUP BY categoriess.id
         ');
 
-        $aProductsNews = DB::select('SELECT p.*, MIN(i.image) image
-        FROM products p
-        LEFT JOIN images i ON p.id = i.product_id
-        where i.deleted_at is null
-        and p.visible = 1
-        and p.deleted_at is  null
-        and p.news = 1
-        GROUP BY p.id');
+        // $aProductsNews = DB::select('SELECT p.*, MIN(i.image) image
+        // FROM products p
+        // LEFT JOIN images i ON p.id = i.product_id
+        // where i.deleted_at is null
+        // and p.visible = 1
+        // and p.deleted_at is  null
+        // and p.news = 1
+        // GROUP BY p.id');
 
         $aSubCategories = SubModel::where('sub_categories.visible' ,'=', '1')
         ->get();
         
-        $scategory_name = "No se encontro resultados para '".$text."'";
+        
 
-        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name','aProductsNews','text'));
+        return view('frontend/search.index',compact('aCategories','aSubCategories','aProducts','scategory_name','text'));
     }
 
     public function show() {
